@@ -12,6 +12,7 @@ and open the template in the editor.
         include 'scripts.php';
         include 'navbar_staff.php';
         ?>
+        <script src="courses_staffDashboard.js" type="text/javascript"></script>
     </head>
     <body>
         <!--About courses-->
@@ -39,8 +40,10 @@ and open the template in the editor.
                     <small>Coursera</small>
                 </a>
             </div>
+           
 
             <!--Modal for adding courses-->
+            <!--Modal for courses only-->
             <div class="modal fade" id="courses_only_modal_add" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -50,14 +53,15 @@ and open the template in the editor.
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                        <form id="formAddNewCourse" method="post" action="">
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Name of new course:</label>
-                                <input type="text" class="form-control" id="" placeholder="eg. Introduction to IoT">
+                                <input type="text" class="form-control" id="" placeholder="eg. Introduction to IoT" name="course_name">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Course Genre:</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
+                                <select class="form-control" id="exampleFormControlSelect1" name="genre">
                                     <option>Programming</option>
                                     <option>IT Security</option>
                                     <option>Internet of Things</option>
@@ -72,19 +76,22 @@ and open the template in the editor.
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">S$</span>
                                     </div>
-                                    <input type="number" class="form-control" id="" placeholder="Please put in SGD, eg. SGD$0.06">
+                                    <input type="number" class="form-control" id="" placeholder="Please put in SGD, eg. SGD$0.06" name="cost">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Course Provider:</label>
-                                <input type="text" class="form-control" id="" placeholder="eg. Coursera, Codeacademy">
+                                <input type="text" class="form-control" id="" placeholder="eg. Coursera, Codeacademy" name="course_provider">
                             </div>
                         </div>
+                        
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <input type="submit" class="btn btn-primary" value="Save Changes"/>
                         </div>
+                            </form>
                     </div>
+
                 </div>
             </div>
 
