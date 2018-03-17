@@ -95,7 +95,8 @@ and open the template in the editor.
                             <h5 class="mb-1">Kisarazu Kosen</h5>
                             <small>4 months</small>
                         </div>
-                        <br/>
+                        <a href=""><span class="badge badge-success">Add vacancy</span></a>
+                        <br/><br/>
                         <ul class="list-group">
                             <li class="list-group-item justify-content-between align-items-center">
                                 <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
@@ -116,7 +117,8 @@ and open the template in the editor.
                             <h5 class="mb-1">Nagano Kosen</h5>
                             <small>2 days</small>
                         </div>
-                        <br/>
+                        <a href=""><span class="badge badge-success">Add vacancy</span></a>
+                        <br/><br/>
                         <ul class="list-group">
                             <li class="list-group-item justify-content-between align-items-center">
                                 <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
