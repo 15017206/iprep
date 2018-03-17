@@ -17,46 +17,52 @@ and open the template in the editor.
         <!--About OIIP-->
         <div class="container">
             <br/>
-            <div class="alert alert-warning" role="alert">OIIP Info</div>
+            <div class="alert alert-info" role="alert">List of companies in database
+            
+            </div>
 
-            <!--Button to add new students to OIIP-->
-            <form class="" method="" action="">
 
-                <div class="form-group">
-                    <div class="container">
-                        <button type="button" data-toggle="modal" data-target="#oiip_add_vacancies" class="btn btn-block btn-success">Enter OIIP Vacancies</button>
-                        <button type="button" data-toggle="modal" data-target="#oiip_add_vacancies" class="btn btn-block btn-info">Assign OIIP to student</button>
+            <div class="alert alert-warning" role="alert">OIIP Info
+                <br/>
+                <br/>
+                <!--Button to add new students to OIIP-->
+                <form class="" method="" action="">
+
+                    <div class="form-group">
+                        <div class="container">
+                            <button type="button" data-toggle="modal" data-target="#oiip_add_vacancies" class="btn btn-block btn-success">Enter OIIP Vacancies</button>
+                            <button type="button" data-toggle="modal" data-target="#oiip_add_vacancies" class="btn btn-block btn-info">Assign OIIP to student</button>
+                        </div>
                     </div>
+                </form>
+
+                <!--Add some students here-->
+                <div class="list-group">
+                    <a href="#" data-toggle="modal" data-target="#oiip_vacancies" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Kim Jong Un (15063493)</h5>
+                            <small>Kurume, Fukuoka, Japan</small>
+                        </div>
+                        <div class="d-flex w-100">
+                            <span class="badge badge-warning">DIT</span>
+                        </div>
+                        <p class="mb-1">Arduino & Internet of Things &nbsp;<span class="badge badge-success">Kurume Institute of Technology, Japan</span></p>
+                        <small>4 months total, 3 months 2 days remaining</small>
+                    </a>
+                    <a href="#" data-toggle="modal" data-target="#oiip_vacancies" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Osama (15063493)</h5>
+                            <small>Nagano, Japan</small>
+                        </div>
+                        <div class="d-flex w-100">
+                            <span class="badge badge-warning">DMSD</span>
+                        </div>
+                        <p class="mb-1">Translation of Braille to English Text &nbsp;<span class="badge badge-success">Nagano College Institute of Technology, Japan</span></p>
+                        <small>5 months total, 1 day remaining</small>
+                    </a>
                 </div>
-            </form>
-
-            <!--Add some students here-->
-            <div class="list-group">
-                <a href="#" data-toggle="modal" data-target="#oiip_vacancies" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Kim Jong Un (15063493)</h5>
-                        <small>Kurume, Fukuoka, Japan</small>
-                    </div>
-                    <div class="d-flex w-100">
-                        <span class="badge badge-warning">DIT</span>
-                    </div>
-                    <p class="mb-1">Arduino & Internet of Things &nbsp;<span class="badge badge-success">Kurume Institute of Technology, Japan</span></p>
-                    <small>4 months total, 3 months 2 days remaining</small>
-                </a>
-                <a href="#" data-toggle="modal" data-target="#oiip_vacancies" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Osama (15063493)</h5>
-                        <small>Nagano, Japan</small>
-                    </div>
-                    <div class="d-flex w-100">
-                        <span class="badge badge-warning">DMSD</span>
-                    </div>
-                    <p class="mb-1">Translation of Braille to English Text &nbsp;<span class="badge badge-success">Nagano College Institute of Technology, Japan</span></p>
-                    <small>5 months total, 1 day remaining</small>
-                </a>
             </div>
         </div>
-
         <!--Modal for OIIP Vacancies-->
         <div class="modal fade" id="oiip_vacancies" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">

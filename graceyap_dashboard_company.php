@@ -71,31 +71,32 @@ and open the template in the editor.
         <!--About OIIP-->
         <div class="container">
             <br/>
-            <div class="alert alert-warning" role="alert">Company Info</div>
+            <div class="alert alert-warning" role="alert">Company Info
+                <br/>
+                <br/>
 
-            <!--Button to add new company to OIIP-->
-            <form class="" method="" action="">
-
-                <div class="form-group">
-                    <div class="container">
-                        <button type="button" data-toggle="modal" data-target="#oiip_add_company" class="btn btn-block btn-success">Add New Company</button>
-                    </div>
+                <!--Sample listed companies-->
+                <div class="list-group">
+                    <a href="#" data-toggle="modal" data-target="#oiip_available_company" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Nagano Kosen</h5>
+                            <small>Nagano, Nagano, Japan</small>
+                        </div>
+                        <small>3 vacancies: 2 App Developer, 1 IT Security</small>
+                    </a>
                 </div>
-            </form>
+                <br/>
+                <!--Button to add new company to OIIP-->
+                <form class="" method="" action="">
 
-            <!--Sample listed companies-->
-            <div class="list-group">
-                <a href="#" data-toggle="modal" data-target="#oiip_available_company" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Nagano Kosen</h5>
-                        <small>Nagano, Nagano, Japan</small>
+                    <div class="form-group">
+                        <div class="container">
+                            <button type="button" data-toggle="modal" data-target="#oiip_add_company" class="btn btn-block btn-success">Add New Company</button>
+                        </div>
                     </div>
-                    <small>3 vacancies: 2 App Developer, 1 IT Security</small>
-                </a>
+                </form>
             </div>
-
         </div>
-
         <!--Modal for choosing available company-->
         <div class="modal fade" id="oiip_available_company" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
