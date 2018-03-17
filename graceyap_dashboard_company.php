@@ -74,7 +74,16 @@ and open the template in the editor.
             <div class="alert alert-warning" role="alert">Company Info
                 <br/>
                 <br/>
+                <!--Button to add new company to OIIP-->
+                <form class="" method="" action="">
 
+                    <div class="form-group">
+                        <div class="container">
+                            <button type="button" data-toggle="modal" data-target="#oiip_add_company" class="btn btn-block btn-success">Add New Company</button>
+                        </div>
+                    </div>
+                </form>
+                
                 <!--Sample listed companies-->
                 <div class="list-group">
                     <a href="#" data-toggle="modal" data-target="#oiip_available_company" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -85,16 +94,8 @@ and open the template in the editor.
                         <small>3 vacancies: 2 App Developer, 1 IT Security</small>
                     </a>
                 </div>
-                <br/>
-                <!--Button to add new company to OIIP-->
-                <form class="" method="" action="">
 
-                    <div class="form-group">
-                        <div class="container">
-                            <button type="button" data-toggle="modal" data-target="#oiip_add_company" class="btn btn-block btn-success">Add New Company</button>
-                        </div>
-                    </div>
-                </form>
+
             </div>
         </div>
         <!--Modal for choosing available company-->

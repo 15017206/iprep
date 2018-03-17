@@ -18,23 +18,24 @@ and open the template in the editor.
         <div class="container">
             <br/>
 
+            <!--List of available companies in database-->
             <div class="alert alert-info" role="alert">List of available companies in database&nbsp;<a href="#collapse_id1" data-toggle="collapse"><span class="badge badge-info">Show/Hide</span></a>
                 <br/><br/>
                 <div class="collapse show" id="collapse_id1">
                     <ul class="list-group">
                         <li class="list-group-item justify-content-between">
-                            ISIS
+                            ISIS School for terrorists
                             <br/>
                             <small>Small town in Syria</small>
                             <br/>
-                            <a href=""><span class="badge badge-success">Add students to company </span></a>&nbsp;<a href=""><span class="badge badge-info badge-warning">Edit students already assigned to company</span></a>&nbsp;<a href=""><span class="badge badge-danger">Remove students in company</span></a>
+                            <a href=""><span class="badge badge-success">Add students to company </span></a>
                         </li>
                         <li class="list-group-item justify-content-between">
                             North Korean Training Center
                             <br/>
                             <small>Pyongyang, North Korea</small>
                             <br/>
-                            <a href=""><span class="badge badge-success">Add students to company </span></a>&nbsp;<a href=""><span class="badge badge-info badge-warning">Edit students already assigned to company</span></a>&nbsp;<a href=""><span class="badge badge-danger">Remove students in company</span></a>
+                            <a href=""><span class="badge badge-success">Add students to company </span></a>
                         </li>
                     </ul>
                 </div>
@@ -54,9 +55,50 @@ and open the template in the editor.
                     </div>
                 </form>
 
-                <!--Add some students here-->
-                <div class="list-group">
-                    <a href="#" data-toggle="modal" data-target="#oiip_vacancies" class="list-group-item list-group-item-action flex-column align-items-start">
+                <!--Sample text-->
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Kisarazu Kosen</h5>
+                            <small>3 days ago</small>
+                        </div>
+                        <br/>
+                        <ul class="list-group">
+                            <li class="list-group-item justify-content-between align-items-center">
+                                Lee Tze Jian
+                                <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
+                                <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                            </li>
+                            <li class="list-group-item justify-content-between align-items-center">
+                                Grace Yap
+                                <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
+                                <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                            </li>
+                        </ul>
+                        <br/>
+                        <small>Donec id elit non mi porta.</small>
+                    </li>
+                    <li class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Nagano Kosen</h5>
+                            <small>3 days ago</small>
+                        </div>
+                        <br/>
+                        <ul class="list-group">
+                            <li class="list-group-item justify-content-between align-items-center">
+                                Lee Tze Jian
+                                <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
+                                <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                            </li>
+                        </ul>
+                        <br/>
+                        <small>Donec id elit non mi porta.</small>
+                    </li>
+                </ul>
+
+                <!--Inactive : Add some students here-->
+                <!--<div class="list-group">
+                    <a href="#" data-toggle="modal" data-target="#edit_delete_student_to_companies" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">Kim Jong Un (15063493)</h5>
                             <small>Kurume, Fukuoka, Japan</small>
@@ -67,22 +109,11 @@ and open the template in the editor.
                         <p class="mb-1">Arduino & Internet of Things &nbsp;<span class="badge badge-success">Kurume Institute of Technology, Japan</span></p>
                         <small>4 months total, 3 months 2 days remaining</small>
                     </a>
-                    <a href="#" data-toggle="modal" data-target="#oiip_vacancies" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Osama (15063493)</h5>
-                            <small>Nagano, Japan</small>
-                        </div>
-                        <div class="d-flex w-100">
-                            <span class="badge badge-warning">DMSD</span>
-                        </div>
-                        <p class="mb-1">Translation of Braille to English Text &nbsp;<span class="badge badge-success">Nagano College Institute of Technology, Japan</span></p>
-                        <small>5 months total, 1 day remaining</small>
-                    </a>
-                </div>
+                </div>-->
             </div>
         </div>
         <!--Modal for assigning student to Companies-->
-        <div class="modal fade" id="oiip_vacancies" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="assigning_student_to_companies" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -111,7 +142,7 @@ and open the template in the editor.
         </div>
 
         <!--Modal for editing or deleting students already assigned to Companies-->
-        <div class="modal fade" id="oiip_edit_vacancies" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="edit_delete_student_to_companies" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
