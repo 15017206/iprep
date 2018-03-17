@@ -44,13 +44,12 @@ and open the template in the editor.
 
             <div class="alert alert-warning" role="alert">OIIP Info
                 <br/>
-                <br/>
                 <!--Button to add new students to OIIP-->
                 <form class="" method="" action="">
 
                     <div class="form-group">
                         <div class="container">
-                            <button type="button" data-toggle="modal" data-target="#oiip_add_vacancies" class="btn btn-block btn-info">Assign OIIP to student</button>
+                            <!--<button type="button" data-toggle="modal" data-target="#oiip_add_vacancies" class="btn btn-block btn-info">Assign OIIP to student</button>-->
                         </div>
                     </div>
                 </form>
@@ -60,7 +59,7 @@ and open the template in the editor.
                     <li class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">Kisarazu Kosen</h5>
-                            <small>3 days ago</small>
+                            <small>4 months</small>
                         </div>
                         <br/>
                         <ul class="list-group">
@@ -76,23 +75,23 @@ and open the template in the editor.
                             </li>
                         </ul>
                         <br/>
-                        <small>Donec id elit non mi porta.</small>
+                        <small>Kisarazu, Chiba, Tokyo</small>
                     </li>
                     <li class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">Nagano Kosen</h5>
-                            <small>3 days ago</small>
+                            <small>2 days</small>
                         </div>
                         <br/>
                         <ul class="list-group">
                             <li class="list-group-item justify-content-between align-items-center">
-                                Lee Tze Jian
+                                Toh Kee Heng
                                 <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
                                 <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
                             </li>
                         </ul>
                         <br/>
-                        <small>Donec id elit non mi porta.</small>
+                        <small>Tokuma, Nagano, Japan</small>
                     </li>
                 </ul>
 

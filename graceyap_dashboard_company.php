@@ -83,17 +83,60 @@ and open the template in the editor.
                         </div>
                     </div>
                 </form>
-                
+
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Kisarazu Kosen</h5>
+                            <small>4 months</small>
+                        </div>
+                        <br/>
+                        <ul class="list-group">
+                            <li class="list-group-item justify-content-between align-items-center">
+                                <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                <br/><a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
+                                <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                            </li>
+                            <li class="list-group-item justify-content-between align-items-center">
+                                <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
+                                <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                            </li>
+                        </ul>
+                        <br/>
+                        <small>Kisarazu, Chiba, Tokyo</small>
+                    </li>
+                    <li class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Nagano Kosen</h5>
+                            <small>2 days</small>
+                        </div>
+                        <br/>
+                        <ul class="list-group">
+                            <li class="list-group-item justify-content-between align-items-center">
+                                <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
+                                <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                            </li>
+                        </ul>
+                        <br/>
+                        <small>Tokuma, Nagano, Japan</small>
+                    </li>
+                </ul>
+
+
                 <!--Sample listed companies-->
-                <div class="list-group">
+                <!--                <div class="list-group">
                     <a href="#" data-toggle="modal" data-target="#oiip_available_company" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">Nagano Kosen</h5>
                             <small>Nagano, Nagano, Japan</small>
                         </div>
-                        <small>3 vacancies: 2 App Developer, 1 IT Security</small>
+                        <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
+                        <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
+                        <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
                     </a>
-                </div>
+                </div>-->
 
 
             </div>
