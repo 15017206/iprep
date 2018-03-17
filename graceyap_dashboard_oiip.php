@@ -49,7 +49,6 @@ and open the template in the editor.
 
                     <div class="form-group">
                         <div class="container">
-                            <button type="button" data-toggle="modal" data-target="#oiip_add_vacancies" class="btn btn-block btn-success">Enter OIIP Vacancies</button>
                             <button type="button" data-toggle="modal" data-target="#oiip_add_vacancies" class="btn btn-block btn-info">Assign OIIP to student</button>
                         </div>
                     </div>
@@ -82,7 +81,7 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
-        <!--Modal for OIIP Vacancies-->
+        <!--Modal for assigning student to Companies-->
         <div class="modal fade" id="oiip_vacancies" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -111,8 +110,8 @@ and open the template in the editor.
             </div>
         </div>
 
-        <!--Modal for OIIP add Vacancies-->
-        <div class="modal fade" id="oiip_add_vacancies" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <!--Modal for editing or deleting students already assigned to Companies-->
+        <div class="modal fade" id="oiip_edit_vacancies" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
