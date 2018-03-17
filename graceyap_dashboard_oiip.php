@@ -17,24 +17,27 @@ and open the template in the editor.
         <!--About OIIP-->
         <div class="container">
             <br/>
-            <div class="alert alert-info" role="alert">List of available companies in database
+
+            <div class="alert alert-info" role="alert">List of available companies in database&nbsp;<a href="#collapse_id1" data-toggle="collapse"><span class="badge badge-info">Show/Hide</span></a>
                 <br/><br/>
-                <ul class="list-group">
-                    <li class="list-group-item justify-content-between">
-                        ISIS
-                        <br/>
-                        <small>Small town in Syria</small>
-                        <br/>
-                        <a href=""><span class="badge badge-success">Add students to company </span></a>&nbsp;<a href=""><span class="badge badge-info badge-warning">Edit students already assigned to company</span></a>&nbsp;<a href=""><span class="badge badge-danger">Remove students in company</span></a>
-                    </li>
-                    <li class="list-group-item justify-content-between">
-                        North Korean Training Center
-                        <br/>
-                        <small>Pyongyang, North Korea</small>
-                        <br/>
-                        <a href=""><span class="badge badge-success">Add students to company </span></a>&nbsp;<a href=""><span class="badge badge-info badge-warning">Edit students already assigned to company</span></a>&nbsp;<a href=""><span class="badge badge-danger">Remove students in company</span></a>
-                    </li>
-                </ul>
+                <div class="collapse show" id="collapse_id1">
+                    <ul class="list-group">
+                        <li class="list-group-item justify-content-between">
+                            ISIS
+                            <br/>
+                            <small>Small town in Syria</small>
+                            <br/>
+                            <a href=""><span class="badge badge-success">Add students to company </span></a>&nbsp;<a href=""><span class="badge badge-info badge-warning">Edit students already assigned to company</span></a>&nbsp;<a href=""><span class="badge badge-danger">Remove students in company</span></a>
+                        </li>
+                        <li class="list-group-item justify-content-between">
+                            North Korean Training Center
+                            <br/>
+                            <small>Pyongyang, North Korea</small>
+                            <br/>
+                            <a href=""><span class="badge badge-success">Add students to company </span></a>&nbsp;<a href=""><span class="badge badge-info badge-warning">Edit students already assigned to company</span></a>&nbsp;<a href=""><span class="badge badge-danger">Remove students in company</span></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
 
