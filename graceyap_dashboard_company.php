@@ -104,7 +104,7 @@ and open the template in the editor.
                             </li>
                             <li class="list-group-item justify-content-between align-items-center">
                                 <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
-                                <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
+                                <br/><a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
                                 <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
                             </li>
                         </ul>
@@ -120,7 +120,7 @@ and open the template in the editor.
                         <ul class="list-group">
                             <li class="list-group-item justify-content-between align-items-center">
                                 <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
-                                <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
+                                <br/><a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
                                 <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
                             </li>
                         </ul>
