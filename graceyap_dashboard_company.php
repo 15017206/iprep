@@ -70,10 +70,12 @@ and open the template in the editor.
     <body>
         <!--About OIIP-->
         <div class="container">
+
+
+
             <br/>
-            <div class="alert alert-warning" role="alert">Company Info
-                <br/>
-                <br/>
+            <div class="alert alert-danger" role="alert">
+                <p>Add New Company to Database</p>
                 <!--Button to add new company to OIIP-->
                 <form class="" method="" action="">
 
@@ -83,7 +85,10 @@ and open the template in the editor.
                         </div>
                     </div>
                 </form>
+            </div>
 
+            <div class="alert alert-warning" role="alert">
+                <p>Companies with Vacancies</p>
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
@@ -123,23 +128,43 @@ and open the template in the editor.
                         <small>Tokuma, Nagano, Japan</small>
                     </li>
                 </ul>
-
-
-                <!--Sample listed companies-->
-                <!--                <div class="list-group">
-                    <a href="#" data-toggle="modal" data-target="#oiip_available_company" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Nagano Kosen</h5>
-                            <small>Nagano, Nagano, Japan</small>
-                        </div>
-                        <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
-                        <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
-                        <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
-                    </a>
-                </div>-->
-
-
             </div>
+            <div class="alert alert-success" role="alert">
+                <p>Companies with no Vacancies in DB</p>
+
+                <ul class="list-group">
+                    <li class="list-group-item justify-content-between">
+                        ISIS School for terrorists
+                        <br/>
+                        <small>Small town in Syria</small>
+                        <br/>
+                        <a href=""><span class="badge badge-success">Add vacancy</span></a>
+                    </li>
+                    <li class="list-group-item justify-content-between">
+                        North Korean Training Center
+                        <br/>
+                        <small>Pyongyang, North Korea</small>
+                        <br/>
+                        <a href=""><span class="badge badge-success">Add vacancy</span></a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--Sample listed companies-->
+            <!--                <div class="list-group">
+                <a href="#" data-toggle="modal" data-target="#oiip_available_company" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Nagano Kosen</h5>
+                        <small>Nagano, Nagano, Japan</small>
+                    </div>
+                    <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
+                    <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
+                    <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
+                </a>
+            </div>-->
+
+
+
         </div>
         <!--Modal for choosing available company-->
         <div class="modal fade" id="oiip_available_company" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

@@ -19,30 +19,59 @@ and open the template in the editor.
             <br/>
 
             <!--List of available companies in database-->
-            <div class="alert alert-info" role="alert">List of available companies in database&nbsp;<a href="#collapse_id1" data-toggle="collapse"><span class="badge badge-info">Show/Hide</span></a>
+            <div class="alert alert-info" role="alert">List of available companies with vacancies&nbsp;<a href="#collapse_id1" data-toggle="collapse"><span class="badge badge-info">Show/Hide</span></a>
                 <br/><br/>
                 <div class="collapse show" id="collapse_id1">
+
                     <ul class="list-group">
-                        <li class="list-group-item justify-content-between">
-                            ISIS School for terrorists
+                        <li class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Kisarazu Kosen</h5>
+                                <small>4 months</small>
+                            </div>
                             <br/>
-                            <small>Small town in Syria</small>
+                            <ul class="list-group">
+                                <li class="list-group-item justify-content-between align-items-center">
+                                    <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                    <br/><a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
+                                    <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                                </li>
+                                <li class="list-group-item justify-content-between align-items-center">
+                                    <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                    <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
+                                    <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                                </li>
+                            </ul>
                             <br/>
-                            <a href=""><span class="badge badge-success">Add students to company </span></a>
+                            <small>Kisarazu, Chiba, Tokyo</small>
                         </li>
-                        <li class="list-group-item justify-content-between">
-                            North Korean Training Center
+                        <li class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Nagano Kosen</h5>
+                                <small>2 days</small>
+                            </div>
                             <br/>
-                            <small>Pyongyang, North Korea</small>
+                            <ul class="list-group">
+                                <li class="list-group-item justify-content-between align-items-center">
+                                    <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                    <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
+                                    <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                                </li>
+                            </ul>
                             <br/>
-                            <a href=""><span class="badge badge-success">Add students to company </span></a>
+                            <small>Tokuma, Nagano, Japan</small>
                         </li>
                     </ul>
+
+
+
+
+
                 </div>
             </div>
 
 
-            <div class="alert alert-warning" role="alert">OIIP Info
+            <div class="alert alert-warning" role="alert">List of Kosens with at least 1 student attached
                 <br/>
                 <!--Button to add new students to OIIP-->
                 <form class="" method="" action="">
