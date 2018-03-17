@@ -56,7 +56,7 @@ $(document).ready(function () {
                 success: function (data, textStatus)
                 {
 
-                    $('#courses_only_modal2').modal('hide');
+                    $('#courses_only_modal_add').modal('hide');
                     $('#formAddNewCourse')[0].reset();
 
                 },
