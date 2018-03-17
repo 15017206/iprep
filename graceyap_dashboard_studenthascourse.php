@@ -100,7 +100,7 @@ and open the template in the editor.
             <div class="list-group">
                 <a href="#" data-toggle="modal" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Grace Yap (15063493)</h5>
+                        <h5 class="mb-1">Grace Yap Jr. (15063493)</h5>
                         <small>Still doing course</small>
                     </div>
                     <div class="d-flex w-100">
