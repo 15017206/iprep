@@ -22,7 +22,7 @@ $(document).ready(function () {
                         + " <div class='d-flex w-100'>"
                         + " <span class='badge badge-warning'>S$" + response[i].cost +"</span>"
                         + " </div>"
-                        + "  <small>"+ response[i].course_provider +"</small>"
+                        + "  <small>"+ response[i].course_provider + " | course id: " + response[i].course_id +"</small>"
                         + " </a>";
                 
                 $("#courseDetails").html(printCourseDetails);
