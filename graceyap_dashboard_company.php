@@ -12,7 +12,7 @@ and open the template in the editor.
         include 'scripts.php';
         include 'navbar_staff.php';
         ?>
-
+        <script src="scripts/courses_staffDashboard.js" type="text/javascript"></script>
         <script>
             function vacanciesChange() {
                 $("#void").empty();
@@ -68,25 +68,9 @@ and open the template in the editor.
 
     </head>
     <body>
+        <br/>
         <!--About OIIP-->
         <div class="container">
-
-
-
-            <br/>
-            <div class="alert alert-danger" role="alert">
-                <p>Add New Company to Database</p>
-                <!--Button to add new company to OIIP-->
-                <form class="" method="" action="">
-
-                    <div class="form-group">
-                        <div class="container">
-                            <button type="button" data-toggle="modal" data-target="#oiip_add_company" class="btn btn-block btn-success">Add New Company</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
             <div class="alert alert-warning" role="alert">
                 <p>Companies with Vacancies</p>
                 <ul class="list-group">
@@ -131,7 +115,7 @@ and open the template in the editor.
                     </li>
                 </ul>
             </div>
-            
+
             <!--Green alert box-->
             <div class="alert alert-success" role="alert">
                 <p>Companies currently residing in DB</p>
@@ -152,6 +136,16 @@ and open the template in the editor.
                         <a href=""><span class="badge badge-success">Add vacancy</span></a>
                     </li>
                 </ul>
+                <br/>
+                <!--Button to add new company to OIIP-->
+                <form class="" method="" action="">
+
+                    <div class="form-group">
+                        <div class="container">
+                            <button type="button" data-toggle="modal" data-target="#oiip_add_company" class="btn btn-block btn-success">Add New Company</button>
+                        </div>
+                    </div>
+                </form>
             </div>
 
             <!--Sample listed companies-->
