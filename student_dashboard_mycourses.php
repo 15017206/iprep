@@ -26,7 +26,6 @@ and open the template in the editor.
 
                     <div class="form-group">
                         <div class="container">
-                            <button type="button" class="btn btn-block btn-success" >Apply new course</button>
                             <button type="button" class="btn btn-block btn-info">Make Claim for course</button>
                             <button type="button" class="btn btn-block btn-info">Submit IMDA approval email</button>
                         </div>

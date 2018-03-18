@@ -21,8 +21,11 @@ session_start();
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="student_dashboard_course.php">Courses</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="student_dashboard_listofcourses.php">List of Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="student_dashboard_mycourses.php">My Courses</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="student_dashboard_oiip.php">OIIP</a>
