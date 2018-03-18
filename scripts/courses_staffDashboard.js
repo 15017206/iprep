@@ -22,8 +22,9 @@ $(document).ready(function () {
                         + " <div class='d-flex w-100'>"
                         + " <span class='badge badge-warning'>S$" + response[i].cost +"</span>"
                         + " </div>"
-                        + "  <small>"+ response[i].course_provider + " | course id: " + response[i].course_id +"</small>"
-                        + " </a>";
+                        + "  <small>"+ response[i].course_provider +  "</small>"
+                        + " </a>"
+                        + "<input type='hidden' value='" + response[i].course_id + "' id='course" + response[i].course_id + "'/>";
                 
                 $("#courseDetails").html(printCourseDetails);
             }

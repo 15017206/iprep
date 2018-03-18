@@ -11,6 +11,7 @@ and open the template in the editor.
         <?php
         include 'scripts.php';
         include 'navbar_staff.php';
+        
         ?>
     </head>
     <body>
@@ -32,9 +33,8 @@ and open the template in the editor.
                                 Month
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Jan</a>
-                                <a class="dropdown-item" href="#">Feb</a>
-                                <a class="dropdown-item" href="#">May</a>
+                                <a class="dropdown-item" href="#">March</a>
+                                <a class="dropdown-item" href="#">October</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -42,8 +42,6 @@ and open the template in the editor.
                                 Year
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">1946</a>
-                                <a class="dropdown-item" href="#">1991</a>
                                 <a class="dropdown-item" href="#">2018</a>
                             </div>
                         </li>
@@ -52,14 +50,17 @@ and open the template in the editor.
                                 Diploma
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">DBA</a>
+                                <a class="dropdown-item" href="#">DBIS</a>
                                 <a class="dropdown-item" href="#">DIT</a>
+                                <a class="dropdown-item" href="#">DIDM</a>
                                 <a class="dropdown-item" href="#">DMSD</a>
-                                <a class="dropdown-item" href="#">DDDD</a>
+                                <a class="dropdown-item" href="#">DISM</a>
                             </div>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Partial name search" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>

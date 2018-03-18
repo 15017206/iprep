@@ -1,4 +1,4 @@
-<?php
+w<?php
 
 include 'dbconn.php';
 
