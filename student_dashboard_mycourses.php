@@ -27,11 +27,11 @@ and open the template in the editor.
                         <li data-toggle="modal" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">How to hack LEO 2.0 - Hackathon</h5>
-                                <small>Ongoing</small>
+                                <small>IT Security</small>
                             </div>
-                            <p class="mb-1">IT Security</p>
+                            <p class="mb-1"></p>
                             <span class="badge badge-warning">DBIS</span>&nbsp;<span class="badge badge-success">Approved</span>
-
+                            <br/>
                             <a href=""><span class="badge badge-info">Make claim</span></a>
                             <a href=""><span class="badge badge-info">Submit IMDA approval email</span></a>
                             <br/>
