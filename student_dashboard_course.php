@@ -17,53 +17,40 @@ and open the template in the editor.
         <!--About courses-->
         <div class="container">
             <br/>
-            <div class="alert alert-info" role="alert">Course Info</div>
+            <div class="alert alert-info" role="alert">
+                <p>Course Actions</p>
+                <!--Button to-->
+                <form class="" method="" action="">
 
-            <!--Button to-->
-            <form class="" method="" action="">
-
-                <div class="form-group">
-                    <div class="container">
-                        <button type="button" class="btn btn-block btn-success" >Apply new course</button>
-                        <button type="button" class="btn btn-block btn-info">Make Claim for course</button>
-                    <button type="button" class="btn btn-block btn-info">Submit IMDA approval email</button>
+                    <div class="form-group">
+                        <div class="container">
+                            <button type="button" class="btn btn-block btn-success" >Apply new course</button>
+                            <button type="button" class="btn btn-block btn-info">Make Claim for course</button>
+                            <button type="button" class="btn btn-block btn-info">Submit IMDA approval email</button>
+                        </div>
                     </div>
+                </form>
+            </div>
+
+            <div class="alert alert-success" role="alert">
+                <!--Add some-->
+                <p>List of courses applied:</p>
+                <div class="list-group">
+                    <a href="#" data-toggle="modal" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Grace Yap (15063493)</h5>
+                            <small>Still doing course</small>
+                        </div>
+                        <div class="">
+                            <span class="badge badge-warning">DBIS</span>&nbsp;<span class="badge badge-success">Approved</span>
+                        </div>
+                        <p class="mb-1">Introduction to Programming - Internet of Things</p>
+                        <small>Coursera</small>
+                    </a>
                 </div>
-            </form>
-
-            <!--Add some-->
-            <p>List of courses applied:</p>
-            <div class="list-group">
-                <a href="#" data-toggle="modal" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Grace Yap (15063493)</h5>
-                        <small>Still doing course</small>
-                    </div>
-                    <div class="d-flex w-100">
-                        <span class="badge badge-warning">DBIS</span>
-                    </div>
-                    <p class="mb-1">Introduction to Programming - Internet of Things&nbsp;<span class="badge badge-success">Approved</span></p>
-                    <small>Coursera</small>
-                </a>
             </div>
         </div>
 
-        <!--About OIIP-->
-        <div class="container">
-            <br/>
-            <div class="alert alert-warning" role="alert">OIIP Info</div>
-                        <!--Button to-->
-            <form class="" method="" action="">
 
-                <div class="form-group">
-                    <div class="container">
-                        <button type="button" class="btn btn-block btn-success">Apply for OIIP</button>
-                        <button type="button" class="btn btn-block btn-success">Request OIIP approval from IMDA</button>
-                        <button type="button" class="btn btn-block btn-info">Submit OIIP approval email</button>
-                    </div>
-                </div>
-            </form>
-            
-            <p style="text-align: center">No OIIP Assigned yet</p>
     </body>
 </html>

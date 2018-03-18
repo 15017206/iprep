@@ -10,7 +10,7 @@ session_start();
 ?>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title></title>
     </head>
     <body>
@@ -22,10 +22,10 @@ session_start();
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Courses</a>
+                        <a class="nav-link" href="student_dashboard_course.php">Courses</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">OIIP</a>
+                        <a class="nav-link" href="student_dashboard_oiip.php">OIIP</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Logout</a>
