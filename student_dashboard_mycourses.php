@@ -18,37 +18,26 @@ and open the template in the editor.
         <div class="container">
             <br/>
 
-            <!--Course Actions-->
-            <div class="alert alert-info" role="alert">
-                <p>Course Actions</p>
-                <!--Button to-->
-                <form class="" method="" action="">
-
-                    <div class="form-group">
-                        <div class="container">
-                            <button type="button" class="btn btn-block btn-info">Make Claim for course</button>
-                            <button type="button" class="btn btn-block btn-info">Submit IMDA approval email</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
             <!--List of courses Applied-->
             <div class="alert alert-success" role="alert">
                 <!--Add some-->
                 <p>List of courses applied:</p>
                 <div class="list-group">
-                    <a href="#" data-toggle="modal" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Grace Yap (15063493)</h5>
-                            <small>Still doing course</small>
-                        </div>
-                        <div class="">
+                    <ul class="list-group">
+                        <li data-toggle="modal" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">How to hack LEO 2.0 - Hackathon</h5>
+                                <small>Ongoing</small>
+                            </div>
+                            <p class="mb-1">IT Security</p>
                             <span class="badge badge-warning">DBIS</span>&nbsp;<span class="badge badge-success">Approved</span>
-                        </div>
-                        <p class="mb-1">Introduction to Programming - Internet of Things</p>
-                        <small>Coursera</small>
-                    </a>
+
+                            <a href=""><span class="badge badge-info">Make claim</span></a>
+                            <a href=""><span class="badge badge-info">Submit IMDA approval email</span></a>
+                            <br/>
+                            <small>Coursera</small>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
