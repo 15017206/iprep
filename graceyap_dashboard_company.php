@@ -12,7 +12,7 @@ and open the template in the editor.
         include 'scripts.php';
         include 'navbar_staff.php';
         ?>
-        <script src="scripts/courses_staffDashboard.js" type="text/javascript"></script>
+        <script src="scripts/company_staffDashboard.js" type="text/javascript"></script>
         <script>
             function vacanciesChange() {
                 $("#void").empty();
@@ -120,13 +120,13 @@ and open the template in the editor.
             <div class="alert alert-success" role="alert">
                 <p>Companies currently residing in DB</p>
 
-                <ul class="list-group">
-                    <li class="list-group-item justify-content-between">
+                <ul id="list_of_companies_no_vacancy" class="list-group">
+                    <li class='list-group-item justify-content-between'>
                         ISIS School for terrorists
                         <br/>
                         <small>Small town in Syria</small>
                         <br/>
-                        <a href=""><span class="badge badge-success">Add vacancy</span></a>
+                        <a href=''><span class='badge badge-success'>Add vacancy</span></a>
                     </li>
                     <li class="list-group-item justify-content-between">
                         North Korean Training Center
