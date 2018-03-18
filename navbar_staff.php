@@ -16,10 +16,7 @@ session_start();
     <body>
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
 
-            <!--Logo/Brand/etc-->
-            <a class="navbar-brand" href="#">
-                <img src="" width="30" height="30" alt="">
-            </a>
+<a class="navbar-brand" href="#">Welcome, Grace Yap</a>
 
             <!--Links in navbar-->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
