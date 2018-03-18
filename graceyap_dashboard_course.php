@@ -29,7 +29,7 @@ and open the template in the editor.
             <p>List of available courses:</p>
             <!--Add some courses here-->
             <div class="list-group" id="courseDetails">
-<!--                <a href="#" data-toggle="modal" data-target="#courses_only_modal_modify" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
+                <a href="#" data-toggle="modal" data-target="#courses_only_modal_modify" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">Introduction to IoT & Embedded Systems</h5>
                         <small>IT Security</small>
@@ -38,12 +38,11 @@ and open the template in the editor.
                         <span class="badge badge-warning">S$60.00</span>
                     </div>
                     <small>Coursera</small>
-                </a>-->
+                </a>
             </div>
             <br><br>
 
             <!--Modal for adding courses-->
-            <!--Modal for courses only-->
             <div class="modal fade" id="courses_only_modal_add" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
