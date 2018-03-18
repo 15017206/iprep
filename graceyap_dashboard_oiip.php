@@ -190,8 +190,8 @@ and open the template in the editor.
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Number of Vacancies</label>
-                                <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
+                                <label for="exampleInputEmail2">Number of Vacancies</label>
+                                <input type="number" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <div class="form-group">
