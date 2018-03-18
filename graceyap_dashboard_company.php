@@ -131,6 +131,8 @@ and open the template in the editor.
                     </li>
                 </ul>
             </div>
+            
+            <!--Green alert box-->
             <div class="alert alert-success" role="alert">
                 <p>Companies currently residing in DB</p>
 
