@@ -132,7 +132,7 @@ and open the template in the editor.
                 </ul>
             </div>
             <div class="alert alert-success" role="alert">
-                <p>Companies with no Vacancies in DB</p>
+                <p>Companies currently residing in DB</p>
 
                 <ul class="list-group">
                     <li class="list-group-item justify-content-between">
@@ -262,18 +262,18 @@ and open the template in the editor.
                     <div class="modal-body form">
                         <form method="" action="">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Company Name</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
+                                <label for="exampleInputEmail2">Company Name</label>
+                                <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
                                 <small id="emailHelp" class="form-text text-muted">This is the company name</small>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Country</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="eg. Zimbabwe, Syria etc">
+                                <label for="exampleInputPassword2">Country</label>
+                                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="eg. Zimbabwe, Syria etc">
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Number of Vacancies</label>
+                                <label for="no_of_vacancies">Number of Vacancies</label>
                                 <input type="number" class="form-control" id="no_of_vacancies" placeholder="eg. 1,2,3 etc" onchange="vacanciesChange()">
                             </div>
 

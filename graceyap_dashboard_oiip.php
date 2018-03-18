@@ -195,8 +195,8 @@ and open the template in the editor.
                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Country</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="eg. Zimbabwe, Syria etc">
+                                <label for="exampleInputPassword2">Country</label>
+                                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="eg. Zimbabwe, Syria etc">
                             </div>
                             <!--<button type="submit" class="btn btn-primary">Submit</button>-->
                             <button type="submit" class="btn btn-primary">Save changes</button>
