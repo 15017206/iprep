@@ -13,7 +13,6 @@ $(document).ready(function () {
         dataType: "JSON",
         success: function (response) {
 
-
             for (i = 0; i < response.length; i++) {
                 printCourseDetails += "<a href='#' data-toggle='modal' data-target='#courses_only_modal_modify' data-target='#courses_modal' class='list-group-item list-group-item-action flex-column align-items-start'>"
                         + "<div class='d-flex w-100 justify-content-between'>"
@@ -26,7 +25,6 @@ $(document).ready(function () {
                         + "  <small>"+ response[i].course_provider +"</small>"
                         + " </a>";
                 
-                
                 $("#courseDetails").html(printCourseDetails);
             }
 
@@ -35,8 +33,6 @@ $(document).ready(function () {
             console.log("Error " + textStatus + ": " + errorThrown);
         }
     });
-
-
 
     //this portion of the code deals with insertion of course details into the database
 
