@@ -75,6 +75,7 @@ and open the template in the editor.
                             <h5 class="mb-1">Introduction of ioT & Embedded Systems</h5>
                             <small>4 months</small>
                         </div>
+                        <span class="badge badge-success">$600.00</span>
                         <br/>
                         <ul class="list-group">
                             <li class="list-group-item justify-content-between align-items-center">
@@ -87,13 +88,14 @@ and open the template in the editor.
                             </li>
                         </ul>
                         <br/>
-                        <small>Kisarazu, Chiba, Tokyo</small>
+                        <small>Coursera</small>
                     </li>
                     <li class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">How to hack LEO 2.0 - Hacking course</h5>
                             <small>2 days</small>
                         </div>
+                        <span class="badge badge-success">$600.00</span>
                         <br/>
                         <ul class="list-group">
                             <li class="list-group-item justify-content-between align-items-center">
@@ -102,7 +104,7 @@ and open the template in the editor.
                             </li>
                         </ul>
                         <br/>
-                        <small>Tokuma, Nagano, Japan</small>
+                        <small>Code Academy</small>
                     </li>
                 </ul>
 
