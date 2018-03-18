@@ -68,8 +68,8 @@ and open the template in the editor.
 
             <!--Add some students here-->
             <div class="list-group">
-                
-                                <ul class="list-group">
+
+                <ul class="list-group">
                     <li class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">Introduction of ioT & Embedded Systems</h5>
@@ -80,12 +80,10 @@ and open the template in the editor.
                             <li class="list-group-item justify-content-between align-items-center">
                                 Lee Tze Jian
                                 <br/><span class="badge badge-warning">Ongoing</span>
-                                <span class="badge badge-danger">Remove</span>
                             </li>
                             <li class="list-group-item justify-content-between align-items-center">
                                 Grace Yap
                                 <br/><span class="badge badge-warning">Completed</span>
-                                <span class="badge badge-danger">Remove</span>
                             </li>
                         </ul>
                         <br/>
@@ -101,25 +99,24 @@ and open the template in the editor.
                             <li class="list-group-item justify-content-between align-items-center">
                                 Toh Kee Heng
                                 <br/><span class="badge badge-warning">Ongoing</span>
-                                <span class="badge badge-danger">Remove</span>
                             </li>
                         </ul>
                         <br/>
                         <small>Tokuma, Nagano, Japan</small>
                     </li>
                 </ul>
-                
-<!--                <a href="#" data-toggle="modal" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Grace Yap Jr. (15063493)</h5>
-                        <small>Still doing course</small>
-                    </div>
-                    <div class="d-flex w-100">
-                        <span class="badge badge-warning">DBIS</span>
-                    </div>
-                    <p class="mb-1">Introduction to Programming - Internet of Things&nbsp;<span class="badge badge-success">Approved</span></p>
-                    <small>Coursera</small>
-                </a>-->
+
+                <!--                <a href="#" data-toggle="modal" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Grace Yap Jr. (15063493)</h5>
+                                        <small>Still doing course</small>
+                                    </div>
+                                    <div class="d-flex w-100">
+                                        <span class="badge badge-warning">DBIS</span>
+                                    </div>
+                                    <p class="mb-1">Introduction to Programming - Internet of Things&nbsp;<span class="badge badge-success">Approved</span></p>
+                                    <small>Coursera</small>
+                                </a>-->
             </div>
 
             <!--Modal for students has courses-->
