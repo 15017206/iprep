@@ -14,9 +14,11 @@ and open the template in the editor.
         ?>
     </head>
     <body>
-        <!--About courses-->
+
         <div class="container">
             <br/>
+
+            <!--Course Actions-->
             <div class="alert alert-info" role="alert">
                 <p>Course Actions</p>
                 <!--Button to-->
@@ -32,6 +34,7 @@ and open the template in the editor.
                 </form>
             </div>
 
+            <!--List of courses Applied-->
             <div class="alert alert-success" role="alert">
                 <!--Add some-->
                 <p>List of courses applied:</p>
@@ -51,6 +54,67 @@ and open the template in the editor.
             </div>
         </div>
 
+        <!--Modal for Apply New Course-->
+        <div class="modal fade" id="apply_new_course_student" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Apply new course</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!--Modal for Make claim for course-->
+        <div class="modal fade" id="make_claim_course_student" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Make Claim for course</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal for submit IMDA approval email-->
+        <div class="modal fade" id="submit_imda_approval_email_student" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
