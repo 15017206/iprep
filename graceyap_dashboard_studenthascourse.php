@@ -78,11 +78,11 @@ and open the template in the editor.
                         <br/>
                         <ul class="list-group">
                             <li class="list-group-item justify-content-between align-items-center">
-                                Lee Tze Jian
+                                Lee Tze Jian&nbsp;<span class="badge badge-info">DMSD</span>
                                 <br/><span class="badge badge-warning">Ongoing</span>
                             </li>
                             <li class="list-group-item justify-content-between align-items-center">
-                                Grace Yap
+                                Grace Yap&nbsp;<span class="badge badge-info">DDDD</span>
                                 <br/><span class="badge badge-warning">Completed</span>
                             </li>
                         </ul>
@@ -97,7 +97,7 @@ and open the template in the editor.
                         <br/>
                         <ul class="list-group">
                             <li class="list-group-item justify-content-between align-items-center">
-                                Toh Kee Heng
+                                Toh Kee Heng&nbsp;<span class="badge badge-info">DIT</span>
                                 <br/><span class="badge badge-warning">Ongoing</span>
                             </li>
                         </ul>
