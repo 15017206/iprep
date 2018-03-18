@@ -94,13 +94,13 @@ and open the template in the editor.
                         <ul class="list-group">
                             <li class="list-group-item justify-content-between align-items-center">
                                 Lee Tze Jian
-                                <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
-                                <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                                <br/><a href=""><span class="badge badge-warning">Modify</span></a>
+                                <a href=""><span class="badge badge-danger">Remove</span></a>
                             </li>
                             <li class="list-group-item justify-content-between align-items-center">
                                 Grace Yap
-                                <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
-                                <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                                <br/><a href=""><span class="badge badge-warning">Modify</span></a>
+                                <a href=""><span class="badge badge-danger">Remove</span></a>
                             </li>
                         </ul>
                         <br/>
@@ -115,8 +115,8 @@ and open the template in the editor.
                         <ul class="list-group">
                             <li class="list-group-item justify-content-between align-items-center">
                                 Toh Kee Heng
-                                <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
-                                <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                                <br/><a href=""><span class="badge badge-warning">Modify</span></a>
+                                <a href=""><span class="badge badge-danger">Remove</span></a>
                             </li>
                         </ul>
                         <br/>
