@@ -12,7 +12,7 @@ and open the template in the editor.
         include 'scripts.php';
         include 'navbar_staff.php';
         ?>
-        <script src="courses_staffDashboard.js" type="text/javascript"></script>
+        <script src="scripts/courses_staffDashboard.js" type="text/javascript"></script>
     </head>
     <body>
         <!--About courses-->
