@@ -30,7 +30,7 @@ and open the template in the editor.
                                 <small>IT Security</small>
                             </div>
                             <p class="mb-1"></p>
-                            <span class="badge badge-warning">DBIS</span>&nbsp;<span class="badge badge-success">Approved</span>
+                            <span class="badge badge-warning">$60.00</span>&nbsp;<span class="badge badge-success">Approved</span>
                             <br/>
                             <a href=""><span class="badge badge-info">Make claim</span></a>
                             <a href=""><span class="badge badge-info">Submit IMDA approval email</span></a>
