@@ -67,29 +67,40 @@ and open the template in the editor.
                         </button>
                     </div>
                     <div class="modal-body">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <p>OIIP approval email</p>
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                <small>1.jpg</small>
-                            </li>
-                            <li class="list-group-item">
-                                OIIP approval email
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                            </li>
-                            <li class="list-group-item">
-                                OIIP approval email
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                            </li>
-                            <li class="list-group-item">
-                                OIIP approval email
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                            </li>
-                            <li class="list-group-item">
-                                OIIP approval email
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                            </li>
-                        </ul>
+                        <form action="" method="">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <p>OIIP approval email</p>
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <small>1.jpg</small>
+                                </li>
+                                <li class="list-group-item">
+                                    <p>Air ticket</p>
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <small>1.jpg</small>
+                                </li>
+                                <li class="list-group-item">
+                                    <p>Final report</p>
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <small>1.jpg</small>
+                                </li>
+                                <li class="list-group-item">
+                                    <p>MAS currency forex exchange rate</p>
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <small>1.jpg</small>
+                                </li>
+                                <li class="list-group-item">
+                                    <p>Annex E</p>
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <small>1.jpg</small>
+                                </li>
+                                <li class="list-group-item">
+                                    <p>Annex F</p>
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <small>1.jpg</small>
+                                </li>
+                            </ul>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
