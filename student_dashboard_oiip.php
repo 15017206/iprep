@@ -18,17 +18,22 @@ and open the template in the editor.
         <!--About OIIP-->
         <div class="container">
             <div class="alert alert-info" role="alert">
-                <p>OIIP Actions</p>        
+                <p>OIIP Interest</p>        
 
-                <!--Button to-->
-                <form class="" method="" action="">
-                    <div class="form-group">
-                        <div class="container">
-                            <button type="button" class="btn btn-block btn-success">Apply for OIIP</button>
-                        </div>
-                    </div>
-                </form>
-
+                <p>Are you interested for Overseas Internship?</p>
+                <!--Interest for OIIP-->
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                        Yes
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                    <label class="form-check-label" for="exampleRadios2">
+                        No
+                    </label>
+                </div>
 
             </div>
 
