@@ -32,14 +32,21 @@ and open the template in the editor.
                             <br/>
                             <ul class="list-group">
                                 <li class="list-group-item justify-content-between align-items-center">
-                                    <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                    Vacant
+                                    <br/><small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
                                     <br/><a href=""><span class="badge badge-success">Allocate Student</span></a>
-                                    
+
                                 </li>
                                 <li class="list-group-item justify-content-between align-items-center">
-                                    <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                    Vacant
+                                    <br/><small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
                                     <br/><a href=""><span class="badge badge-success">Allocate Student</span></a>
-                                    
+                                </li>
+                                <li class="list-group-item justify-content-between align-items-center">
+                                    Lee Tze Jian
+                                    <br/><small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                    <a href=""><span class="badge badge-warning">Modify</span></a>
+                                    <a href=""><span class="badge badge-danger">Remove</span></a>
                                 </li>
                             </ul>
                             <br/>
@@ -55,21 +62,15 @@ and open the template in the editor.
                                 <li class="list-group-item justify-content-between align-items-center">
                                     <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
                                     <br/><a href=""><span class="badge badge-success">Allocate Student</span></a>
-                                    
+
                                 </li>
                             </ul>
                             <br/>
                             <small>Tokuma, Nagano, Japan</small>
                         </li>
                     </ul>
-
-
-
-
-
                 </div>
             </div>
-
 
             <div class="alert alert-warning" role="alert">List of Kosens with at least 1 student attached
                 <br/>
