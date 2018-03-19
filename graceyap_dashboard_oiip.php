@@ -17,7 +17,7 @@ and open the template in the editor.
         <!--About OIIP-->
         <div class="container">
             <br/>
-
+            <p>Do: dropdown list, month & year, textbox -> coy name and student name/id</p>
             <!--List of available companies in database-->
             <div class="alert alert-info" role="alert">List of available companies with at least 1 vacancy&nbsp;<a href="#collapse_id1" data-toggle="collapse"><span class="badge badge-info">Show/Hide</span></a>
                 <br/><br/>
