@@ -10,28 +10,25 @@ session_start();
 ?>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title></title>
     </head>
     <body>
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Welcome, Student</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Courses</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="student_dashboard_listofcourses.php">List of Courses</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Student with courses</a>
+                        <a class="nav-link" href="student_dashboard_mycourses.php">My Courses</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">OIIP</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Company</a>
+                        <a class="nav-link" href="student_dashboard_oiip.php">OIIP</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Logout</a>

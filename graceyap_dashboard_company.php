@@ -12,7 +12,7 @@ and open the template in the editor.
         include 'scripts.php';
         include 'navbar_staff.php';
         ?>
-
+        <script src="scripts/company_staffDashboard.js" type="text/javascript"></script>
         <script>
             function vacanciesChange() {
                 $("#void").empty();
@@ -68,25 +68,9 @@ and open the template in the editor.
 
     </head>
     <body>
+        <br/>
         <!--About OIIP-->
         <div class="container">
-
-
-
-            <br/>
-            <div class="alert alert-danger" role="alert">
-                <p>Add New Company to Database</p>
-                <!--Button to add new company to OIIP-->
-                <form class="" method="" action="">
-
-                    <div class="form-group">
-                        <div class="container">
-                            <button type="button" data-toggle="modal" data-target="#oiip_add_company" class="btn btn-block btn-success">Add New Company</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
             <div class="alert alert-warning" role="alert">
                 <p>Companies with Vacancies</p>
                 <ul class="list-group">
@@ -100,13 +84,13 @@ and open the template in the editor.
                         <ul class="list-group">
                             <li class="list-group-item justify-content-between align-items-center">
                                 <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
-                                <br/><a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
-                                <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                                <br/><a href=""><span class="badge badge-warning">Modify</span></a>
+                                <a href=""><span class="badge badge-danger">Remove</span></a>
                             </li>
                             <li class="list-group-item justify-content-between align-items-center">
                                 <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
-                                <br/><a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
-                                <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                                <br/><a href=""><span class="badge badge-warning">Modify</span></a>
+                                <a href=""><span class="badge badge-danger">Remove</span></a>
                             </li>
                         </ul>
                         <br/>
@@ -122,8 +106,8 @@ and open the template in the editor.
                         <ul class="list-group">
                             <li class="list-group-item justify-content-between align-items-center">
                                 <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
-                                <br/><a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
-                                <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                                <br/><a href=""><span class="badge badge-warning">Modify</span></a>
+                                <a href=""><span class="badge badge-danger">Remove</span></a>
                             </li>
                         </ul>
                         <br/>
@@ -131,16 +115,18 @@ and open the template in the editor.
                     </li>
                 </ul>
             </div>
-            <div class="alert alert-success" role="alert">
-                <p>Companies with no Vacancies in DB</p>
 
-                <ul class="list-group">
-                    <li class="list-group-item justify-content-between">
+            <!--Green alert box-->
+            <div class="alert alert-success" role="alert">
+                <p>Companies currently residing in DB</p>
+
+                <ul id="list_of_companies_no_vacancy" class="list-group">
+                    <li class='list-group-item justify-content-between'>
                         ISIS School for terrorists
                         <br/>
                         <small>Small town in Syria</small>
                         <br/>
-                        <a href=""><span class="badge badge-success">Add vacancy</span></a>
+                        <a href=''><span class='badge badge-success'>Add vacancy</span></a>
                     </li>
                     <li class="list-group-item justify-content-between">
                         North Korean Training Center
@@ -150,6 +136,16 @@ and open the template in the editor.
                         <a href=""><span class="badge badge-success">Add vacancy</span></a>
                     </li>
                 </ul>
+                <br/>
+                <!--Button to add new company to OIIP-->
+                <form class="" method="" action="">
+
+                    <div class="form-group">
+                        <div class="container">
+                            <button type="button" data-toggle="modal" data-target="#oiip_add_company" class="btn btn-block btn-success">Add New Company</button>
+                        </div>
+                    </div>
+                </form>
             </div>
 
             <!--Sample listed companies-->
@@ -262,18 +258,18 @@ and open the template in the editor.
                     <div class="modal-body form">
                         <form method="" action="">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Company Name</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
+                                <label for="exampleInputEmail2">Company Name</label>
+                                <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
                                 <small id="emailHelp" class="form-text text-muted">This is the company name</small>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Country</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="eg. Zimbabwe, Syria etc">
+                                <label for="exampleInputPassword2">Country</label>
+                                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="eg. Zimbabwe, Syria etc">
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Number of Vacancies</label>
+                                <label for="no_of_vacancies">Number of Vacancies</label>
                                 <input type="number" class="form-control" id="no_of_vacancies" placeholder="eg. 1,2,3 etc" onchange="vacanciesChange()">
                             </div>
 

@@ -17,7 +17,7 @@ and open the template in the editor.
         <!--About OIIP-->
         <div class="container">
             <br/>
-
+            <p>Do: dropdown list, month & year, textbox -> coy name and student name/id</p>
             <!--List of available companies in database-->
             <div class="alert alert-info" role="alert">List of available companies with at least 1 vacancy&nbsp;<a href="#collapse_id1" data-toggle="collapse"><span class="badge badge-info">Show/Hide</span></a>
                 <br/><br/>
@@ -94,13 +94,13 @@ and open the template in the editor.
                         <ul class="list-group">
                             <li class="list-group-item justify-content-between align-items-center">
                                 Lee Tze Jian
-                                <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
-                                <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                                <br/><a href=""><span class="badge badge-warning">Modify</span></a>
+                                <a href=""><span class="badge badge-danger">Remove</span></a>
                             </li>
                             <li class="list-group-item justify-content-between align-items-center">
                                 Grace Yap
-                                <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
-                                <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                                <br/><a href=""><span class="badge badge-warning">Modify</span></a>
+                                <a href=""><span class="badge badge-danger">Remove</span></a>
                             </li>
                         </ul>
                         <br/>
@@ -115,8 +115,8 @@ and open the template in the editor.
                         <ul class="list-group">
                             <li class="list-group-item justify-content-between align-items-center">
                                 Toh Kee Heng
-                                <a href=""><span class="badge badge-warning badge-pill">Modify</span></a>
-                                <a href=""><span class="badge badge-danger badge-pill">Remove</span></a>
+                                <br/><a href=""><span class="badge badge-warning">Modify</span></a>
+                                <a href=""><span class="badge badge-danger">Remove</span></a>
                             </li>
                         </ul>
                         <br/>
@@ -190,13 +190,13 @@ and open the template in the editor.
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Number of Vacancies</label>
-                                <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
+                                <label for="exampleInputEmail2">Number of Vacancies</label>
+                                <input type="number" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Country</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="eg. Zimbabwe, Syria etc">
+                                <label for="exampleInputPassword2">Country</label>
+                                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="eg. Zimbabwe, Syria etc">
                             </div>
                             <!--<button type="submit" class="btn btn-primary">Submit</button>-->
                             <button type="submit" class="btn btn-primary">Save changes</button>
