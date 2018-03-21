@@ -17,35 +17,111 @@ and open the template in the editor.
         <!--About OIIP-->
         <div class="container">
             <br/>
-            <p>Do: dropdown list, month & year, textbox -> coy name and student name/id</p>
             <!--List of available companies in database-->
-            <div class="alert alert-info" role="alert">List of available companies with at least 1 vacancy&nbsp;<a href="#collapse_id1" data-toggle="collapse"><span class="badge badge-info">Show/Hide</span></a>
+            <div class="alert alert-info" role="alert">List of  companies&nbsp;<a href="#collapse_id1" data-toggle="collapse"><span class="badge badge-info">Show/Hide</span></a>
                 <br/><br/>
                 <div class="collapse show" id="collapse_id1">
 
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <a class="navbar-brand" href="#">Filter:</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Month
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#">Janurary</a>
+                                        <a class="dropdown-item" href="#">February</a>
+                                        <a class="dropdown-item" href="#">March</a>
+                                        <a class="dropdown-item" href="#">April</a>
+                                        <a class="dropdown-item" href="#">May</a>
+                                        <a class="dropdown-item" href="#">June</a>
+                                        <a class="dropdown-item" href="#">July</a>
+                                        <a class="dropdown-item" href="#">August</a>
+                                        <a class="dropdown-item" href="#">September</a>
+                                        <a class="dropdown-item" href="#">October</a>
+                                        <a class="dropdown-item" href="#">November</a>
+                                        <a class="dropdown-item" href="#">December</a>
+                                    </div>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Year
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#">2016</a>
+                                        <a class="dropdown-item" href="#">2017</a>
+                                        <a class="dropdown-item" href="#">2018</a>
+                                        <a class="dropdown-item" href="#">2019</a>
+                                        <a class="dropdown-item" href="#">2020</a>
+                                        <a class="dropdown-item" href="#">2021</a>
+                                        <a class="dropdown-item" href="#">2022</a>
+                                        <a class="dropdown-item" href="#">2023</a>
+                                        <a class="dropdown-item" href="#">2024</a>
+                                        <a class="dropdown-item" href="#">2025</a>
+                                        <a class="dropdown-item" href="#">2026</a>
+                                        <a class="dropdown-item" href="#">2027</a>
+                                        <a class="dropdown-item" href="#">2028</a>
+                                        <a class="dropdown-item" href="#">2029</a>
+                                        <a class="dropdown-item" href="#">2030</a>
+                                        <a class="dropdown-item" href="#">2031</a>
+                                        <a class="dropdown-item" href="#">2032</a>
+                                        <a class="dropdown-item" href="#">2033</a>
+                                        <a class="dropdown-item" href="#">2034</a>
+                                        <a class="dropdown-item" href="#">2035</a>
+                                        <a class="dropdown-item" href="#">2036</a>
+                                        <a class="dropdown-item" href="#">2037</a>
+                                        <a class="dropdown-item" href="#">2038</a>
+                                        <a class="dropdown-item" href="#">2039</a>
+                                        <a class="dropdown-item" href="#">2040</a>
+                                        <a class="dropdown-item" href="#">2041</a>
+                                        <a class="dropdown-item" href="#">2042</a>
+                                        <a class="dropdown-item" href="#">2043</a>
+                                        <a class="dropdown-item" href="#">2044</a>
+                                        <a class="dropdown-item" href="#">2045</a>
+                                        <a class="dropdown-item" href="#">2046</a>
+                                        <a class="dropdown-item" href="#">2047</a>
+                                        <a class="dropdown-item" href="#">2048</a>
+                                        <a class="dropdown-item" href="#">2049</a>
+                                        <a class="dropdown-item" href="#">2050</a>        
+                                    </div>
+                                </li>
+                                </li>
+                            </ul>
+                            <form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Name or studentID" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </nav>
+                    <br/>
                     <ul class="list-group">
                         <li class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">Some Chinese Company</h5>
-                                <small>4 months</small>
+                                <!--<small>4 months</small>-->
                             </div>
                             <br/>
                             <ul class="list-group">
                                 <li class="list-group-item justify-content-between align-items-center">
-                                    Vacant
-                                    <br/><small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                    <div>Vacant</div>
+                                    <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
                                     <br/><a href=""><span class="badge badge-success">Allocate Student</span></a>
 
                                 </li>
                                 <li class="list-group-item justify-content-between align-items-center">
-                                    Vacant
-                                    <br/><small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                    <div>Vacant</div>
+                                    <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
                                     <br/><a href=""><span class="badge badge-success">Allocate Student</span></a>
                                 </li>
                                 <li class="list-group-item justify-content-between align-items-center">
-                                    Lee Tze Jian
-                                    <br/><small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
-                                    <a href=""><span class="badge badge-warning">Modify</span></a>
+                                    <div>Lee Tze Jian</div>
+                                    <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                    <br/><a href=""><span class="badge badge-warning">Modify</span></a>
                                     <a href=""><span class="badge badge-danger">Remove</span></a>
                                 </li>
                             </ul>
@@ -55,14 +131,21 @@ and open the template in the editor.
                         <li class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">ABC Pte Ltd</h5>
-                                <small>2 days</small>
+                                <!--<small>2 days</small>-->
                             </div>
                             <br/>
                             <ul class="list-group">
                                 <li class="list-group-item justify-content-between align-items-center">
+                                    <div>Vacant</div>
                                     <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
                                     <br/><a href=""><span class="badge badge-success">Allocate Student</span></a>
 
+                                </li>
+                                <li class="list-group-item justify-content-between align-items-center">
+                                    <div>Toh Kee Heng</div>
+                                    <small>Hacker, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                    <br/><a href=""><span class="badge badge-warning">Modify</span></a>
+                                    <a href=""><span class="badge badge-danger">Remove</span></a>
                                 </li>
                             </ul>
                             <br/>
@@ -70,75 +153,6 @@ and open the template in the editor.
                         </li>
                     </ul>
                 </div>
-            </div>
-
-            <div class="alert alert-warning" role="alert">List of Kosens with at least 1 student attached
-                <br/>
-                <!--Button to add new students to OIIP-->
-                <form class="" method="" action="">
-
-                    <div class="form-group">
-                        <div class="container">
-                            <!--<button type="button" data-toggle="modal" data-target="#oiip_add_vacancies" class="btn btn-block btn-info">Assign OIIP to student</button>-->
-                        </div>
-                    </div>
-                </form>
-
-                <!--Sample text-->
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Kisarazu Kosen</h5>
-                            <small>4 months</small>
-                        </div>
-                        <br/>
-                        <ul class="list-group">
-                            <li class="list-group-item justify-content-between align-items-center">
-                                Lee Tze Jian
-                                <br/><a href=""><span class="badge badge-warning">Modify</span></a>
-                                <a href=""><span class="badge badge-danger">Remove</span></a>
-                            </li>
-                            <li class="list-group-item justify-content-between align-items-center">
-                                Grace Yap
-                                <br/><a href=""><span class="badge badge-warning">Modify</span></a>
-                                <a href=""><span class="badge badge-danger">Remove</span></a>
-                            </li>
-                        </ul>
-                        <br/>
-                        <small>Kisarazu, Chiba, Tokyo</small>
-                    </li>
-                    <li class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Nagano Kosen</h5>
-                            <small>2 days</small>
-                        </div>
-                        <br/>
-                        <ul class="list-group">
-                            <li class="list-group-item justify-content-between align-items-center">
-                                Toh Kee Heng
-                                <br/><a href=""><span class="badge badge-warning">Modify</span></a>
-                                <a href=""><span class="badge badge-danger">Remove</span></a>
-                            </li>
-                        </ul>
-                        <br/>
-                        <small>Tokuma, Nagano, Japan</small>
-                    </li>
-                </ul>
-
-                <!--Inactive : Add some students here-->
-                <!--<div class="list-group">
-                    <a href="#" data-toggle="modal" data-target="#edit_delete_student_to_companies" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Kim Jong Un (15063493)</h5>
-                            <small>Kurume, Fukuoka, Japan</small>
-                        </div>
-                        <div class="d-flex w-100">
-                            <span class="badge badge-warning">DIT</span>
-                        </div>
-                        <p class="mb-1">Arduino & Internet of Things &nbsp;<span class="badge badge-success">Kurume Institute of Technology, Japan</span></p>
-                        <small>4 months total, 3 months 2 days remaining</small>
-                    </a>
-                </div>-->
             </div>
         </div>
         <!--Modal for assigning student to Companies-->

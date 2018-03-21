@@ -77,7 +77,7 @@ and open the template in the editor.
                     <li class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">Kisarazu Kosen</h5>
-                            <small>4 months</small>
+                            <!--<small>4 months</small>-->
                         </div>
                         <a href=""><span class="badge badge-success">Add vacancy</span></a>
                         <br/><br/>
@@ -99,7 +99,7 @@ and open the template in the editor.
                     <li class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">Nagano Kosen</h5>
-                            <small>2 days</small>
+                            <!--<small>2 days</small>-->
                         </div>
                         <a href=""><span class="badge badge-success">Add vacancy</span></a>
                         <br/><br/>
