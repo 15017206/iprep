@@ -6,6 +6,7 @@
 $(document).ready(function () {
 
     var printCourseDetails = "";
+   
     $.ajax({
         type: "GET",
         url: "http://localhost/iprep/webservices/getCourses.php",
@@ -16,16 +17,17 @@ $(document).ready(function () {
             for (i = 0; i < response.length; i++) {
                 printCourseDetails += "<a href='#' data-toggle='modal' data-target='#courses_only_modal_modify' data-target='#courses_modal' class='list-group-item list-group-item-action flex-column align-items-start'>"
                         + "<div class='d-flex w-100 justify-content-between'>"
-                        + "<h5 class='mb-1'>" + response[i].name +"</h5>"
+                        + "<h5 class='mb-1'>" + response[i].name + "</h5>"
                         + "<small>" + response[i].genre + "</small>"
                         + "</div>"
                         + " <div class='d-flex w-100'>"
-                        + " <span class='badge badge-warning'>S$" + response[i].cost +"</span>"
+                        + " <span class='badge badge-warning'>S$" + response[i].cost + "</span>"
                         + " </div>"
-                        + "  <small>"+ response[i].course_provider +  "</small>"
-                        + " </a>"
-                        + "<input type='hidden' value='" + response[i].course_id + "' id='course" + response[i].course_id + "'/>";
-                
+                        + "  <small>" + response[i].course_provider + "</small>"
+                        + "<input type='hidden' value='" + response[i].course_id + "' id='course" + response[i].course_id + "'/>"
+                        + " </a>";
+
+
                 $("#courseDetails").html(printCourseDetails);
             }
 
@@ -66,5 +68,13 @@ $(document).ready(function () {
         }
 
     });
+
+    //modify course
+    $("#courseDetails").on("click", "a", function (event) {
+        event.preventDefault();
+        var hiddenValue = $("[type='hidden']", this).val();
+        
+    });
+
 });
 
