@@ -12,6 +12,7 @@ if (isset($_POST)) {
     
     $query = "UPDATE `course` SET `name`='$name',`genre`='$genre', `cost`='$cost',"
             . "`course_provider`='$provider' WHERE `course_id='$course_id'";
+
     
     $result = mysqli_query($link, $query);
     

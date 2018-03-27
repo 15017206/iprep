@@ -58,11 +58,11 @@ and open the template in the editor.
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Name of new course:</label>
-                                    <input type="text" class="form-control" id="" placeholder="eg. Introduction to IoT" name="course_name">
+                                    <input type="text" class="form-control" id="" placeholder="eg. Introduction to IoT" name="name">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Course Genre:</label>
-                                    <select class="form-control" id="exampleFormControlSelect1" name="course_genre">
+                                    <select class="form-control" id="exampleFormControlSelect1" name="genre">
                                         <option>Programming</option>
                                         <option>IT Security</option>
                                         <option>Computer Science</option>
@@ -79,12 +79,12 @@ and open the template in the editor.
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">S$</span>
                                         </div>
-                                        <input type="number" class="form-control" id="" placeholder="Please put in SGD, eg. SGD$0.06" name="course_cost" step="0.01" min="0">
+                                        <input type="number" class="form-control" id="" placeholder="Please put in SGD, eg. SGD$0.06" name="cost" step="0.01" min="0">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Course Provider:</label>
-                                    <input type="text" class="form-control" id="" placeholder="eg. Coursera, Codeacademy" name="course_provider">
+                                    <input type="text" class="form-control" id="" placeholder="eg. Coursera, Codeacademy" name="provider">
                                 </div>
                             </div>
 
