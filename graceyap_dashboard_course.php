@@ -29,16 +29,16 @@ and open the template in the editor.
                 <br><br>
                 <!--Add some courses here-->
                 <div class="list-group" id="courseDetails">
-<!--                    <a href="#" data-toggle="modal" data-target="#courses_only_modal_modify" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Introduction to IoT & Embedded Systems</h5>
-                            <small>IT Security</small>
-                        </div>
-                        <div class="d-flex w-100">
-                            <span class="badge badge-warning">S$60.00</span>
-                        </div>
-                        <small>Coursera</small>
-                    </a>-->
+                    <!--                    <a href="#" data-toggle="modal" data-target="#courses_only_modal_modify" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h5 class="mb-1">Introduction to IoT & Embedded Systems</h5>
+                                                <small>IT Security</small>
+                                            </div>
+                                            <div class="d-flex w-100">
+                                                <span class="badge badge-warning">S$60.00</span>
+                                            </div>
+                                            <small>Coursera</small>
+                                        </a>-->
                 </div>
             </div>
 
@@ -62,9 +62,11 @@ and open the template in the editor.
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Course Genre:</label>
-                                    <select class="form-control" id="exampleFormControlSelect1" name="genre">
+                                    <select class="form-control" id="exampleFormControlSelect1" name="course_genre">
                                         <option>Programming</option>
                                         <option>IT Security</option>
+                                        <option>Computer Science</option>
+                                        <option>Mechanical Engineering</option>
                                         <option>Internet of Things</option>
                                         <option>Cognitive Technology</option>
                                         <option>Data Analytics</option>
@@ -77,7 +79,7 @@ and open the template in the editor.
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">S$</span>
                                         </div>
-                                        <input type="number" class="form-control" id="" placeholder="Please put in SGD, eg. SGD$0.06" name="cost">
+                                        <input type="number" class="form-control" id="" placeholder="Please put in SGD, eg. SGD$0.06" name="course_cost" step="0.01" min="0">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -85,6 +87,7 @@ and open the template in the editor.
                                     <input type="text" class="form-control" id="" placeholder="eg. Coursera, Codeacademy" name="course_provider">
                                 </div>
                             </div>
+
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -106,41 +109,47 @@ and open the template in the editor.
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Name of new course:</label>
-                                <input type="text" class="form-control" id="" placeholder="eg. Introduction to IoT">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Course Genre:</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Programming</option>
-                                    <option>IT Security</option>
-                                    <option>Internet of Things</option>
-                                    <option>Cognitive Technology</option>
-                                    <option>Data Analytics</option>
-                                    <option>Tech Support</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Cost:</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">S$</span>
+                        <form id="formModifyCourse" method="post" action="">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Name of new course:</label>
+                                    <input type="text" class="form-control" required id="" placeholder="eg. Introduction to IoT" name="course_name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Course Genre:</label>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="course_genre" required>
+                                        <option>Programming</option>
+                                        <option>IT Security</option>
+                                        <option>Internet of Things</option>
+                                        <option>Cognitive Technology</option>
+                                        <option>Computer Science</option>
+                                        <option>Mechanical Engineering</option>
+                                        <option>Data Analytics</option>
+                                        <option>Tech Support</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Cost:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">S$</span>
+                                        </div>
+                                        <input required type="number" class="form-control" id="" placeholder="Please put in SGD, eg. SGD$0.06" name="course_cost" step="0.01" min="0">
                                     </div>
-                                    <input type="number" class="form-control" id="" placeholder="Please put in SGD, eg. SGD$0.06">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Course Provider:</label>
+                                    <input required type="text" class="form-control" id="" placeholder="eg. Coursera, Codeacademy" name="course_provider">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Course Provider:</label>
-                                <input type="text" class="form-control" id="" placeholder="eg. Coursera, Codeacademy">
+
+                            <input type="hidden" value="" required name="course_id"/>
+                            <div class="modal-footer">
+                                <!--                            <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Course</button>-->
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Save changes"/>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-<!--                            <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Course</button>-->
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

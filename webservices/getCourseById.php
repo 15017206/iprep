@@ -8,9 +8,7 @@ if (isset($_GET['id'])) {
    
     $query = "SELECT * FROM course where course_id='$id'";
     $result = mysqli_query($link, $query);
-    while ($row = mysqli_fetch_assoc($result)) {
-        $courses[] = $row;
-    }
+    $courses = mysqli_fetch_assoc($result);
     
 
     mysqli_close($link);
@@ -19,6 +17,6 @@ if (isset($_GET['id'])) {
 }
 
 
-//http://localhost/iprep/getCourseById.php?id=1
+//http://localhost/iprep/webservices/getCourseById.php?id=1
 ?>
 

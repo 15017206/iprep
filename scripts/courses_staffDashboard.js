@@ -6,7 +6,9 @@
 $(document).ready(function () {
 
     var printCourseDetails = "";
-   
+    var name, genre, cost, provider, id, course;
+
+    //reloads all data from db
     $.ajax({
         type: "GET",
         url: "http://localhost/iprep/webservices/getCourses.php",
@@ -69,12 +71,79 @@ $(document).ready(function () {
 
     });
 
-    //modify course
+    //retrieve course by id
     $("#courseDetails").on("click", "a", function (event) {
         event.preventDefault();
         var hiddenValue = $("[type='hidden']", this).val();
-        
+
+        $.ajax({
+            type: "GET",
+            url: "http://localhost/iprep/webservices/getCourseById.php",
+            data: "id=" + hiddenValue,
+            cache: false,
+            dataType: "JSON",
+            success: function (response) {
+                $("#courses_only_modal_modify [name=course_name]").val(response.name);
+                $("#courses_only_modal_modify [name=course_genre]").val(response.genre);
+                $("#courses_only_modal_modify [name=course_cost]").val(response.cost);
+                $("#courses_only_modal_modify [name=course_provider]").val(response.course_provider);
+                $("#courses_only_modal_modify [name=course_id]").val(hiddenValue);
+
+                name = response.name;
+                genre = response.genre;
+                cost = response.cost;
+                provider = response.provider;
+                id = hiddenValue;
+
+
+                course = {"course_id": id,
+                    "course_name": name,
+                    "course_cost": cost,
+                    "course_provider": provider,
+                    "course_genre": genre
+                };
+
+                $("#formModifyCourse").submit(function (e) {
+
+
+                    if (!e.isDefaultPrevented()) {
+                        e.preventDefault();
+
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/iprep/webservices/editCourse.php",
+                            data: $("#formModifyCourse").serialize(),
+                            cache: false,
+                            dataType: "JSON",
+                            success: function (data, textStatus)
+                            {
+
+                                $('#courses_only_modal_modify').modal('hide');
+                                $('#formModifyCourse')[0].reset();
+
+                                console.log(data);
+
+                            },
+                            error: function (obj, textStatus, errorThrown) {
+                                console.log("Error " + textStatus + ": " + errorThrown);
+                            }
+
+                        });
+
+                    }
+
+                });
+
+            },
+            error: function (obj, textStatus, errorThrown) {
+                console.log("Error " + textStatus + ": " + errorThrown);
+            }
+        });
+
+
     });
+
+
 
 });
 
