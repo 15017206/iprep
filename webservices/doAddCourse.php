@@ -4,7 +4,7 @@ include 'dbconn.php';
 
 if (isset($_POST)) { 
     
-    $coursename = $_POST['course_name'];
+    $coursename = $_POST['name'];
     $genre = $_POST['genre'];
     $cost = $_POST['cost'];
     $course_provider = $_POST['provider'];

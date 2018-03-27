@@ -83,11 +83,11 @@ $(document).ready(function () {
             cache: false,
             dataType: "JSON",
             success: function (response) {
-                $("#formModifyCourse [name=course_name]").val(response.name);
-                $("#formModifyCourse [name=course_genre]").val(response.genre);
-                $("#formModifyCourse [name=course_cost]").val(response.cost);
-                $("#formModifyCourse [name=course_provider]").val(response.course_provider);
-                $("#formModifyCourse [name=course_id]").val(hiddenValue);
+                $("#courses_only_modal_modify [name=course_name]").val(response.name);
+                $("#courses_only_modal_modify [name=course_genre]").val(response.genre);
+                $("#courses_only_modal_modify [name=course_cost]").val(response.cost);
+                $("#courses_only_modal_modify [name=course_provider]").val(response.course_provider);
+                $("#courses_only_modal_modify [name=course_id]").val(hiddenValue);
 
                 name = response.name;
                 genre = response.genre;
