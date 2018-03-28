@@ -5,6 +5,9 @@
  */
 
 $(document).ready(function () {
+
+
+
     var list_of_company_no_vacancies = "";
     $.ajax({
         type: "GET",
@@ -13,13 +16,13 @@ $(document).ready(function () {
         dataType: "JSON",
         success: function (response) {
 
-            for (i = 0; i < response.length; i++) {
+            for (var i = 0; i < response.length; i++) {
                 list_of_company_no_vacancies += "<li class='list-group-item justify-content-between'>" +
                         response[i].company_name +
                         "<br/>" +
-                        "<small>"+ response[i].country + ", company id: " + response[i].company_id +"</small>" +
+                        "<small>" + response[i].country + ", company id: " + response[i].company_id + "</small>" +
                         "<br/>" +
-                        "<a href=''><span class='badge badge-success'>Add vacancy</span></a>" +
+                        "<a href=''><span id='" + response[i].company_id + "_addvacancy'  onclick='addNewVacancy(" + response[i].company_id + ")' class='badge badge-success'>Add vacancy</span></a>" +
                         "</li>";
 
                 $("#list_of_companies_no_vacancy").html(list_of_company_no_vacancies);
@@ -43,4 +46,10 @@ $(document).ready(function () {
 //    for (var i = 0; i < 5; i++) {
 //        $("#list_of_companies_no_vacancy").append(list_of_company_no_vacancies);
 //    }
+
 });
+
+function addNewVacancy(company_id) {
+//    alert(company_id);
+$('#modal_add_new_vacancy').modal();
+}

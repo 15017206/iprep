@@ -14,10 +14,37 @@ and open the template in the editor.
         ?>
         <script src="scripts/company_staffDashboard.js" type="text/javascript"></script>
         <script>
-            $(document).ready(function(){
-                
+            $(document).ready(function () {
+                // When new company is added
+                $("#form_add_company").submit(function (e) {
+                    if (!e.isDefaultPrevented()) {
+                        e.preventDefault();
+
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/iprep/webservices/doAddCompany.php",
+                            data: $("#form_add_company").serialize(),
+                            cache: false,
+                            dataType: "JSON",
+                            success: function (data, textStatus)
+                            {
+                                alert(data + textStatus);
+                                location.reload();
+                                //$('#form1')[0].reset();
+
+                            },
+                            error: function (obj, textStatus, errorThrown) {
+                                console.log("Error " + textStatus + ": " + errorThrown);
+                                alert("fail");
+                            }
+
+                        });
+                    }
+                })
+
+
             }); // end of document.ready
-            
+
             function vacanciesChange() {
                 $("#void").empty();
                 var bla = $("#no_of_vacancies").val();
@@ -260,16 +287,16 @@ and open the template in the editor.
                         </button>
                     </div>
                     <div class="modal-body form">
-                        <form method="" action="">
+                        <form id="form_add_company" method="" action="">
                             <div class="form-group">
                                 <label for="exampleInputEmail2">Company Name</label>
-                                <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
+                                <input type="text" class="form-control" id="company_name" name="company_name" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
                                 <small id="emailHelp" class="form-text text-muted">This is the company name</small>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputPassword2">Country</label>
-                                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="eg. Zimbabwe, Syria etc">
+                                <input type="text" class="form-control" id="country" name="country" placeholder="eg. Zimbabwe, Syria etc">
                             </div>
 
                             <!--For vacancies. Unused-->
@@ -339,12 +366,80 @@ and open the template in the editor.
                             <!--Template End-->
 
                             <!--<button type="submit" class="btn btn-primary">Submit</button>-->
-                            <button type="submit" id="" class="btn btn-primary">Save changes</button>
+                            <button type="submit" id="submit_add_company" class="btn btn-primary">Save changes</button>
 
                         </form>
                     </div> 
                 </div>
             </div>
         </div>
+
+        <!--Modal for adding new vacancy to company-->
+        <div class="modal fade" id="modal_add_new_vacancy" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Some unused code-->
+        <!--        <div class='alert alert-warning' role='alert'> 
+                    <div class='form-group'> 
+                        <label for='exampleInputPassword1'>Vacancy " + (i + 1) + "</label> 
+                        <div class='input-group'> 
+                            <div class='input-group-prepend'>" 
+                                <span class='input-group-text'>Job Role:</span> 
+                            </div> 
+                            <input type='text' class='form-control' id='jobrole" + (i + 1) + "' placeholder='eg. App Dev etc.' on> 
+                        </div> 
+                    </div> 
+                    <div class='form-group'> 
+                        <div class='input-group'> 
+                            <div class='input-group-prepend'> 
+                                <span class='input-group-text'>Start Date:</span> 
+                            </div> 
+                            <input type='date' class='form-control' id='startdate" + (i + 1) + "' placeholder='eg. App Dev etc.' on> 
+                        </div> 
+                    </div> 
+                    <div class='form-group'> 
+                        <div class='input-group'> 
+                            <div class='input-group-prepend'>
+                                <span class='input-group-text'>End Date:</span> 
+                            </div> 
+                            <input type='date' class='form-control' id='enddate" + (i + 1) + "' placeholder='eg. App Dev etc.' on> 
+                        </div> 
+                    </div> 
+                    <div class='form-group'> 
+                        <div class='input-group'> 
+                            <div class='input-group-prepend'> 
+                                <span class='input-group-text' id=''>Currency & Amount</span> 
+                            </div> 
+                            <input type='text' id='currency" + (i + 1) + "' class='form-control' placeholder='eg. SGD/MYR etc'> 
+                            <input type='number' id='amount" + (i + 1) + "' class='form-control' placeholder='eg. 45, 1200 etc'> 
+                        </div> 
+                    </div> 
+                    <div class='form-check form-group'> 
+                        <input class='form-check-input' type='checkbox' value='' id='accomodation_checkbox" + (i + 1) + "'> 
+                        <label class='form-check-label' for='accomodation_checkbox" + (i + 1) + "'>Accomodation provided</label> 
+                    </div> 
+                    <div class='form-check form-group'> 
+                        <input class='form-check-input' type='checkbox' value='' id='airticket_checkbox" + (i + 1) + "'> 
+                        <label class='form-check-label' for='airticket_checkbox" + (i + 1) + "'>Air Ticket provided</label> 
+                    </div>
+                </div>-->
+
     </body>
 </html>
