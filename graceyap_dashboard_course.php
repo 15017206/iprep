@@ -112,20 +112,21 @@ and open the template in the editor.
                         <form id="formModifyCourse" method="post" action="">
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="exampleFormControlInput1">Name of new course:</label>
-                                    <input type="text" class="form-control" required id="" placeholder="eg. Introduction to IoT" name="course_name">
+                                    <label for="exampleFormControlInput1">Name of course:</label>
+                                    <input type="text" class="form-control" required id="nameModify" placeholder="eg. Introduction to IoT" name="course_name">
                                 </div>
+                                
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Course Genre:</label>
-                                    <select class="form-control" id="exampleFormControlSelect1" name="course_genre" required>
-                                        <option>Programming</option>
-                                        <option>IT Security</option>
-                                        <option>Internet of Things</option>
-                                        <option>Cognitive Technology</option>
-                                        <option>Computer Science</option>
-                                        <option>Mechanical Engineering</option>
-                                        <option>Data Analytics</option>
-                                        <option>Tech Support</option>
+                                    <select class="form-control" name="course_genre" id="genreModify">
+                                        <option value="Programming">Programming</option>
+                                        <option value="IT Security">IT Security</option>
+                                        <option value="Internet of Things">Internet of Things</option>
+                                        <option value="Cognitive Technology">Cognitive Technology</option>
+                                        <option value="Data Analytics">Data Analytics</option>
+                                        <option value="Tech Support">Tech Support</option> 
+                                        <option value="Computer Science">Computer Science</option>
+                                        <option value="Mechanical Engineering">Mechanical Engineering</option> 
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -134,20 +135,19 @@ and open the template in the editor.
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">S$</span>
                                         </div>
-                                        <input required type="number" class="form-control" id="" placeholder="Please put in SGD, eg. SGD$0.06" name="course_cost" step="0.01" min="0">
+                                        <input type="number" class="form-control" name="course_cost" id="costModify" placeholder="Please put in SGD, eg. SGD$0.06">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Course Provider:</label>
-                                    <input required type="text" class="form-control" id="" placeholder="eg. Coursera, Codeacademy" name="course_provider">
+                                    <input type="text" class="form-control" name="course_provider" id="providerModify" placeholder="eg. Coursera, Codeacademy">
                                 </div>
-                            </div>
-
-                            <input type="hidden" value="" required name="course_id"/>
+                                <input type="hidden" name="course_id" id="idModify">
+                            </div> 
                             <div class="modal-footer">
-                                <!--                            <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Course</button>-->
+    <!--                            <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Course</button>-->
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <input type="submit" class="btn btn-primary" value="Save changes"/>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
                         </form>
                     </div>

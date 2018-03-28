@@ -11,7 +11,7 @@ if (isset($_GET['year'])) {
     while ($row = mysqli_fetch_assoc($result)) {
         $vacancies[] = $row;
     }
-    
+    // fa
 
     mysqli_close($link);
 
