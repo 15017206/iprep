@@ -14,87 +14,6 @@ and open the template in the editor.
         ?>
         <script src="scripts/company_staffDashboard.js" type="text/javascript"></script>
         <script>
-            $(document).ready(function () {
-                // When new company is added
-                $("#form_add_company").submit(function (e) {
-                    if (!e.isDefaultPrevented()) {
-                        e.preventDefault();
-
-                        $.ajax({
-                            type: "POST",
-                            url: "http://localhost/iprep/webservices/doAddCompany.php",
-                            data: $("#form_add_company").serialize(),
-                            cache: false,
-                            dataType: "JSON",
-                            success: function (data, textStatus)
-                            {
-                                alert(data + textStatus);
-                                location.reload();
-                                //$('#form1')[0].reset();
-
-                            },
-                            error: function (obj, textStatus, errorThrown) {
-                                console.log("Error " + textStatus + ": " + errorThrown);
-                                alert("fail");
-                            }
-
-                        });
-                    }
-                })
-
-
-            }); // end of document.ready
-
-            function vacanciesChange() {
-                $("#void").empty();
-                var bla = $("#no_of_vacancies").val();
-                for (var i = 0; i < bla; i++) {
-                    $("#void").append("<div class='alert alert-warning' role='alert'>" +
-                            "<div class='form-group'>" +
-                            "<label for='exampleInputPassword1'>Vacancy " + (i + 1) + "</label>" +
-                            "<div class='input-group'>" +
-                            "<div class='input-group-prepend'>" +
-                            "<span class='input-group-text'>Job Role:</span>" +
-                            "</div>" +
-                            "<input type='text' class='form-control' id='jobrole" + (i + 1) + "' placeholder='eg. App Dev etc.' on>" +
-                            "</div>" +
-                            "</div>" +
-                            "<div class='form-group'>" +
-                            "<div class='input-group'>" +
-                            "<div class='input-group-prepend'>" +
-                            "<span class='input-group-text'>Start Date:</span>" +
-                            "</div>" +
-                            "<input type='date' class='form-control' id='startdate" + (i + 1) + "' placeholder='eg. App Dev etc.' on>" +
-                            "</div>" +
-                            "</div>" +
-                            "<div class='form-group'>" +
-                            "<div class='input-group'>" +
-                            "<div class='input-group-prepend'>" +
-                            "<span class='input-group-text'>End Date:</span>" +
-                            "</div>" +
-                            "<input type='date' class='form-control' id='enddate" + (i + 1) + "' placeholder='eg. App Dev etc.' on>" +
-                            "</div>" +
-                            "</div>" +
-                            "<div class='form-group'>" +
-                            "<div class='input-group'>" +
-                            "<div class='input-group-prepend'>" +
-                            "<span class='input-group-text' id=''>Currency & Amount</span>" +
-                            "</div>" +
-                            "<input type='text' id='currency" + (i + 1) + "' class='form-control' placeholder='eg. SGD/MYR etc'>" +
-                            "<input type='number' id='amount" + (i + 1) + "' class='form-control' placeholder='eg. 45, 1200 etc'>" +
-                            "</div>" +
-                            "</div>" +
-                            "<div class='form-check form-group'>" +
-                            "<input class='form-check-input' type='checkbox' value='' id='accomodation_checkbox" + (i + 1) + "'>" +
-                            "<label class='form-check-label' for='accomodation_checkbox" + (i + 1) + "'>Accomodation provided</label>" +
-                            "</div>" +
-                            "<div class='form-check form-group'>" +
-                            "<input class='form-check-input' type='checkbox' value='' id='airticket_checkbox" + (i + 1) + "'>" +
-                            "<label class='form-check-label' for='airticket_checkbox" + (i + 1) + "'>Air Ticket provided</label>" +
-                            "</div>" +
-                            "</div>");
-                }
-            }
         </script>
 
     </head>
@@ -152,20 +71,6 @@ and open the template in the editor.
                 <p>Companies currently residing in DB</p>
 
                 <ul id="list_of_companies_no_vacancy" class="list-group">
-                    <li class='list-group-item justify-content-between'>
-                        ISIS School for terrorists
-                        <br/>
-                        <small>Small town in Syria</small>
-                        <br/>
-                        <a href=''><span class='badge badge-success'>Add vacancy</span></a>
-                    </li>
-                    <li class="list-group-item justify-content-between">
-                        North Korean Training Center
-                        <br/>
-                        <small>Pyongyang, North Korea</small>
-                        <br/>
-                        <a href=""><span class="badge badge-success">Add vacancy</span></a>
-                    </li>
                 </ul>
                 <br/>
                 <!--Button to add new company to OIIP-->
@@ -310,8 +215,7 @@ and open the template in the editor.
                                                             <label class="form-check-label" for="defaultCheck1">All Applicants same data as Vacancy 1</label>
                                                         </div>-->
 
-                            <div id="void">
-                            </div>
+
                             <!--Template for multiple vacancies Start-->
                             <!--                            <div class='alert alert-warning' role='alert'>
                                                             <div class='form-group'>
@@ -378,19 +282,33 @@ and open the template in the editor.
         <div class="modal fade" id="modal_add_new_vacancy" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+                    <form id="formvoid" action="" method="">
+                        <div class="modal-header">
+                            <input id="company_id2" type="hidden" value="1" name="company_id">
+                            <h5 class="modal-title" id="exampleModalLongTitle2">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="no_of_vacancies">Number of Vacancies</label>
+                                <input type="number" class="form-control" id="no_of_vacancies" placeholder="eg. 1,2,3 etc" onchange="vacanciesChange()">
+                            </div>
+
+                            <div class="form-check form-group">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">All Applicants same data as Vacancy 1</label>
+                            </div>
+                        </div>
+
+                        <div id="void"></div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" id="submit_add_vacancy" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
