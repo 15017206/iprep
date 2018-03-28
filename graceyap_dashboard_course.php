@@ -106,41 +106,44 @@ and open the template in the editor.
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Name of new course:</label>
-                                <input type="text" class="form-control" id="" placeholder="eg. Introduction to IoT">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Course Genre:</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Programming</option>
-                                    <option>IT Security</option>
-                                    <option>Internet of Things</option>
-                                    <option>Cognitive Technology</option>
-                                    <option>Data Analytics</option>
-                                    <option>Tech Support</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Cost:</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">S$</span>
-                                    </div>
-                                    <input type="number" class="form-control" id="" placeholder="Please put in SGD, eg. SGD$0.06">
+                        <form>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Name of course:</label>
+                                    <input type="text" class="form-control" name="course_name" id="nameModify" placeholder="eg. Introduction to IoT">
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Course Genre:</label>
+                                    <select class="form-control" name="course_genre" id="genreModify">
+                                        <option value="Programming">Programming</option>
+                                        <option value="IT Security">IT Security</option>
+                                        <option value="Internet of Things">Internet of Things</option>
+                                        <option value="Cognitive Technology">Cognitive Technology</option>
+                                        <option value="Data Analytics">Data Analytics</option>
+                                        <option value="Tech Support">Tech Support</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Cost:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">S$</span>
+                                        </div>
+                                        <input type="number" class="form-control" name="course_cost" id="costModify" placeholder="Please put in SGD, eg. SGD$0.06">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Course Provider:</label>
+                                    <input type="text" class="form-control" name="course_provider" id="providerModify" placeholder="eg. Coursera, Codeacademy">
+                                </div>
+                                <input type="hidden" name="course_id" id="idModify">
                             </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Course Provider:</label>
-                                <input type="text" class="form-control" id="" placeholder="eg. Coursera, Codeacademy">
+                            <div class="modal-footer">
+    <!--                            <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Course</button>-->
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-<!--                            <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Course</button>-->
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

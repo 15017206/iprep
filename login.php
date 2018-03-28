@@ -26,10 +26,12 @@ and open the template in the editor.
                      {  
                         console.log(data);
                         if (data === 'Login/Staff') {
-                          header("Location: graceyap_dashboard_course.php");
+                            alert("staff page");
+                          window.location.href = "Location: graceyap_dashboard_course.php";
                         } 
                         else if (data === "Login/Student") {
-                          header("Location: student_dashboard.php");
+                            alert("student page");
+                          window.location.href = "Location: student_dashboard.php";
                         }
                         else {
                           alert('Invalid Credentials');
