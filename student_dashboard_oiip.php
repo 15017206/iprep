@@ -20,7 +20,8 @@ and open the template in the editor.
             <div class="alert alert-info" role="alert">
                 <p>OIIP Interest</p>        
 
-                <p>Are you interested for Overseas Internship?</p>
+                <div>Are you interested for Overseas Internship?</div>
+                <small>Please choose carefully. No change is allowed</small>
                 <!--Interest for OIIP-->
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>

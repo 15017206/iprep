@@ -11,7 +11,6 @@ and open the template in the editor.
         <?php
         include 'scripts.php';
         include 'navbar_staff.php';
-        
         ?>
     </head>
     <body>

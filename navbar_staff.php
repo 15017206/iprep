@@ -16,7 +16,7 @@ session_start();
     <body>
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
 
-<a class="navbar-brand" href="#">Welcome, Grace Yap</a>
+            <a class="navbar-brand" href="#">Welcome, Grace Yap</a>
 
             <!--Links in navbar-->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,14 +31,18 @@ session_start();
                         <a class="nav-link" href="graceyap_dashboard_studenthascourse.php">Student with courses</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="graceyap_dashboard_oiip.php">OIIP</a>
+                        <a class="nav-link" href="graceyap_dashboard_company.php">Company</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="graceyap_dashboard_company.php">Company</a>
+                        <a class="nav-link" href="graceyap_dashboard_oiip.php">Assign Student to Company</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="graceyap_maintainstudent.php">Maintain Student</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Logout</a>
                     </li>
+
                 </ul>
             </div>
         </nav>

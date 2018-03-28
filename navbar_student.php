@@ -22,7 +22,7 @@ session_start();
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="student_dashboard_listofcourses.php">List of Courses</a>
+                        <a class="nav-link" href="student_dashboard_listofcourses.php">Apply Course</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="student_dashboard_mycourses.php">My Courses</a>

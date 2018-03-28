@@ -12,10 +12,11 @@ if (isset($_POST)) {
     $email = $_POST['personal_email'];
     $status = $_POST['iprep_status'];
     $interest = $_POST['oiip_interest'];
+    $cohort = $_POST['cohort'];
     
     $query = "UPDATE `student` SET `name`='$name',`diploma`='$diploma', `gpa`='$gpa',"
             . "`tech_subj_score`='$tech',`mobile`='$mobile',`personal_email`='$email',`iprep_status`='$status'"
-            . "`oiip_interest`='$interest', WHERE `student_id='$student_id'";
+            . "`oiip_interest`='$interest',`cohort`='$cohort', WHERE `student_id='$student_id'";
     
     $result = mysqli_query($link, $query);
     
