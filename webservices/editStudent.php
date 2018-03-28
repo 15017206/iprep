@@ -16,7 +16,7 @@ if (isset($_POST)) {
     
     $query = "UPDATE `student` SET `name`='$name',`diploma`='$diploma', `gpa`='$gpa',"
             . "`tech_subj_score`='$tech',`mobile`='$mobile',`personal_email`='$email',`iprep_status`='$status'"
-            . "`oiip_interest`='$interest',`cohort`='$cohort', WHERE `student_id='$student_id'";
+            . ", `oiip_interest`='$interest', `cohort`='$cohort' WHERE `student_id`='$student_id'";
     
     $result = mysqli_query($link, $query);
     

@@ -16,9 +16,7 @@ and open the template in the editor.
             $(document).ready(function () {
                 var student_id, name, diploma, gpa, mobile, personal_email, iprep_status, oiip_interest, cohort;
                 var output = "";
-                $("#form1").submit(function () {
-                    alert("123");
-                });
+
 
                 // Create new student to DB
                 $("#form1").submit(function (e) {
@@ -58,7 +56,7 @@ and open the template in the editor.
 
                             output += "<li class='list-group-item'><small>" + response[i].name + "</small><br/>" +
                                     "<small>" + response[i].cohort + ", " + response[i].student_id + ", " + response[i].diploma + "</small><br/>" +
-                                    "<a href='#' id='" + response[i].name + "' data-toggle='modal' data-target='#update_student' onclick='updateStudent(" + response[i].student_id + ")' class='badge badge-warning'>Update</a>&nbsp;<a href='#' id='" + response[i].student_id + "' onclick='deleteStudent(" + response[i].student_id + ")' class='badge badge-danger'>Delete</a></li>";
+                                    "<a href='#' id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student' onclick='updateStudent(" + response[i].student_id + ")' class='badge badge-warning'>Update</a></li>";
                         }
                         $("#listgroup1").append(output);
                     },
@@ -80,8 +78,8 @@ and open the template in the editor.
                             dataType: "JSON",
                             success: function (data, textStatus)
                             {
-                                alert(data + textStatus);
-                                //location.reload();
+                                alert(textStatus);
+                                location.reload();
                                 //$('#form1')[0].reset();
 
                             },
@@ -93,8 +91,6 @@ and open the template in the editor.
                         });
                     }
                 });
-
-
 
             }); //End of document.ready
 
@@ -121,7 +117,6 @@ and open the template in the editor.
                             $("#oiip_interest").val(response[i].oiip_interest);
                             $("#cohort").val(response[i].cohort);
                         }
-
                     },
                     error: function (obj, textStatus, errorThrown) {
                         console.log("Error " + textStatus + ": " + errorThrown);
@@ -282,7 +277,7 @@ and open the template in the editor.
                             <!--Tech Subj Score-->
                             <div class="form-group">
                                 <label for="tech_subj_score">Tech Subj Score:</label>
-                                <input type="number" name="tech_subj_score" class="form-control" placeholder="">
+                                <input type="number" name="tech_subj_score" id="tech_subj_score" class="form-control" placeholder="">
                             </div>
 
                             <!--Mobile No.-->

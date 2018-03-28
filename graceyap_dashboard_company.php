@@ -14,6 +14,10 @@ and open the template in the editor.
         ?>
         <script src="scripts/company_staffDashboard.js" type="text/javascript"></script>
         <script>
+            $(document).ready(function(){
+                
+            }); // end of document.ready
+            
             function vacanciesChange() {
                 $("#void").empty();
                 var bla = $("#no_of_vacancies").val();
@@ -268,19 +272,20 @@ and open the template in the editor.
                                 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="eg. Zimbabwe, Syria etc">
                             </div>
 
-                            <div class="form-group">
-                                <label for="no_of_vacancies">Number of Vacancies</label>
-                                <input type="number" class="form-control" id="no_of_vacancies" placeholder="eg. 1,2,3 etc" onchange="vacanciesChange()">
-                            </div>
-
-                            <div class="form-check form-group">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">All Applicants same data as Vacancy 1</label>
-                            </div>
+                            <!--For vacancies. Unused-->
+                            <!--                            <div class="form-group">
+                                                            <label for="no_of_vacancies">Number of Vacancies</label>
+                                                            <input type="number" class="form-control" id="no_of_vacancies" placeholder="eg. 1,2,3 etc" onchange="vacanciesChange()">
+                                                        </div>
+                            
+                                                        <div class="form-check form-group">
+                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">All Applicants same data as Vacancy 1</label>
+                                                        </div>-->
 
                             <div id="void">
                             </div>
-                            <!--Template Start-->
+                            <!--Template for multiple vacancies Start-->
                             <!--                            <div class='alert alert-warning' role='alert'>
                                                             <div class='form-group'>
                                                                 <label for='exampleInputPassword1'>Vacancy 1</label>
