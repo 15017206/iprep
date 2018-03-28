@@ -109,12 +109,13 @@ and open the template in the editor.
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form>
+                        <form id="formModifyCourse" method="post" action="">
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Name of course:</label>
-                                    <input type="text" class="form-control" name="course_name" id="nameModify" placeholder="eg. Introduction to IoT">
+                                    <input type="text" class="form-control" required id="nameModify" placeholder="eg. Introduction to IoT" name="course_name">
                                 </div>
+                                
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Course Genre:</label>
                                     <select class="form-control" name="course_genre" id="genreModify">

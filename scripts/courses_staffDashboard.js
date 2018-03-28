@@ -5,7 +5,7 @@
  */
 $(document).ready(function () {
 
-    var printCourseDetails = "";
+    var printCourseDetails = ""; 
     $.ajax({
         type: "GET",
         url: "http://localhost/iprep/webservices/getCourses.php",
