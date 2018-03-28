@@ -293,7 +293,7 @@ and open the template in the editor.
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="no_of_vacancies">Number of Vacancies</label>
-                                <input type="number" class="form-control" id="no_of_vacancies" placeholder="eg. 1,2,3 etc" onchange="vacanciesChange()">
+                                <input type="number" class="form-control" id="no_of_vacancies" placeholder="eg. 1,2,3 etc" onkeyup="vacanciesChange()">
                             </div>
 
                             <div class="form-check form-group">

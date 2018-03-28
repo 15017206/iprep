@@ -5,9 +5,11 @@
  */
 
 $(document).ready(function (e) {
+    setTimeout(function(){
+        refreshCompanies();
+    }, 1000);
 
-
-    var list_of_company_no_vacancies = "";
+    
 
     $("#form_add_company").submit(function (e) {
         if (!e.isDefaultPrevented()) {
@@ -20,10 +22,12 @@ $(document).ready(function (e) {
                 cache: false,
                 dataType: "JSON",
                 success: function (data, textStatus)
-                {
-                    alert(data + textStatus);
-                    location.reload();
+                { 
                     //$('#form1')[0].reset();
+                    $("#oiip_add_company").modal('hide'); 
+                    setTimeout(function(){
+                        refreshCompanies();
+                    }, 1000);
 
                 },
                 error: function (obj, textStatus, errorThrown) {
@@ -35,34 +39,7 @@ $(document).ready(function (e) {
         }
     })
 
-    $.ajax({
-        type: "GET",
-        url: "http://localhost/iprep/webservices/getCompanies.php",
-        cache: false,
-        dataType: "JSON",
-        success: function (response) {
-
-            for (var i = 0; i < response.length; i++) {
-                var company_name = response[i].company_name;
-                var company_id = response[i].company_id;
-                var concat = company_id + company_name;
-
-                list_of_company_no_vacancies += "<li class='list-group-item justify-content-between'>" +
-                        response[i].company_name +
-                        "<br/>" +
-                        "<small>" + response[i].country + ", company id: " + response[i].company_id + "</small>" +
-                        "<br/>" +
-                        "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' id='" + response[i].company_id + "_addvacancy' class='badge badge-success'>Add vacancy</span></a>" +
-                        "</li>";
-
-
-            }
-            $("#list_of_companies_no_vacancy").append(list_of_company_no_vacancies);
-        },
-        error: function (obj, textStatus, errorThrown) {
-            console.log("Error " + textStatus + ": " + errorThrown);
-        }
-    });
+    
 
 //    list_of_company_no_vacancies += "<li class='list-group-item justify-content-between'>" +
 //            "ISIS School for terrorists" +
@@ -160,4 +137,36 @@ function addNewVacancy(company_id) {
     alert(company_id);
     $("#company_id2").val(company_id);
     $("#exampleModalLongTitle2").text("Add Vacancy to company: " + company_id);
+}
+
+function refreshCompanies(){
+    var list_of_company_no_vacancies = "";  
+    $.ajax({
+        type: "GET",
+        url: "http://localhost/iprep/webservices/getCompanies.php",
+        cache: false,
+        dataType: "JSON",
+        success: function (response) {
+
+            for (var i = 0; i < response.length; i++) {
+                var company_name = response[i].company_name;
+                var company_id = response[i].company_id;
+                var concat = company_id + company_name;
+
+                list_of_company_no_vacancies += "<li class='list-group-item justify-content-between'>" +
+                        response[i].company_name +
+                        "<br/>" +
+                        "<small>" + response[i].country + ", company id: " + response[i].company_id + "</small>" +
+                        "<br/>" +
+                        "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' id='" + response[i].company_id + "_addvacancy' class='badge badge-success'>Add vacancy</span></a>" +
+                        "</li>";
+
+
+            }
+            $("#list_of_companies_no_vacancy").html(list_of_company_no_vacancies);
+        },
+        error: function (obj, textStatus, errorThrown) {
+            console.log("Error " + textStatus + ": " + errorThrown);
+        }
+    });
 }

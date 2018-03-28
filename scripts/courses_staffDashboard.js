@@ -4,36 +4,8 @@
  * and open the template in the editor.
  */
 $(document).ready(function () {
-
-    var printCourseDetails = ""; 
-    $.ajax({
-        type: "GET",
-        url: "http://localhost/iprep/webservices/getCourses.php",
-        cache: false,
-        dataType: "JSON",
-        success: function (response) {
-
-            for (i = 0; i < response.length; i++) {
-                printCourseDetails += "<a href='#' data-toggle='modal' data-target='#courses_only_modal_modify' data-target='#courses_modal' data-id='"+response[i].course_id +"' class='list-group-item list-group-item-action flex-column align-items-start'>"
-                        + "<div class='d-flex w-100 justify-content-between'>"
-                        + "<h5 class='mb-1'>" + response[i].name+ "</h5>"
-                        + "<small>" + response[i].genre + "</small>"
-                        + "</div>"
-                        + " <div class='d-flex w-100'>"
-                        + " <span class='badge badge-warning'>S$" + response[i].cost + "</span>"
-                        + "<input type='hidden' value='" + response[i].course_id + "' id='course" + response[i].course_id + "'/>"
-                        + " </div>"
-                        + "  <small>" + response[i].course_provider + "</small>"
-                        + " </a>";
-                        
-                $("#courseDetails").html(printCourseDetails);
-            }
-
-        },
-        error: function (obj, textStatus, errorThrown) {
-            console.log("Error " + textStatus + ": " + errorThrown);
-        }
-    });
+    refreshCourses();
+    
 
     //this portion of the code deals with insertion of course details into the database
 
@@ -57,6 +29,9 @@ $(document).ready(function () {
                     $('#formAddNewCourse')[0].reset();
                     console.log("data: " + data);
                     console.log("textStatus: " +textStatus);
+                    setTimeout(function(){
+                        refreshCourses();
+                    }, 1000);
 
                 },
                 error: function (obj, textStatus, errorThrown) {
@@ -128,7 +103,7 @@ $(document).ready(function () {
                     console.log(data["result"]);
                     console.log("textStatus: " +textStatus); 
                     setTimeout(function(){
-                        window.location.reload();
+                        refreshCourses();
                     }, 1000);
 
                 },
@@ -143,5 +118,37 @@ $(document).ready(function () {
         
 
     });
+    
+    function refreshCourses(){ 
+        var printCourseDetails = ""; 
+        $.ajax({
+            type: "GET",
+            url: "http://localhost/iprep/webservices/getCourses.php",
+            cache: false,
+            dataType: "JSON",
+            success: function (response) {
+
+                for (i = 0; i < response.length; i++) {
+                    printCourseDetails += "<a href='#' data-toggle='modal' data-target='#courses_only_modal_modify' data-target='#courses_modal' data-id='"+response[i].course_id +"' class='list-group-item list-group-item-action flex-column align-items-start'>"
+                            + "<div class='d-flex w-100 justify-content-between'>"
+                            + "<h5 class='mb-1'>" + response[i].name+ "</h5>"
+                            + "<small>" + response[i].genre + "</small>"
+                            + "</div>"
+                            + " <div class='d-flex w-100'>"
+                            + " <span class='badge badge-warning'>S$" + response[i].cost + "</span>"
+                            + "<input type='hidden' value='" + response[i].course_id + "' id='course" + response[i].course_id + "'/>"
+                            + " </div>"
+                            + "  <small>" + response[i].course_provider + "</small>"
+                            + " </a>";
+
+                    $("#courseDetails").html(printCourseDetails);
+                }
+
+            },
+            error: function (obj, textStatus, errorThrown) {
+                console.log("Error " + textStatus + ": " + errorThrown);
+            }
+        });
+    }
 });
 
