@@ -2,7 +2,7 @@
 
 include 'dbconn.php';
 
-if (isset($_POST)) { 
+if (isset($_POST)) {    
     $course_id = $_POST['course_id'];
     $name = $_POST['course_name'];
     $genre = $_POST['course_genre'];
@@ -11,7 +11,7 @@ if (isset($_POST)) {
     
     $query = "UPDATE `course` SET `name`='$name',`genre`='$genre', `cost`='$cost',"
             . "`course_provider`='$provider' WHERE `course_id`='$course_id'";
-    
+ 
     $result = mysqli_query($link, $query);
     
     if($result){

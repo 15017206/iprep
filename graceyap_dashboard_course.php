@@ -29,16 +29,16 @@ and open the template in the editor.
                 <br><br>
                 <!--Add some courses here-->
                 <div class="list-group" id="courseDetails">
-<!--                    <a href="#" data-toggle="modal" data-target="#courses_only_modal_modify" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Introduction to IoT & Embedded Systems</h5>
-                            <small>IT Security</small>
-                        </div>
-                        <div class="d-flex w-100">
-                            <span class="badge badge-warning">S$60.00</span>
-                        </div>
-                        <small>Coursera</small>
-                    </a>-->
+                    <!--                    <a href="#" data-toggle="modal" data-target="#courses_only_modal_modify" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h5 class="mb-1">Introduction to IoT & Embedded Systems</h5>
+                                                <small>IT Security</small>
+                                            </div>
+                                            <div class="d-flex w-100">
+                                                <span class="badge badge-warning">S$60.00</span>
+                                            </div>
+                                            <small>Coursera</small>
+                                        </a>-->
                 </div>
             </div>
 
@@ -58,13 +58,15 @@ and open the template in the editor.
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Name of new course:</label>
-                                    <input type="text" class="form-control" id="" placeholder="eg. Introduction to IoT" name="course_name">
+                                    <input type="text" class="form-control" id="" placeholder="eg. Introduction to IoT" name="name">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Course Genre:</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="genre">
                                         <option>Programming</option>
                                         <option>IT Security</option>
+                                        <option>Computer Science</option>
+                                        <option>Mechanical Engineering</option>
                                         <option>Internet of Things</option>
                                         <option>Cognitive Technology</option>
                                         <option>Data Analytics</option>
@@ -77,14 +79,15 @@ and open the template in the editor.
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">S$</span>
                                         </div>
-                                        <input type="number" class="form-control" id="" placeholder="Please put in SGD, eg. SGD$0.06" name="cost">
+                                        <input type="number" class="form-control" id="" placeholder="Please put in SGD, eg. SGD$0.06" name="cost" step="0.01" min="0">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Course Provider:</label>
-                                    <input type="text" class="form-control" id="" placeholder="eg. Coursera, Codeacademy" name="course_provider">
+                                    <input type="text" class="form-control" id="" placeholder="eg. Coursera, Codeacademy" name="provider">
                                 </div>
                             </div>
+
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -120,7 +123,9 @@ and open the template in the editor.
                                         <option value="Internet of Things">Internet of Things</option>
                                         <option value="Cognitive Technology">Cognitive Technology</option>
                                         <option value="Data Analytics">Data Analytics</option>
-                                        <option value="Tech Support">Tech Support</option>
+                                        <option value="Tech Support">Tech Support</option> 
+                                        <option value="Computer Science">Computer Science</option>
+                                        <option value="Mechanical Engineering">Mechanical Engineering</option> 
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -137,7 +142,7 @@ and open the template in the editor.
                                     <input type="text" class="form-control" name="course_provider" id="providerModify" placeholder="eg. Coursera, Codeacademy">
                                 </div>
                                 <input type="hidden" name="course_id" id="idModify">
-                            </div>
+                            </div> 
                             <div class="modal-footer">
     <!--                            <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Course</button>-->
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

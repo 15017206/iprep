@@ -4,10 +4,10 @@ include 'dbconn.php';
 
 if (isset($_POST)) { 
     
-    $coursename = $_POST['course_name'];
+    $coursename = $_POST['name'];
     $genre = $_POST['genre'];
     $cost = $_POST['cost'];
-    $course_provider = $_POST['course_provider'];
+    $course_provider = $_POST['provider'];
     $query = "INSERT INTO `course`(`name`, `genre`, `cost`, `course_provider`) VALUES ('$coursename','$genre', $cost, '$course_provider')";
     $result = mysqli_query($link, $query);
     
