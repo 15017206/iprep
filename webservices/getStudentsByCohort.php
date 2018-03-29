@@ -8,13 +8,14 @@ if (isset($_GET['cohort'])) {
    
     $query = "SELECT * FROM student where cohort LIKE '%$cohort%'";
     $result = mysqli_query($link, $query);
+     
+    
     $students = array();
     
-    if(mysqli_fetch_assoc($result) != NULL){
-        while ($row = mysqli_fetch_assoc($result)) {
-            $students[] = $row;
-        }
-    } 
+    while (($row = mysqli_fetch_assoc($result))!== NULL) {
+        $students[] = $row;
+    }
+    
      
      
     
