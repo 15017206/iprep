@@ -14,49 +14,49 @@ and open the template in the editor.
         ?>
         <script>
             $(document).ready(function () {
-                
-                var student_id, name, diploma, gpa, mobile, personal_email, iprep_status, oiip_interest, cohort; 
-                
-                refreshStudents(); 
-                
+
+                var student_id, name, diploma, gpa, mobile, personal_email, iprep_status, oiip_interest, cohort;
+
+                refreshStudents();
+
                 $("#update_student").on("show.bs.modal", function (e) {
-                    var clicked = $(e.relatedTarget); 
+                    var clicked = $(e.relatedTarget);
 
                     var studentId = clicked.data('id');
                     var modal = $(this);
-                    console.log("student_id = "+ studentId);
+                    console.log("student_id = " + studentId);
 
                     $.ajax({
-                            type: "GET",
-                            url: "http://localhost/iprep/webservices/getStudentById.php",
-                            data: "student_id="+studentId,
-                            cache: false,
-                            dataType: "JSON",
-                            success: function (data, textStatus)
-                            { 
-                                 modal.find('#student_id').val(data[0].student_id);
-                                 modal.find('#name').val(data[0].name);                         
-                                 modal.find('#diploma').val(data[0].diploma);
-                                 modal.find('#gpa').val(data[0].gpa);
-                                 modal.find('#tech_subg_score').val(data[0].tech_subg_score);
-                                 modal.find('#mobile').val(data[0].mobile);
-                                 modal.find('#personal_email').val(data[0].personal_email);
-                                 modal.find('#iprep_status').val(data[0].iprep_status);
-                                 modal.find('#oiip_interest').val(data[0].oiip_interest);
-                                 modal.find('#cohort').val(data[0].cohort);
-                            },
-                            error: function (obj, textStatus, errorThrown) {
-                                console.log("Error " + textStatus + ": " + errorThrown);
-                            }
+                        type: "GET",
+                        url: "http://localhost/iprep/webservices/getStudentById.php",
+                        data: "student_id=" + studentId,
+                        cache: false,
+                        dataType: "JSON",
+                        success: function (data, textStatus)
+                        {
+                            modal.find('#student_id').val(data[0].student_id);
+                            modal.find('#name').val(data[0].name);
+                            modal.find('#diploma').val(data[0].diploma);
+                            modal.find('#gpa').val(data[0].gpa);
+                            modal.find('#tech_subg_score').val(data[0].tech_subg_score);
+                            modal.find('#mobile').val(data[0].mobile);
+                            modal.find('#personal_email').val(data[0].personal_email);
+                            modal.find('#iprep_status').val(data[0].iprep_status);
+                            modal.find('#oiip_interest').val(data[0].oiip_interest);
+                            modal.find('#cohort').val(data[0].cohort);
+                        },
+                        error: function (obj, textStatus, errorThrown) {
+                            console.log("Error " + textStatus + ": " + errorThrown);
+                        }
 
                     });
 
-                    
+
                 });
-                
-                
-                $("#update_student").submit(function (e) { 
-                    var modal = $("#update_student"); 
+
+
+                $("#update_student").submit(function (e) {
+                    var modal = $("#update_student");
                     var id = modal.find('#student_id').val();
                     var name = modal.find('#name').val();
                     var diploma = modal.find('#diploma').val();
@@ -68,9 +68,9 @@ and open the template in the editor.
                     var oiip_interest = modal.find('#oiip_interest').val();
                     var cohort = modal.find('#cohort').val();
 
-                    var data = {student_id:id,name:name,diploma:diploma,gpa:gpa,tech_subj_score:tech_subj_score,mobile:mobile,personal_email:personal_email,iprep_status:iprep_status,oiip_interest:oiip_interest,cohort:cohort};
-                    console.log(data);        
-                     if (!e.isDefaultPrevented()) {
+                    var data = {student_id: id, name: name, diploma: diploma, gpa: gpa, tech_subj_score: tech_subj_score, mobile: mobile, personal_email: personal_email, iprep_status: iprep_status, oiip_interest: oiip_interest, cohort: cohort};
+                    console.log(data);
+                    if (!e.isDefaultPrevented()) {
                         e.preventDefault();
 
                         $.ajax({
@@ -82,10 +82,10 @@ and open the template in the editor.
                             success: function (data, textStatus)
                             {
 
-                                $('#update_student').modal('hide'); 
+                                $('#update_student').modal('hide');
                                 console.log(data["result"]);
-                                console.log("textStatus: " +textStatus); 
-                                setTimeout(function(){
+                                console.log("textStatus: " + textStatus);
+                                setTimeout(function () {
                                     refreshStudents();
                                 }, 1000);
 
@@ -98,67 +98,67 @@ and open the template in the editor.
 
                     }
 
-                    
+
                 });
-                
+
                 // Create new student to DB
                 $("#add_student").submit(function (e) {
                     if (!e.isDefaultPrevented()) {
                         e.preventDefault();
-                        data = 
-                        $.ajax({
-                            type: "POST",
-                            url: "http://localhost/iprep/webservices/doAddStudent.php",
-                            data: $("#add_student").serialize(),
-                            cache: false,
-                            dataType: "JSON",
-                            success: function (data, textStatus)
-                            {
-                                
-                                $('#add_student')[0].reset();
-                                setTimeout(function(){
-                                    refreshStudents();
-                                }, 1000);
-                                //$('#form1')[0].reset();
+                        data =
+                                $.ajax({
+                                    type: "POST",
+                                    url: "http://localhost/iprep/webservices/doAddStudent.php",
+                                    data: $("#add_student").serialize(),
+                                    cache: false,
+                                    dataType: "JSON",
+                                    success: function (data, textStatus)
+                                    {
 
-                            },
-                            error: function (obj, textStatus, errorThrown) {
-                                console.log("Error " + textStatus + ": " + errorThrown);
-                                alert("fail");
-                            }
+                                        $('#add_student')[0].reset();
+                                        setTimeout(function () {
+                                            refreshStudents();
+                                        }, 1000);
+                                        //$('#form1')[0].reset();
 
-                        });
+                                    },
+                                    error: function (obj, textStatus, errorThrown) {
+                                        console.log("Error " + textStatus + ": " + errorThrown);
+                                        alert("fail");
+                                    }
+
+                                });
                     }
                 });
-                
-                
+
+
                 $("#delete_student").on("show.bs.modal", function (e) {
-                    var clicked = $(e.relatedTarget); 
+                    var clicked = $(e.relatedTarget);
 
                     var studentId = clicked.data('id');
                     var modal = $(this);
-                    modal.find("#hidden_id").val(studentId); 
-                    
-                    
-                    
+                    modal.find("#hidden_id").val(studentId);
+
+
+
                 });
-                
-                $("#delete_student").submit(function(e){  
-                    var modal = $("#delete_student"); 
+
+                $("#delete_student").submit(function (e) {
+                    var modal = $("#delete_student");
                     var studentId = modal.find("#hidden_id").val();
-                    console.log(studentId+"");
+                    console.log(studentId + "");
                     if (!e.isDefaultPrevented()) {
-                        e.preventDefault(); 
+                        e.preventDefault();
                         $.ajax({
                             type: "POST",
                             url: "http://localhost/iprep/webservices/deleteStudent.php",
-                            data: {student_id:studentId},
+                            data: {student_id: studentId},
                             cache: false,
                             dataType: "JSON",
                             success: function (data, textStatus)
                             {
-                                $("#delete_student").modal('hide'); 
-                                setTimeout(function(){
+                                $("#delete_student").modal('hide');
+                                setTimeout(function () {
                                     refreshStudents();
                                 }, 1000);
                                 //$('#form1')[0].reset();
@@ -193,11 +193,12 @@ and open the template in the editor.
                                             "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student'  class='badge badge-warning'>Update</a>"+
                                             "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#delete_student'  class='badge badge-danger'>Delete</a></li>";
                                 }
-                                $("#listgroup1").html(output);
+                                
                             } else {
-                            
+                                output += "<li class='list-group-item'>No students in this cohort</li>";
                             
                             }
+                            $("#listgroup1").html(output);
                         },
                         error: function (obj, textStatus, errorThrown) {
                             console.log("Error " + textStatus + ": " + errorThrown);
@@ -206,18 +207,19 @@ and open the template in the editor.
                 });
                  
 
-                
 
-                
+
+
+
             }); //End of document.ready
 
-            
-            
-            function refreshStudents(){
+
+
+            function refreshStudents() {
                 // Read all students from DB
-                
+
                 var output = "";
-                
+
                 $.ajax({
                     type: "GET",
                     url: "http://localhost/iprep/webservices/getStudents.php",
@@ -228,7 +230,7 @@ and open the template in the editor.
 
                             output += "<li class='list-group-item'><small>" + response[i].name + "</small><br/>" +
                                     "<small>" + response[i].cohort + ", " + response[i].student_id + ", " + response[i].diploma + "</small><br/>" +
-                                    "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student'  class='badge badge-warning'>Update</a>"+
+                                    "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student'  class='badge badge-warning'>Update</a>" +
                                     "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#delete_student'  class='badge badge-danger'>Delete</a></li>";
                         }
                         $("#listgroup1").html(output);
@@ -237,10 +239,10 @@ and open the template in the editor.
                         console.log("Error " + textStatus + ": " + errorThrown);
                     }
                 });
-                
+
             }
 
-           
+
         </script>
 
     </head>
@@ -411,6 +413,19 @@ and open the template in the editor.
                                 <input type="text" name="oiip_interest" class="form-control" id="oiip_interest" placeholder="">
                             </div>
 
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    <div>Not interested for OIIP</div>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    <div>Interested for OIIP</div>
+                                </label>
+                            </div>
+
                             <!--cohort-->
                             <div class="form-group">
                                 <label for="cohort">cohort:</label>
@@ -426,9 +441,9 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
-        
-        
-        
+
+
+
         <!--Modal for Deleting student-->
         <div class="modal fade" id="delete_student" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">

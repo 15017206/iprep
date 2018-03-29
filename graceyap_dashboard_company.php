@@ -13,12 +13,18 @@ and open the template in the editor.
         include 'navbar_staff.php';
         ?>
         <script src="scripts/company_staffDashboard.js" type="text/javascript"></script>
-        <script>
-        </script>
-
     </head>
     <body>
         <br/>
+        <!--Button to add new company to OIIP-->
+        <form class="" method="" action="">
+
+            <div class="form-group">
+                <div class="container">
+                    <button type="button" data-toggle="modal" data-target="#oiip_add_company" class="btn btn-block btn-success">Add New Company</button>
+                </div>
+            </div>
+        </form>
         <!--About OIIP-->
         <div class="container">
             <div class="alert alert-warning" role="alert">
@@ -70,18 +76,9 @@ and open the template in the editor.
             <div class="alert alert-success" role="alert">
                 <p>Companies currently residing in DB</p>
 
-                <ul id="list_of_companies_no_vacancy" class="list-group">
+                <ul id="list_of_companies" class="list-group">
                 </ul>
-                <br/>
-                <!--Button to add new company to OIIP-->
-                <form class="" method="" action="">
 
-                    <div class="form-group">
-                        <div class="container">
-                            <button type="button" data-toggle="modal" data-target="#oiip_add_company" class="btn btn-block btn-success">Add New Company</button>
-                        </div>
-                    </div>
-                </form>
             </div>
 
             <!--Sample listed companies-->
@@ -282,7 +279,7 @@ and open the template in the editor.
         <div class="modal fade" id="modal_add_new_vacancy" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form id="formvoid" action="" method="">
+                    <form id="form_modal_add_new_vacancy" action="" method="">
                         <div class="modal-header">
                             <input id="company_id2" type="hidden" value="1" name="company_id">
                             <h5 class="modal-title" id="exampleModalLongTitle2">Modal title</h5>
@@ -293,12 +290,52 @@ and open the template in the editor.
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="no_of_vacancies">Number of Vacancies</label>
-                                <input type="number" class="form-control" id="no_of_vacancies" placeholder="eg. 1,2,3 etc" onkeyup="vacanciesChange()">
+                                <input type="number" class="form-control" id="no_of_vacancies" placeholder="eg. 1,2,3 etc" onchange="">
                             </div>
 
-                            <div class="form-check form-group">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">All Applicants same data as Vacancy 1</label>
+                            <!--This is the alert to add vacancies-->
+                            <div class='alert alert-warning' role='alert'> 
+                                <div class='form-group'> 
+                                    <div class='input-group'> 
+                                        <div class='input-group-prepend'>
+                                            <span class='input-group-text'>Job Role:</span> 
+                                        </div> 
+                                        <input type='text' class='form-control' id='jobrole' placeholder='eg. App Dev etc.' on> 
+                                    </div> 
+                                </div> 
+                                <div class='form-group'> 
+                                    <div class='input-group'> 
+                                        <div class='input-group-prepend'> 
+                                            <span class='input-group-text'>Start Date:</span> 
+                                        </div> 
+                                        <input type='date' class='form-control' id='startdate' placeholder='eg. App Dev etc.' on> 
+                                    </div> 
+                                </div> 
+                                <div class='form-group'> 
+                                    <div class='input-group'> 
+                                        <div class='input-group-prepend'>
+                                            <span class='input-group-text'>End Date:</span> 
+                                        </div> 
+                                        <input type='date' class='form-control' id='enddate' placeholder='eg. App Dev etc.' on> 
+                                    </div> 
+                                </div> 
+                                <div class='form-group'> 
+                                    <div class='input-group'> 
+                                        <div class='input-group-prepend'> 
+                                            <span class='input-group-text' id=''>Currency & Amount</span> 
+                                        </div> 
+                                        <input type='text' id='currency' class='form-control' placeholder='eg. SGD/MYR etc'> 
+                                        <input type='number' id='amount' class='form-control' placeholder='eg. 45, 1200 etc'> 
+                                    </div> 
+                                </div> 
+                                <div class='form-check form-group'> 
+                                    <input class='form-check-input' type='checkbox' value='' id='accomodation_checkbox'> 
+                                    <label class='form-check-label' for='accomodation_checkbox" + (i + 1) + "'>Accomodation provided</label> 
+                                </div> 
+                                <div class='form-check form-group'> 
+                                    <input class='form-check-input' type='checkbox' value='' id='airticket_checkbox'> 
+                                    <label class='form-check-label' for='airticket_checkbox" + (i + 1) + "'>Air Ticket provided</label> 
+                                </div>
                             </div>
                         </div>
 
