@@ -291,6 +291,7 @@ and open the template in the editor.
                             <div class="form-group">
                                 <label for="no_of_vacancies">Number of Vacancies</label>
                                 <input type="number" class="form-control" id="no_of_vacancies" placeholder="eg. 1,2,3 etc" onchange="">
+                                <small id="small_notification">Vacancies will be the same</small>
                             </div>
 
                             <!--This is the alert to add vacancies-->
@@ -327,14 +328,18 @@ and open the template in the editor.
                                         <input type='text' id='currency' class='form-control' placeholder='eg. SGD/MYR etc'> 
                                         <input type='number' id='amount' class='form-control' placeholder='eg. 45, 1200 etc'> 
                                     </div> 
-                                </div> 
-                                <div class='form-check form-group'> 
-                                    <input class='form-check-input' type='checkbox' value='' id='accomodation_checkbox'> 
-                                    <label class='form-check-label' for='accomodation_checkbox" + (i + 1) + "'>Accomodation provided</label> 
-                                </div> 
-                                <div class='form-check form-group'> 
-                                    <input class='form-check-input' type='checkbox' value='' id='airticket_checkbox'> 
-                                    <label class='form-check-label' for='airticket_checkbox" + (i + 1) + "'>Air Ticket provided</label> 
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="accomodationCheckbox">
+                                    <label class="form-check-label" for="accomodationCheckbox">
+                                        Accomodation provided?
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="airticketCheckbox">
+                                    <label class="form-check-label" for="airticketCheckbox">
+                                        Air ticket provided?
+                                    </label>
                                 </div>
                             </div>
                         </div>

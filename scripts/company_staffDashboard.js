@@ -37,8 +37,6 @@ $(document).ready(function (e) {
         }
     })
 
-
-
 //    list_of_company_no_vacancies += "<li class='list-group-item justify-content-between'>" +
 //            "ISIS School for terrorists" +
 //            "<br/>" +
@@ -50,6 +48,7 @@ $(document).ready(function (e) {
 //        $("#list_of_companies").append(list_of_company_no_vacancies);
 //    }
 
+    // When submitting the form in a modal
     $("#form_modal_add_new_vacancy").submit(function (e) {
         var no_of_vacancies = $("#no_of_vacancies").val();
 
@@ -75,6 +74,21 @@ $(document).ready(function (e) {
 
         alert(no_of_vacancies);
         e.preventDefault();
+    });
+    
+    // When number of vacancies is changed in the input field
+    $("#no_of_vacancies").change (function(){
+        if ($("#no_of_vacancies").val() > 1) {
+            $("#small_notification").html($("#no_of_vacancies").val() +" exact vacancies will be written to database.");
+        } else {
+            $("#small_notification").html($("#no_of_vacancies").val() +" exact vacancy will be written to database.");
+        }
+       
+    });
+    
+    // When submitting form - add vacancies
+    $("#").submit(function(){
+        
     });
 
 }); // end of document.ready
@@ -135,23 +149,23 @@ function vacanciesChange() {
 function addNewVacancy(company_id) {
     alert(company_id);
     $("#company_id2").val(company_id);
-    $("#exampleModalLongTitle2").text("Add Vacancy to company: " + company_id);
+
 
     $.ajax({
         type: "GET",
         url: "http://localhost/iprep/webservices/getCompanyById.php",
+        data: "company_id=" + company_id,
         cache: false,
         dataType: "JSON",
         success: function (response) {
             for (var i = 0; i < response.length; i++) {
-                alert(response[i].company_name)
+                $("#exampleModalLongTitle2").html("Add Vacancy to " + response[i].company_name);
             }
         },
         error: function (obj, textStatus, errorThrown) {
             console.log("Error " + textStatus + ": " + errorThrown);
         }
     });
-
 }
 // This is a function to refresh all companies
 function refreshCompanies() {
