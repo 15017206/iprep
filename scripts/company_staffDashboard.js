@@ -50,14 +50,14 @@ $(document).ready(function (e) {
 //        $("#list_of_companies").append(list_of_company_no_vacancies);
 //    }
 
-    $("#formvoid").submit(function (e) {
+    $("#form_modal_add_new_vacancy").submit(function (e) {
         var no_of_vacancies = $("#no_of_vacancies").val();
 
         for (var i = 0; i < no_of_vacancies; i++) {
             $.ajax({
                 type: "POST",
                 url: "http://localhost/iprep/webservices/doAddVacancy.php",
-                data: $("#formvoid").serialize(),
+                data: $("#form_modal_add_new_vacancy").serialize(),
                 cache: false,
                 dataType: "JSONP",
                 success: function (data, textStatus) {
@@ -139,11 +139,13 @@ function addNewVacancy(company_id) {
 
     $.ajax({
         type: "GET",
-        url: "http://localhost/iprep/webservices/getCompanies.php",
+        url: "http://localhost/iprep/webservices/getCompanyById.php",
         cache: false,
         dataType: "JSON",
         success: function (response) {
-            
+            for (var i = 0; i < response.length; i++) {
+                alert(response[i].company_name)
+            }
         },
         error: function (obj, textStatus, errorThrown) {
             console.log("Error " + textStatus + ": " + errorThrown);
@@ -151,7 +153,7 @@ function addNewVacancy(company_id) {
     });
 
 }
-// This is a function to 
+// This is a function to refresh all companies
 function refreshCompanies() {
     var list_of_company_no_vacancies = "";
     $.ajax({
