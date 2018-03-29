@@ -5,11 +5,11 @@
  */
 
 $(document).ready(function (e) {
-    setTimeout(function(){
+    setTimeout(function () {
         refreshCompanies();
     }, 1000);
 
-    
+
 
     $("#form_add_company").submit(function (e) {
         if (!e.isDefaultPrevented()) {
@@ -22,10 +22,10 @@ $(document).ready(function (e) {
                 cache: false,
                 dataType: "JSON",
                 success: function (data, textStatus)
-                { 
+                {
                     //$('#form1')[0].reset();
-                    $("#oiip_add_company").modal('hide'); 
-                    setTimeout(function(){
+                    $("#oiip_add_company").modal('hide');
+                    setTimeout(function () {
                         refreshCompanies();
                     }, 1000);
 
@@ -39,7 +39,7 @@ $(document).ready(function (e) {
         }
     })
 
-    
+
 
 //    list_of_company_no_vacancies += "<li class='list-group-item justify-content-between'>" +
 //            "ISIS School for terrorists" +
@@ -70,7 +70,7 @@ $(document).ready(function (e) {
                 },
                 error: function (obj, textStatus, errorThrown) {
                     console.log("Error " + textStatus + ": " + errorThrown);
-                    alert("fail"+ textStatus+errorThrown);
+                    alert("fail" + textStatus + errorThrown);
                 }
 
             });
@@ -139,8 +139,8 @@ function addNewVacancy(company_id) {
     $("#exampleModalLongTitle2").text("Add Vacancy to company: " + company_id);
 }
 
-function refreshCompanies(){
-    var list_of_company_no_vacancies = "";  
+function refreshCompanies() {
+    var list_of_company_no_vacancies = "";
     $.ajax({
         type: "GET",
         url: "http://localhost/iprep/webservices/getCompanies.php",
