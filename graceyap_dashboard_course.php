@@ -27,18 +27,22 @@ and open the template in the editor.
 
             <div class="alert alert-info" role="alert">List of available courses:
                 <br><br>
+
+                           <nav class="navbar navbar-expand-sm navbar-light bg-light">
+                <a class="navbar-brand" href="#">Filter:</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Name" aria-label="Search">
+                    </form>
+                </div>
+            </nav>
+                <br/>
                 <!--Add some courses here-->
                 <div class="list-group" id="courseDetails">
-                    <!--                    <a href="#" data-toggle="modal" data-target="#courses_only_modal_modify" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h5 class="mb-1">Introduction to IoT & Embedded Systems</h5>
-                                                <small>IT Security</small>
-                                            </div>
-                                            <div class="d-flex w-100">
-                                                <span class="badge badge-warning">S$60.00</span>
-                                            </div>
-                                            <small>Coursera</small>
-                                        </a>-->
                 </div>
             </div>
 
@@ -115,7 +119,7 @@ and open the template in the editor.
                                     <label for="exampleFormControlInput1">Name of course:</label>
                                     <input type="text" class="form-control" required id="nameModify" placeholder="eg. Introduction to IoT" name="course_name">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Course Genre:</label>
                                     <select class="form-control" name="course_genre" id="genreModify">
@@ -145,7 +149,7 @@ and open the template in the editor.
                                 <input type="hidden" name="course_id" id="idModify">
                             </div> 
                             <div class="modal-footer">
-    <!--                            <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Course</button>-->
+                                <!--                            <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Course</button>-->
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>

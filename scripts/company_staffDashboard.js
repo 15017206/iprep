@@ -49,7 +49,9 @@ $(document).ready(function (e) {
 //    }
 
     // When the checkbox state is changed
-    $("#accomodationCheckbox").change
+    if ($("#accomodationCheckbox").prop('checked') == true) {
+        alert("true!");
+    }
 
     // When submitting the form in a modal
     $("#form_modal_add_new_vacancy").submit(function (e) {
