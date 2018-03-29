@@ -48,6 +48,9 @@ $(document).ready(function (e) {
 //        $("#list_of_companies").append(list_of_company_no_vacancies);
 //    }
 
+    // When the checkbox state is changed
+    $("#accomodationCheckbox").change
+
     // When submitting the form in a modal
     $("#form_modal_add_new_vacancy").submit(function (e) {
         var no_of_vacancies = $("#no_of_vacancies").val();
