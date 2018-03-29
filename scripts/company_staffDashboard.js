@@ -9,8 +9,6 @@ $(document).ready(function (e) {
         refreshCompanies();
     }, 1000);
 
-
-
     $("#form_add_company").submit(function (e) {
         if (!e.isDefaultPrevented()) {
             e.preventDefault();
@@ -49,7 +47,7 @@ $(document).ready(function (e) {
 //            "<a href=''><span class='badge badge-success'>Add vacancy</span></a>" +
 //            "</li>";
 //    for (var i = 0; i < 5; i++) {
-//        $("#list_of_companies_no_vacancy").append(list_of_company_no_vacancies);
+//        $("#list_of_companies").append(list_of_company_no_vacancies);
 //    }
 
     $("#formvoid").submit(function (e) {
@@ -72,7 +70,6 @@ $(document).ready(function (e) {
                     console.log("Error " + textStatus + ": " + errorThrown);
                     alert("fail" + textStatus + errorThrown);
                 }
-
             });
         }
 
@@ -82,6 +79,7 @@ $(document).ready(function (e) {
 
 }); // end of document.ready
 
+// This is added when the number of vacancies are changed in the input field
 function vacanciesChange() {
     $("#void").empty();
     var bla = $("#no_of_vacancies").val();
@@ -133,12 +131,27 @@ function vacanciesChange() {
     }
 }
 
+// When the "add vacancy" button is pressed
 function addNewVacancy(company_id) {
     alert(company_id);
     $("#company_id2").val(company_id);
     $("#exampleModalLongTitle2").text("Add Vacancy to company: " + company_id);
-}
 
+    $.ajax({
+        type: "GET",
+        url: "http://localhost/iprep/webservices/getCompanies.php",
+        cache: false,
+        dataType: "JSON",
+        success: function (response) {
+            
+        },
+        error: function (obj, textStatus, errorThrown) {
+            console.log("Error " + textStatus + ": " + errorThrown);
+        }
+    });
+
+}
+// This is a function to 
 function refreshCompanies() {
     var list_of_company_no_vacancies = "";
     $.ajax({
@@ -161,9 +174,8 @@ function refreshCompanies() {
                         "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' id='" + response[i].company_id + "_addvacancy' class='badge badge-success'>Add vacancy</span></a>" +
                         "</li>";
 
-
             }
-            $("#list_of_companies_no_vacancy").html(list_of_company_no_vacancies);
+            $("#list_of_companies").html(list_of_company_no_vacancies);
         },
         error: function (obj, textStatus, errorThrown) {
             console.log("Error " + textStatus + ": " + errorThrown);

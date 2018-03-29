@@ -13,9 +13,6 @@ and open the template in the editor.
         include 'navbar_staff.php';
         ?>
         <script src="scripts/company_staffDashboard.js" type="text/javascript"></script>
-        <script>
-        </script>
-
     </head>
     <body>
         <br/>
@@ -70,7 +67,7 @@ and open the template in the editor.
             <div class="alert alert-success" role="alert">
                 <p>Companies currently residing in DB</p>
 
-                <ul id="list_of_companies_no_vacancy" class="list-group">
+                <ul id="list_of_companies" class="list-group">
                 </ul>
                 <br/>
                 <!--Button to add new company to OIIP-->
@@ -293,7 +290,7 @@ and open the template in the editor.
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="no_of_vacancies">Number of Vacancies</label>
-                                <input type="number" class="form-control" id="no_of_vacancies" placeholder="eg. 1,2,3 etc" onkeyup="vacanciesChange()">
+                                <input type="number" class="form-control" id="no_of_vacancies" placeholder="eg. 1,2,3 etc" onchange="vacanciesChange()">
                             </div>
 
                             <div class="form-check form-group">
