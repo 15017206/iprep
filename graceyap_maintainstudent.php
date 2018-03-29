@@ -14,25 +14,111 @@ and open the template in the editor.
         ?>
         <script>
             $(document).ready(function () {
-                var student_id, name, diploma, gpa, mobile, personal_email, iprep_status, oiip_interest, cohort;
-                var output = "";
+                
+                var student_id, name, diploma, gpa, mobile, personal_email, iprep_status, oiip_interest, cohort; 
+                
+                refreshStudents(); 
+                
+                $("#update_student").on("show.bs.modal", function (e) {
+                    var clicked = $(e.relatedTarget); 
 
+                    var studentId = clicked.data('id');
+                    var modal = $(this);
+                    console.log("student_id = "+ studentId);
 
-                // Create new student to DB
-                $("#form1").submit(function (e) {
-                    if (!e.isDefaultPrevented()) {
+                    $.ajax({
+                            type: "GET",
+                            url: "http://localhost/iprep/webservices/getStudentById.php",
+                            data: "student_id="+studentId,
+                            cache: false,
+                            dataType: "JSON",
+                            success: function (data, textStatus)
+                            { 
+                                 modal.find('#student_id').val(data[0].student_id);
+                                 modal.find('#name').val(data[0].name);                         
+                                 modal.find('#diploma').val(data[0].diploma);
+                                 modal.find('#gpa').val(data[0].gpa);
+                                 modal.find('#tech_subg_score').val(data[0].tech_subg_score);
+                                 modal.find('#mobile').val(data[0].mobile);
+                                 modal.find('#personal_email').val(data[0].personal_email);
+                                 modal.find('#iprep_status').val(data[0].iprep_status);
+                                 modal.find('#oiip_interest').val(data[0].oiip_interest);
+                                 modal.find('#cohort').val(data[0].cohort);
+                            },
+                            error: function (obj, textStatus, errorThrown) {
+                                console.log("Error " + textStatus + ": " + errorThrown);
+                            }
+
+                    });
+
+                    
+                });
+                
+                
+                $("#update_student").submit(function (e) { 
+                    var modal = $("#update_student"); 
+                    var id = modal.find('#student_id').val();
+                    var name = modal.find('#name').val();
+                    var diploma = modal.find('#diploma').val();
+                    var gpa = modal.find('#gpa').val();
+                    var tech_subj_score = modal.find('#tech_subj_score').val();
+                    var mobile = modal.find('#mobile').val();
+                    var personal_email = modal.find('#personal_email').val();
+                    var iprep_status = modal.find('#iprep_status').val();
+                    var oiip_interest = modal.find('#oiip_interest').val();
+                    var cohort = modal.find('#cohort').val();
+
+                    var data = {student_id:id,name:name,diploma:diploma,gpa:gpa,tech_subj_score:tech_subj_score,mobile:mobile,personal_email:personal_email,iprep_status:iprep_status,oiip_interest:oiip_interest,cohort:cohort};
+                    console.log(data);        
+                     if (!e.isDefaultPrevented()) {
                         e.preventDefault();
 
                         $.ajax({
                             type: "POST",
-                            url: "http://localhost/iprep/webservices/doAddStudent.php",
-                            data: $("#form1").serialize(),
+                            url: "http://localhost/iprep/webservices/editStudent.php",
+                            data: data,
                             cache: false,
                             dataType: "JSON",
                             success: function (data, textStatus)
                             {
-                                alert(data + textStatus);
-                                location.reload();
+
+                                $('#update_student').modal('hide'); 
+                                console.log(data["result"]);
+                                console.log("textStatus: " +textStatus); 
+                                setTimeout(function(){
+                                    refreshStudents();
+                                }, 1000);
+
+                            },
+                            error: function (obj, textStatus, errorThrown) {
+                                console.log("Error " + textStatus + ": " + errorThrown);
+                            }
+
+                        });
+
+                    }
+
+                    
+                });
+                
+                // Create new student to DB
+                $("#add_student").submit(function (e) {
+                    if (!e.isDefaultPrevented()) {
+                        e.preventDefault();
+                        data = 
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/iprep/webservices/doAddStudent.php",
+                            data: $("#add_student").serialize(),
+                            cache: false,
+                            dataType: "JSON",
+                            success: function (data, textStatus)
+                            {
+                                
+                                $('#add_student')[0].reset();
+                                setTimeout(function(){
+                                    refreshStudents();
+                                }, 1000);
                                 //$('#form1')[0].reset();
 
                             },
@@ -44,8 +130,59 @@ and open the template in the editor.
                         });
                     }
                 });
+                
+                
+                $("#delete_student").on("show.bs.modal", function (e) {
+                    var clicked = $(e.relatedTarget); 
 
+                    var studentId = clicked.data('id');
+                    var modal = $(this);
+                    modal.find("#hidden_id").val(studentId);
+                    
+                    $(this).submit(function(e){ 
+                        if (!e.isDefaultPrevented()) {
+                            e.preventDefault(); 
+                            $.ajax({
+                                type: "POST",
+                                url: "http://localhost/iprep/webservices/deleteStudent.php",
+                                data: {student_id:studentId},
+                                cache: false,
+                                dataType: "JSON",
+                                success: function (data, textStatus)
+                                {
+                                    $("#delete_student").modal('hide'); 
+                                    setTimeout(function(){
+                                        refreshStudents();
+                                    }, 1000);
+                                    //$('#form1')[0].reset();
+
+                                },
+                                error: function (obj, textStatus, errorThrown) {
+                                    console.log("Error " + textStatus + ": " + errorThrown);
+                                    alert("fail");
+                                }
+
+                            });
+                        }
+                        
+                    })
+                    
+                    
+                });
+                 
+
+                
+
+                
+            }); //End of document.ready
+
+            
+            
+            function refreshStudents(){
                 // Read all students from DB
+                
+                var output = "";
+                
                 $.ajax({
                     type: "GET",
                     url: "http://localhost/iprep/webservices/getStudents.php",
@@ -56,82 +193,40 @@ and open the template in the editor.
 
                             output += "<li class='list-group-item'><small>" + response[i].name + "</small><br/>" +
                                     "<small>" + response[i].cohort + ", " + response[i].student_id + ", " + response[i].diploma + "</small><br/>" +
-                                    "<a href='#' id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student' onclick='updateStudent(" + response[i].student_id + ")' class='badge badge-warning'>Update</a></li>";
+                                    "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student'  class='badge badge-warning'>Update</a>"+
+                                    "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#delete_student'  class='badge badge-danger'>Delete</a></li>";
                         }
-                        $("#listgroup1").append(output);
+                        $("#listgroup1").html(output);
                     },
                     error: function (obj, textStatus, errorThrown) {
                         console.log("Error " + textStatus + ": " + errorThrown);
                     }
                 });
+                
+            }
 
-                // Edit new student to DB
-                $("#form2").submit(function (e) {
-                    if (!e.isDefaultPrevented()) {
-                        e.preventDefault();
-
-                        $.ajax({
-                            type: "POST",
-                            url: "http://localhost/iprep/webservices/editStudent.php",
-                            data: $("#form2").serialize(),
-                            cache: false,
-                            dataType: "JSON",
-                            success: function (data, textStatus)
-                            {
-                                alert(textStatus);
-                                location.reload();
-                                //$('#form1')[0].reset();
-
-                            },
-                            error: function (obj, textStatus, errorThrown) {
-                                console.log("Error " + textStatus + ": " + errorThrown);
-                                alert("fail");
-                            }
-
-                        });
-                    }
-                });
-
-            }); //End of document.ready
-
-            // Update student
-            function updateStudent(student_id) {
-                $("#exampleModalLongTitle").html("Update Student of ID " + student_id);
-
-                // use ajax to perform another GET function
-                $.ajax({
+            // Delete student
+            function deleteStudent(student_id) {
+               $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getStudentById.php?student_id=" + student_id,
+                    url: "http://localhost/iprep/webservices/getStudents.php",
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
                         for (var i = 0; i < response.length; i++) {
-                            $("#student_id").val(student_id);
-                            $("#name").val(response[i].name);
-                            $("#diploma").val(response[i].diploma);
-                            $("#gpa").val(response[i].gpa);
-                            $("#tech_subj_score").val(response[i].tech_subj_score);
-                            $("#mobile").val(response[i].mobile);
-                            $("#personal_email").val(response[i].personal_email);
-                            $("#iprep_status").val(response[i].iprep_status);
-                            $("#oiip_interest").val(response[i].oiip_interest);
-                            $("#cohort").val(response[i].cohort);
+
+                            output += "<li class='list-group-item'><small>" + response[i].name + "</small><br/>" +
+                                    "<small>" + response[i].cohort + ", " + response[i].student_id + ", " + response[i].diploma + "</small><br/>" +
+                                    "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student' class='badge badge-warning'>Update</a>"+
+                                    "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#delete_student' class='badge badge-danger'>Delete</a></li>";
                         }
+                        $("#listgroup1").html(output);
                     },
                     error: function (obj, textStatus, errorThrown) {
                         console.log("Error " + textStatus + ": " + errorThrown);
-                        alert("fail");
                     }
                 });
             }
-
-            // Delete student
-//            function deleteStudent(student_id) {
-//                var confirmDelete = confirm("Delete student of " + student_id + "?");
-//                if (confirmDelete) {
-//                    alert("ok, deleted");
-//                }
-//            }
         </script>
 
     </head>
@@ -142,23 +237,23 @@ and open the template in the editor.
                     <br/>
                     <div class="alert alert-primary" role="alert">
                         <h5 id="header1">Add students to database:</h5>
-                        <form id="form1" method="" action="">
+                        <form id="add_student" method="" action="">
                             <!--Student ID-->
                             <div class="form-group">
                                 <label for="input1">Student ID:</label>
-                                <input type="number" name="student_id" class="form-control" id="input1" placeholder="">
+                                <input type="number" name="student_id" required class="form-control" id="input1" placeholder="">
                             </div>
 
                             <!--Name-->
                             <div class="form-group">
                                 <label for="input1">Name:</label>
-                                <input type="text" name="name" class="form-control" id="input1" placeholder="">
+                                <input type="text" name="name" class="form-control" required id="input1" placeholder="">
                             </div>
 
                             <!--Diploma-->
                             <div class="form-group">
                                 <label for="input1">Diploma:</label>
-                                <input type="text" name="diploma" class="form-control" id="input1" placeholder="">
+                                <input type="text" name="diploma" class="form-control" required id="input1" placeholder="">
                             </div>
 
                             <!--GPA-->
@@ -176,13 +271,13 @@ and open the template in the editor.
                             <!--Mobile No.-->
                             <div class="form-group">
                                 <label for="input1">Mobile:</label>
-                                <input type="tel" name="mobile" class="form-control" id="input1" placeholder="">
+                                <input type="tel" name="mobile" class="form-control" required id="input1" placeholder="">
                             </div>
 
                             <!--personal email-->
                             <div class="form-group">
                                 <label for="input1">personal email:</label>
-                                <input type="email" name="email" class="form-control" id="input1" placeholder="">
+                                <input type="email" name="email" class="form-control" required id="input1" placeholder="">
                             </div>
 
                             <!--iprep statuses-->
@@ -200,7 +295,7 @@ and open the template in the editor.
                             <!--cohort-->
                             <div class="form-group">
                                 <label for="input1">cohort</label>
-                                <input type="number" name="cohort" class="form-control" id="input1" placeholder="">
+                                <input type="number" name="cohort" class="form-control" required id="input1" placeholder="">
                                 <small>eg. 2019, 2080</small>
                             </div>
 
@@ -247,25 +342,25 @@ and open the template in the editor.
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form id="form2" method="" action="">
+                    <form id="updateStudent" method="" action="">
                         <div class="modal-body">
 
                             <!--Student ID-->
                             <div class="form-group">
                                 <label for="student_id">Student ID:</label>
-                                <input type="number" name="student_id" class="form-control" id="student_id" placeholder="">
+                                <input type="number" name="student_id" disabled required class="form-control" id="student_id" placeholder="">
                             </div>
 
                             <!--Name-->
                             <div class="form-group">
                                 <label for="name">Name:</label>
-                                <input type="text" name="name" class="form-control" id="name" placeholder="">
+                                <input type="text" name="name" class="form-control" required id="name" placeholder="">
                             </div>
 
                             <!--Diploma-->
                             <div class="form-group">
                                 <label for="diploma">Diploma:</label>
-                                <input type="text" name="diploma" class="form-control" id="diploma" placeholder="">
+                                <input type="text" name="diploma" class="form-control" required id="diploma" placeholder="">
                             </div>
 
                             <!--GPA-->
@@ -283,13 +378,13 @@ and open the template in the editor.
                             <!--Mobile No.-->
                             <div class="form-group">
                                 <label for="mobile">Mobile:</label>
-                                <input type="tel" name="mobile" class="form-control" id="mobile" placeholder="">
+                                <input type="tel" name="mobile" class="form-control" required id="mobile" placeholder="">
                             </div>
 
                             <!--personal email-->
                             <div class="form-group">
                                 <label for="email">personal email:</label>
-                                <input type="email" name="personal_email" class="form-control" id="personal_email" placeholder="">
+                                <input type="email" name="personal_email" class="form-control" required id="personal_email" placeholder="">
                             </div>
 
                             <!--iprep statuses-->
@@ -307,7 +402,7 @@ and open the template in the editor.
                             <!--cohort-->
                             <div class="form-group">
                                 <label for="cohort">cohort:</label>
-                                <input type="text" name="cohort" class="form-control" id="cohort" placeholder="">
+                                <input type="text" name="cohort" class="form-control" required id="cohort" placeholder="">
                             </div>
 
                         </div>
@@ -315,6 +410,35 @@ and open the template in the editor.
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" id="submit_edited" class="btn btn-primary">Save changes</button>
                         </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <!--Modal for Deleting student-->
+        <div class="modal fade" id="delete_student" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Delete Student</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="deleteStudent" method="" action="">
+                        <div class="modal-body">
+
+                            <!--Student ID-->
+                            <div class="form-group">
+                                <label id="labelForDelete">Are you sure you want to delete this student</label>
+                            </div>
+                            <input id="hidden_id" name="hidden_id" type="hidden">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" id="submit_edited" class="btn btn-primary">Delete Student</button>
+
+                        </div> 
                     </form>
                 </div>
             </div>
