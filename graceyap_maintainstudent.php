@@ -137,38 +137,42 @@ and open the template in the editor.
 
                     var studentId = clicked.data('id');
                     var modal = $(this);
-                    modal.find("#hidden_id").val(studentId);
+                    modal.find("#hidden_id").val(studentId); 
                     
-                    $(this).submit(function(e){ 
-                        if (!e.isDefaultPrevented()) {
-                            e.preventDefault(); 
-                            $.ajax({
-                                type: "POST",
-                                url: "http://localhost/iprep/webservices/deleteStudent.php",
-                                data: {student_id:studentId},
-                                cache: false,
-                                dataType: "JSON",
-                                success: function (data, textStatus)
-                                {
-                                    $("#delete_student").modal('hide'); 
-                                    setTimeout(function(){
-                                        refreshStudents();
-                                    }, 1000);
-                                    //$('#form1')[0].reset();
-
-                                },
-                                error: function (obj, textStatus, errorThrown) {
-                                    console.log("Error " + textStatus + ": " + errorThrown);
-                                    alert("fail");
-                                }
-
-                            });
-                        }
-                        
-                    })
                     
                     
                 });
+                
+                $("#delete_student").submit(function(e){  
+                    var modal = $("#delete_student"); 
+                    var studentId = modal.find("#hidden_id").val();
+                    console.log(studentId+"");
+                    if (!e.isDefaultPrevented()) {
+                        e.preventDefault(); 
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/iprep/webservices/deleteStudent.php",
+                            data: {student_id:studentId},
+                            cache: false,
+                            dataType: "JSON",
+                            success: function (data, textStatus)
+                            {
+                                $("#delete_student").modal('hide'); 
+                                setTimeout(function(){
+                                    refreshStudents();
+                                }, 1000);
+                                //$('#form1')[0].reset();
+
+                            },
+                            error: function (obj, textStatus, errorThrown) {
+                                console.log("Error " + textStatus + ": " + errorThrown);
+                                alert("fail");
+                            }
+
+                        });
+                    }
+
+                })
                  
 
                 
@@ -205,28 +209,7 @@ and open the template in the editor.
                 
             }
 
-            // Delete student
-            function deleteStudent(student_id) {
-               $.ajax({
-                    type: "GET",
-                    url: "http://localhost/iprep/webservices/getStudents.php",
-                    cache: false,
-                    dataType: "JSON",
-                    success: function (response) {
-                        for (var i = 0; i < response.length; i++) {
-
-                            output += "<li class='list-group-item'><small>" + response[i].name + "</small><br/>" +
-                                    "<small>" + response[i].cohort + ", " + response[i].student_id + ", " + response[i].diploma + "</small><br/>" +
-                                    "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student' class='badge badge-warning'>Update</a>"+
-                                    "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#delete_student' class='badge badge-danger'>Delete</a></li>";
-                        }
-                        $("#listgroup1").html(output);
-                    },
-                    error: function (obj, textStatus, errorThrown) {
-                        console.log("Error " + textStatus + ": " + errorThrown);
-                    }
-                });
-            }
+           
         </script>
 
     </head>
@@ -308,13 +291,11 @@ and open the template in the editor.
                     <div class="alert alert-info" role="alert">
                         <h5>Students currently in db</h5>
 
-                        <form method="" action="">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked="">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    <div>Show only current year</div>
-                                </label>
-                            </div>
+                        <form method="" action=""> 
+                                <div class="form-group">
+                                    <label for="filterCohort">Filter Cohort:</label>
+                                    <input type="number" name="filterCohort" required class="form-control" id="filterCohort" placeholder="Year of Enrolment">
+                                </div> 
                         </form>
                         <br/>
 
