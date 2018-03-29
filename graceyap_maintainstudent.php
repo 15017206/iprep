@@ -105,29 +105,28 @@ and open the template in the editor.
                 $("#add_student").submit(function (e) {
                     if (!e.isDefaultPrevented()) {
                         e.preventDefault();
-                        data =
-                                $.ajax({
-                                    type: "POST",
-                                    url: "http://localhost/iprep/webservices/doAddStudent.php",
-                                    data: $("#add_student").serialize(),
-                                    cache: false,
-                                    dataType: "JSON",
-                                    success: function (data, textStatus)
-                                    {
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/iprep/webservices/doAddStudent.php",
+                            data: $("#add_student").serialize(),
+                            cache: false,
+                            dataType: "JSON",
+                            success: function (data, textStatus)
+                            {
 
-                                        $('#add_student')[0].reset();
-                                        setTimeout(function () {
-                                            refreshStudents();
-                                        }, 1000);
-                                        //$('#form1')[0].reset();
+                                $('#add_student')[0].reset();
+                                setTimeout(function () {
+                                    refreshStudents();
+                                }, 1000);
+                                //$('#form1')[0].reset();
 
-                                    },
-                                    error: function (obj, textStatus, errorThrown) {
-                                        console.log("Error " + textStatus + ": " + errorThrown);
-                                        alert("fail");
-                                    }
+                            },
+                            error: function (obj, textStatus, errorThrown) {
+                                console.log("Error " + textStatus + ": " + errorThrown);
+                                alert("fail");
+                            }
 
-                                });
+                        });
                     }
                 });
 

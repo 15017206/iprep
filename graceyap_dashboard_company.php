@@ -193,13 +193,13 @@ and open the template in the editor.
                             <div class="form-group">
                                 <label for="exampleInputEmail2">Company Name</label>
                                 <input type="text" class="form-control" id="company_name" name="company_name" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
-                                <small id="emailHelp" class="form-text text-muted">This is the company name</small>
+                                 
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword2">Country</label>
-                                <input type="text" class="form-control" id="country" name="country" placeholder="eg. Zimbabwe, Syria etc">
+                                <?php include 'allCountriesDropdown.html' ?>
                             </div>
+                             
 
                             <!--For vacancies. Unused-->
                             <!--                            <div class="form-group">
