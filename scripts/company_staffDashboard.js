@@ -107,7 +107,7 @@ function vacanciesChange() {
                 "<div class='input-group-prepend'>" +
                 "<span class='input-group-text'>End Date:</span>" +
                 "</div>" +
-                "<input type='date' name=internship_end_date' class='form-control' id='enddate" + (i + 1) + "' placeholder='' on>" +
+                "<input type='date' name='internship_end_date' class='form-control' id='enddate" + (i + 1) + "' placeholder='' on>" +
                 "</div>" +
                 "</div>" +
                 "<div class='form-group'>" +
