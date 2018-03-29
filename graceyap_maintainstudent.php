@@ -173,6 +173,37 @@ and open the template in the editor.
                     }
 
                 })
+                
+                
+                $("#filterCohort").keyup(function() {
+                     var cohort = $("#filterCohort").val();
+                     var output = "";
+                     $.ajax({
+                        type: "GET",
+                        url: "http://localhost/iprep/webservices/getStudentsByCohort.php",
+                        data: "cohort="+cohort,
+                        cache: false,
+                        dataType: "JSON",
+                        success: function (response) {
+                            if(response.length > 0){
+                                for (var i = 0; i < response.length; i++) {
+
+                                    output += "<li class='list-group-item'><small>" + response[i].name + "</small><br/>" +
+                                            "<small>" + response[i].cohort + ", " + response[i].student_id + ", " + response[i].diploma + "</small><br/>" +
+                                            "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student'  class='badge badge-warning'>Update</a>"+
+                                            "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#delete_student'  class='badge badge-danger'>Delete</a></li>";
+                                }
+                                $("#listgroup1").html(output);
+                            } else {
+                            
+                            
+                            }
+                        },
+                        error: function (obj, textStatus, errorThrown) {
+                            console.log("Error " + textStatus + ": " + errorThrown);
+                        }
+                    });
+                });
                  
 
                 
@@ -291,12 +322,12 @@ and open the template in the editor.
                     <div class="alert alert-info" role="alert">
                         <h5>Students currently in db</h5>
 
-                        <form method="" action=""> 
-                                <div class="form-group">
-                                    <label for="filterCohort">Filter Cohort:</label>
-                                    <input type="number" name="filterCohort" required class="form-control" id="filterCohort" placeholder="Year of Enrolment">
-                                </div> 
-                        </form>
+                        
+                        <div class="form-group">
+                            <label for="filterCohort">Filter Cohort:</label>
+                            <input type="number" name="filterCohort" required class="form-control" id="filterCohort" placeholder="Year of Enrolment">
+                        </div> 
+                        
                         <br/>
 
                         <ul class="list-group" id="listgroup1">
