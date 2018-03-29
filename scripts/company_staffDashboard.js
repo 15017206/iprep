@@ -75,20 +75,44 @@ $(document).ready(function (e) {
         alert(no_of_vacancies);
         e.preventDefault();
     });
-    
+
     // When number of vacancies is changed in the input field
-    $("#no_of_vacancies").change (function(){
+    $("#no_of_vacancies").change(function () {
         if ($("#no_of_vacancies").val() > 1) {
-            $("#small_notification").html($("#no_of_vacancies").val() +" exact vacancies will be written to database.");
+            $("#small_notification").html($("#no_of_vacancies").val() + " exact vacancies will be written to database.");
         } else {
-            $("#small_notification").html($("#no_of_vacancies").val() +" exact vacancy will be written to database.");
+            $("#small_notification").html($("#no_of_vacancies").val() + " exact vacancy will be written to database.");
         }
-       
+
     });
-    
+
     // When submitting form - add vacancies
-    $("#").submit(function(){
-        
+    $("#form_modal_add_new_vacancy").submit(function () {
+        var noOfVacancies = $("#no_of_vacancies").val();
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/iprep/webservices/doAddVacancy.php",
+            data: $("#form_modal_add_new_vacancy").serialize(),
+            cache: false,
+            dataType: "JSON",
+            success: function (data, textStatus)
+            {
+                alert(data + textStatus);
+//                $('#add_student')[0].reset();
+//                setTimeout(function () {
+//                    refreshStudents();
+//                }, 1000);
+                //$('#form1')[0].reset();
+
+            },
+            error: function (obj, textStatus, errorThrown) {
+                console.log("Error " + textStatus + ": " + errorThrown);
+                alert("fail");
+            }
+
+        });
+
     });
 
 }); // end of document.ready

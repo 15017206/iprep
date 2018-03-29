@@ -301,7 +301,7 @@ and open the template in the editor.
                                         <div class='input-group-prepend'>
                                             <span class='input-group-text'>Job Role:</span> 
                                         </div> 
-                                        <input type='text' class='form-control' id='jobrole' placeholder='eg. App Dev etc.' on> 
+                                        <input type='text' class='form-control' name="job_role" id='job_role' placeholder='eg. App Dev etc.' on> 
                                     </div> 
                                 </div> 
                                 <div class='form-group'> 
@@ -309,7 +309,7 @@ and open the template in the editor.
                                         <div class='input-group-prepend'> 
                                             <span class='input-group-text'>Start Date:</span> 
                                         </div> 
-                                        <input type='date' class='form-control' id='startdate' placeholder='eg. App Dev etc.' on> 
+                                        <input type='date' class='form-control' name="internship_start_date" id='startdate2' placeholder='eg. App Dev etc.' on> 
                                     </div> 
                                 </div> 
                                 <div class='form-group'> 
@@ -317,7 +317,7 @@ and open the template in the editor.
                                         <div class='input-group-prepend'>
                                             <span class='input-group-text'>End Date:</span> 
                                         </div> 
-                                        <input type='date' class='form-control' id='enddate' placeholder='eg. App Dev etc.' on> 
+                                        <input type='date' class='form-control' name="internship_end_date" id='enddate2' placeholder='eg. App Dev etc.' on> 
                                     </div> 
                                 </div> 
                                 <div class='form-group'> 
@@ -325,18 +325,18 @@ and open the template in the editor.
                                         <div class='input-group-prepend'> 
                                             <span class='input-group-text' id=''>Currency & Amount</span> 
                                         </div> 
-                                        <input type='text' id='currency' class='form-control' placeholder='eg. SGD/MYR etc'> 
-                                        <input type='number' id='amount' class='form-control' placeholder='eg. 45, 1200 etc'> 
+                                        <input type='text' id='currency2' name="allowance_currency" class='form-control' placeholder='eg. SGD/MYR etc'> 
+                                        <input type='number' id='amount2' name="company_mthly_allowance" class='form-control' placeholder='eg. 45, 1200 etc'> 
                                     </div> 
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="accomodationCheckbox">
+                                    <input class="form-check-input" type="checkbox" name="accomodation_provided" value="" id="accomodationCheckbox">
                                     <label class="form-check-label" for="accomodationCheckbox">
                                         Accomodation provided?
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="airticketCheckbox">
+                                    <input class="form-check-input" type="checkbox" name="air_ticket_provided" value="" id="airticketCheckbox">
                                     <label class="form-check-label" for="airticketCheckbox">
                                         Air ticket provided?
                                     </label>
