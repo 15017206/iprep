@@ -79,10 +79,36 @@ and open the template in the editor.
                         $("#small_notification").html($("#no_of_vacancies").val() + " exact vacancy will be written to database.");
                     }
                 });
-                
+                var list_of_company_with_vacancies = "";
                 // To show all companies with vacancies
-                
-                
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/iprep/webservices/getVacanciesv2.php",
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+
+                        for (var i = 0; i < response.length; i++) {
+                            var company_name = response[i].company_name;
+                            var company_id = response[i].company_id;
+                            var internship_start_date = response[i].internship_start_date;
+                            var internship_end_date = response[i].internship_end_date;
+                            var allowance_currency = response[i].allowance_currency;
+                            var job_role = response[i].job_role;
+                            var accomodation_provided = response[i].accomodation_provided;
+                            var air_ticket_provided = response[i].air_ticket_provided;
+                            var country = response[i].country;
+
+                            list_of_company_with_vacancies += "";
+
+                        }
+                        $("#list_of_companies").html(list_of_company_no_vacancies);
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
+
             }); // end of document.ready
 
             // When the "add vacancy" button is pressed
@@ -106,7 +132,7 @@ and open the template in the editor.
                     }
                 });
             }
-            
+
             // This is a function to refresh all companies
             function refreshCompanies() {
                 var list_of_company_no_vacancies = "";
@@ -138,9 +164,9 @@ and open the template in the editor.
                     }
                 });
             }
-            
-            
-            
+
+
+
         </script>
     </head>
     <body>
@@ -164,13 +190,13 @@ and open the template in the editor.
                             <h5 class="mb-1">Nagano Kosen</h5>
                             <!--<small>2 days</small>-->
                         </div>
-                        <a href=""><span class="badge badge-success">Add vacancy</span></a>
+                        <a href=''><span class='badge badge-success'>Add vacancy</span></a>
                         <br/><br/>
-                        <ul class="list-group">
-                            <li class="list-group-item justify-content-between align-items-center">
+                        <ul class='list-group'>
+                            <li class='list-group-item justify-content-between align-items-center'>
                                 <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
-                                <br/><a href=""><span class="badge badge-warning">Modify</span></a>
-                                <a href=""><span class="badge badge-danger">Remove</span></a>
+                                <br/><a href=''><span class="badge badge-warning">Modify</span></a>
+                                <a href=''><span class='badge badge-danger'>Remove</span></a>
                             </li>
                         </ul>
                         <br/>

@@ -15,6 +15,4 @@ if(ISSET($_GET["company_id"])){
     echo json_encode($companies);
     
 }
-
-
 ?>
