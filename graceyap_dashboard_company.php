@@ -48,23 +48,25 @@ and open the template in the editor.
                 // When submitting the form in a modal
                 $("#form_modal_add_new_vacancy").submit(function (e) {
                     var no_of_vacancies = $("#no_of_vacancies").val();
+                    alert(no_of_vacancies + " vacancies will be added");
 
-                    $.ajax({
-                        type: "POST",
-                        url: "http://localhost/iprep/webservices/doAddVacancy.php",
-                        data: $("#form_modal_add_new_vacancy").serialize(),
-                        cache: false,
-                        dataType: "JSON",
-                        success: function (data, textStatus) {
-                            alert(textStatus);
-                            //$('#form1')[0].reset();
-
-                        },
-                        error: function (obj, textStatus, errorThrown) {
-                            console.log("Error " + textStatus + ": " + errorThrown);
-                            alert("fail: " + textStatus + errorThrown + " end");
-                        }
-                    });
+                    for (var i = 0; i < no_of_vacancies; i++) {
+                        //doAjax();
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/iprep/webservices/doAddVacancy.php",
+                            data: $("#form_modal_add_new_vacancy").serialize(),
+                            cache: false,
+                            dataType: "JSON",
+                            success: function (data, textStatus) {
+                                alert(textStatus);
+                                //$('#form1')[0].reset();
+                            },
+                            error: function (obj, textStatus, errorThrown) {
+                                console.log("Error " + textStatus + ": " + errorThrown);
+                            }
+                        });
+                    }
                     e.preventDefault();
                 });
 
@@ -75,9 +77,7 @@ and open the template in the editor.
                     } else {
                         $("#small_notification").html($("#no_of_vacancies").val() + " exact vacancy will be written to database.");
                     }
-
                 });
-
             }); // end of document.ready
 
             // When the "add vacancy" button is pressed
@@ -195,10 +195,8 @@ and open the template in the editor.
             <!--Green alert box-->
             <div class="alert alert-success" role="alert">
                 <p>Companies currently residing in DB</p>
-
                 <ul id="list_of_companies" class="list-group">
                 </ul>
-
             </div>
 
         </div>
