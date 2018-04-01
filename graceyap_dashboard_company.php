@@ -13,6 +13,218 @@ and open the template in the editor.
         include 'navbar_staff.php';
         ?>
         <script src="scripts/company_staffDashboard.js" type="text/javascript"></script>
+        <script>
+            /* 
+             * To change this license header, choose License Headers in Project Properties.
+             * To change this template file, choose Tools | Templates
+             * and open the template in the editor.
+             */
+
+            $(document).ready(function (e) {
+                setTimeout(function () {
+                    refreshCompanies();
+                }, 1000);
+
+                $("#form_add_company").submit(function (e) {
+                    if (!e.isDefaultPrevented()) {
+                        e.preventDefault();
+
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/iprep/webservices/doAddCompany.php",
+                            data: $("#form_add_company").serialize(),
+                            cache: false,
+                            dataType: "JSON",
+                            success: function (data, textStatus)
+                            {
+                                //$('#form1')[0].reset();
+                                $("#oiip_add_company").modal('hide');
+                                setTimeout(function () {
+                                    refreshCompanies();
+                                }, 1000);
+
+                            },
+                            error: function (obj, textStatus, errorThrown) {
+                                console.log("Error " + textStatus + ": " + errorThrown);
+                                alert("fail");
+                            }
+
+                        });
+                    }
+                })
+
+//    list_of_company_no_vacancies += "<li class='list-group-item justify-content-between'>" +
+//            "ISIS School for terrorists" +
+//            "<br/>" +
+//            "<small>Small town in Syria</small>" +
+//            "<br/>" +
+//            "<a href=''><span class='badge badge-success'>Add vacancy</span></a>" +
+//            "</li>";
+//    for (var i = 0; i < 5; i++) {
+//        $("#list_of_companies").append(list_of_company_no_vacancies);
+//    }
+
+
+
+                // When submitting the form in a modal
+                $("#form_modal_add_new_vacancy").submit(function (e) {
+                    var no_of_vacancies = $("#no_of_vacancies").val();
+
+                    // When the checkbox state is changed
+                    if ($('#accomodationCheckbox').is(":checked"))
+                    {
+                        // it is checked
+                        alert("true");
+                    } else {
+                        alert("falsee");
+                        // $("#accomodationCheckbox").val(0);
+                    }
+
+
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost/iprep/webservices/doAddVacancy.php",
+                        data: $("#form_modal_add_new_vacancy").serialize(),
+                        cache: false,
+                        dataType: "JSON",
+                        success: function (data, textStatus) {
+                            alert(textStatus);
+                            //$('#form1')[0].reset();
+
+                        },
+                        error: function (obj, textStatus, errorThrown) {
+                            console.log("Error " + textStatus + ": " + errorThrown);
+                            alert("fail " + textStatus + errorThrown);
+                        }
+                    });
+
+
+
+
+
+
+                    alert(no_of_vacancies);
+                    e.preventDefault();
+                });
+
+                // When number of vacancies is changed in the input field
+                $("#no_of_vacancies").change(function () {
+                    if ($("#no_of_vacancies").val() > 1) {
+                        $("#small_notification").html($("#no_of_vacancies").val() + " exact vacancies will be written to database.");
+                    } else {
+                        $("#small_notification").html($("#no_of_vacancies").val() + " exact vacancy will be written to database.");
+                    }
+
+                });
+
+            }); // end of document.ready
+
+// This is added when the number of vacancies are changed in the input field
+            function vacanciesChange() {
+                $("#void").empty();
+                var bla = $("#no_of_vacancies").val();
+                for (var i = 0; i < bla; i++) {
+                    $("#void").append("<div class='alert alert-warning' role='alert'>" +
+                            "<div class='form-group'>" +
+                            "<label for='exampleInputPassword1'>Vacancy " + (i + 1) + "</label>" +
+                            "<div class='input-group'>" +
+                            "<div class='input-group-prepend'>" +
+                            "<span class='input-group-text'>Job Role:</span>" +
+                            "</div>" +
+                            "<input type='text' name='job_role' class='form-control' id='jobrole" + (i + 1) + "' placeholder='eg. App Dev etc.' on>" +
+                            "</div>" +
+                            "</div>" +
+                            "<div class='form-group'>" +
+                            "<div class='input-group'>" +
+                            "<div class='input-group-prepend'>" +
+                            "<span class='input-group-text'>Start Date:</span>" +
+                            "</div>" +
+                            "<input type='date' name='internship_start_date' class='form-control' id='startdate" + (i + 1) + "' placeholder='' on>" +
+                            "</div>" +
+                            "</div>" +
+                            "<div class='form-group'>" +
+                            "<div class='input-group'>" +
+                            "<div class='input-group-prepend'>" +
+                            "<span class='input-group-text'>End Date:</span>" +
+                            "</div>" +
+                            "<input type='date' name='internship_end_date' class='form-control' id='enddate" + (i + 1) + "' placeholder='' on>" +
+                            "</div>" +
+                            "</div>" +
+                            "<div class='form-group'>" +
+                            "<div class='input-group'>" +
+                            "<div class='input-group-prepend'>" +
+                            "<span class='input-group-text' id=''>Currency & Amount</span>" +
+                            "</div>" +
+                            "<input type='text' name='allowance_currency' id='currency" + (i + 1) + "' class='form-control' placeholder='eg. SGD/MYR etc'>" +
+                            "<input type='number' name='company_mthly_allowance' id='amount" + (i + 1) + "' class='form-control' placeholder='eg. 45, 1200 etc'>" +
+                            "</div>" +
+                            "</div>" +
+                            "<div class='form-check form-group'>" +
+                            "<input class='form-check-input' name='accomodation_provided' type='checkbox' value='' id='accomodation_checkbox" + (i + 1) + "'>" +
+                            "<label class='form-check-label' for='accomodation_checkbox" + (i + 1) + "'>Accomodation provided</label>" +
+                            "</div>" +
+                            "<div class='form-check form-group'>" +
+                            "<input class='form-check-input' name='air_ticket_provided' type='checkbox' value='' id='airticket_checkbox" + (i + 1) + "'>" +
+                            "<label class='form-check-label' for='airticket_checkbox" + (i + 1) + "'>Air Ticket provided</label>" +
+                            "</div>" +
+                            "</div>");
+                }
+            }
+
+// When the "add vacancy" button is pressed
+            function addNewVacancy(company_id) {
+                alert(company_id);
+                $("#company_id2").val(company_id);
+
+
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/iprep/webservices/getCompanyById.php",
+                    data: "company_id=" + company_id,
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+                        for (var i = 0; i < response.length; i++) {
+                            $("#exampleModalLongTitle2").html("Add Vacancy to " + response[i].company_name);
+                        }
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
+            }
+// This is a function to refresh all companies
+            function refreshCompanies() {
+                var list_of_company_no_vacancies = "";
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/iprep/webservices/getCompanies.php",
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+
+                        for (var i = 0; i < response.length; i++) {
+                            var company_name = response[i].company_name;
+                            var company_id = response[i].company_id;
+                            var concat = company_id + company_name;
+
+                            list_of_company_no_vacancies += "<li class='list-group-item justify-content-between'>" +
+                                    response[i].company_name +
+                                    "<br/>" +
+                                    "<small>" + response[i].country + ", company id: " + response[i].company_id + "</small>" +
+                                    "<br/>" +
+                                    "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' id='" + response[i].company_id + "_addvacancy' class='badge badge-success'>Add vacancy</span></a>" +
+                                    "</li>";
+
+                        }
+                        $("#list_of_companies").html(list_of_company_no_vacancies);
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
+            }
+        </script>
     </head>
     <body>
         <br/>
@@ -193,13 +405,13 @@ and open the template in the editor.
                             <div class="form-group">
                                 <label for="exampleInputEmail2">Company Name</label>
                                 <input type="text" class="form-control" id="company_name" name="company_name" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
-                                 
+
                             </div>
 
                             <div class="form-group">
                                 <?php include 'allCountriesDropdown.html' ?>
                             </div>
-                             
+
 
                             <!--For vacancies. Unused-->
                             <!--                            <div class="form-group">
@@ -323,20 +535,20 @@ and open the template in the editor.
                                 <div class='form-group'> 
                                     <div class='input-group'> 
                                         <div class='input-group-prepend'> 
-                                            <span class='input-group-text' id=''>Currency & Amount</span> 
+                                            <span class='input-group-text' id=''>Curr. & Amt:</span> 
                                         </div> 
-                                        <input type='text' id='currency2' name="allowance_currency" class='form-control' placeholder='eg. SGD/MYR etc'> 
-                                        <input type='number' id='amount2' name="company_mthly_allowance" class='form-control' placeholder='eg. 45, 1200 etc'> 
+                                        <input type='text' id='currency2' name="allowance_currency" class='form-control' placeholder='eg. SGD/MYR'> 
+                                        <input type='number' id='amount2' name="company_mthly_allowance" class='form-control' placeholder='eg. 45, 1200'> 
                                     </div> 
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="accomodation_provided" value="" id="accomodationCheckbox">
+                                    <input class="form-check-input" type="checkbox" name="accomodation_provided" value="1" id="accomodationCheckbox">
                                     <label class="form-check-label" for="accomodationCheckbox">
                                         Accomodation provided?
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="air_ticket_provided" value="" id="airticketCheckbox">
+                                    <input class="form-check-input" type="checkbox" name="air_ticket_provided" checked="" value="1" id="airticketCheckbox">
                                     <label class="form-check-label" for="airticketCheckbox">
                                         Air ticket provided?
                                     </label>
