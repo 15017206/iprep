@@ -43,33 +43,11 @@ and open the template in the editor.
                             }
                         });
                     }
-                })
-
-//    list_of_company_no_vacancies += "<li class='list-group-item justify-content-between'>" +
-//            "ISIS School for terrorists" +
-//            "<br/>" +
-//            "<small>Small town in Syria</small>" +
-//            "<br/>" +
-//            "<a href=''><span class='badge badge-success'>Add vacancy</span></a>" +
-//            "</li>";
-//    for (var i = 0; i < 5; i++) {
-//        $("#list_of_companies").append(list_of_company_no_vacancies);
-//    }
+                });
 
                 // When submitting the form in a modal
                 $("#form_modal_add_new_vacancy").submit(function (e) {
                     var no_of_vacancies = $("#no_of_vacancies").val();
-
-                    // When the checkbox state is changed
-//                    if ($('#accomodationCheckbox') || $('#airticketCheckbox').is(":checked"))
-//                    {
-////                         it is checked
-//                        alert("true");
-//                        $(this).prop("checked", true);
-//                    } else {
-//                        alert("falsee");
-//                         $(this).prop("checked", false);
-//                    }
 
                     $.ajax({
                         type: "POST",
@@ -102,57 +80,7 @@ and open the template in the editor.
 
             }); // end of document.ready
 
-// This is added when the number of vacancies are changed in the input field
-//            function vacanciesChange() {
-//                $("#void").empty();
-//                var bla = $("#no_of_vacancies").val();
-//                for (var i = 0; i < bla; i++) {
-//                    $("#void").append("<div class='alert alert-warning' role='alert'>" +
-//                            "<div class='form-group'>" +
-//                            "<label for='exampleInputPassword1'>Vacancy " + (i + 1) + "</label>" +
-//                            "<div class='input-group'>" +
-//                            "<div class='input-group-prepend'>" +
-//                            "<span class='input-group-text'>Job Role:</span>" +
-//                            "</div>" +
-//                            "<input type='text' name='job_role' class='form-control' id='jobrole" + (i + 1) + "' placeholder='eg. App Dev etc.' on>" +
-//                            "</div>" +
-//                            "</div>" +
-//                            "<div class='form-group'>" +
-//                            "<div class='input-group'>" +
-//                            "<div class='input-group-prepend'>" +
-//                            "<span class='input-group-text'>Start Date:</span>" +
-//                            "</div>" +
-//                            "<input type='date' name='internship_start_date' class='form-control' id='startdate" + (i + 1) + "' placeholder='' on>" +
-//                            "</div>" +
-//                            "</div>" +
-//                            "<div class='form-group'>" +
-//                            "<div class='input-group'>" +
-//                            "<div class='input-group-prepend'>" +
-//                            "<span class='input-group-text'>End Date:</span>" +
-//                            "</div>" +
-//                            "<input type='date' name='internship_end_date' class='form-control' id='enddate" + (i + 1) + "' placeholder='' on>" +
-//                            "</div>" +
-//                            "</div>" +
-//                            "<div class='form-group'>" +
-//                            "<div class='input-group'>" +
-//                            "<div class='input-group-prepend'>" +
-//                            "<span class='input-group-text' id=''>Currency & Amount</span>" +
-//                            "</div>" +
-//                            "<input type='text' name='allowance_currency' id='currency" + (i + 1) + "' class='form-control' placeholder='eg. SGD/MYR etc'>" +
-//                            "<input type='number' name='company_mthly_allowance' id='amount" + (i + 1) + "' class='form-control' placeholder='eg. 45, 1200 etc'>" +
-//                            "</div>" +
-//                            "</div>" +
-//                            "<div class='form-check form-group'>" +
-//                            "<input class='form-check-input' name='accomodation_provided' type='checkbox' value='' id='accomodation_checkbox" + (i + 1) + "'>" +
-//                            "<label class='form-check-label' for='accomodation_checkbox" + (i + 1) + "'>Accomodation provided</label>" +
-//                            "</div>" +
-//                            "<div class='form-check form-group'>" +
-//                            "<input class='form-check-input' name='air_ticket_provided' type='checkbox' value='' id='airticket_checkbox" + (i + 1) + "'>" +
-//                            "<label class='form-check-label' for='airticket_checkbox" + (i + 1) + "'>Air Ticket provided</label>" +
-//                            "</div>" +
-//                            "</div>");
-//                }
-//            }
+
 
 // When the "add vacancy" button is pressed
             function addNewVacancy(company_id) {
@@ -275,19 +203,6 @@ and open the template in the editor.
 
             </div>
 
-            <!--Sample listed companies-->
-            <!--                <div class="list-group">
-                <a href="#" data-toggle="modal" data-target="#oiip_available_company" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Nagano Kosen</h5>
-                        <small>Nagano, Nagano, Japan</small>
-                    </div>
-                    <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
-                    <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
-                    <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
-                </a>
-            </div>-->
-
 
 
         </div>
@@ -407,58 +322,7 @@ and open the template in the editor.
                                                         </div>-->
 
 
-                            <!--Template for multiple vacancies Start-->
-                            <!--                            <div class='alert alert-warning' role='alert'>
-                                                            <div class='form-group'>
-                                                                <label for='exampleInputPassword1'>Vacancy 1</label>
-                            
-                                                                <div class='input-group'>
-                                                                    <div class='input-group-prepend'>
-                                                                        <span class='input-group-text'>Job Role:</span>
-                                                                    </div>
-                                                                    <input type='text' class='form-control' id='jobrole' placeholder='eg. App Dev etc.' on>
-                                                                </div>
-                                                            </div>
-                            
-                                                            <div class='form-group'>
-                                                                <div class='input-group'>
-                                                                    <div class='input-group-prepend'>
-                                                                        <span class='input-group-text'>Start Date:</span>
-                                                                    </div>
-                                                                    <input type='date' class='form-control' id='startdate' placeholder='eg. App Dev etc.' on>
-                                                                </div>
-                                                            </div>
-                            
-                                                            <div class='form-group'>
-                                                                <div class='input-group'>
-                                                                    <div class='input-group-prepend'>
-                                                                        <span class='input-group-text'>End Date:</span>
-                                                                    </div>
-                                                                    <input type='date' class='form-control' id='enddate' placeholder='eg. App Dev etc.' on>
-                                                                </div>
-                                                            </div>
-                            
-                                                            <div class='form-group'>
-                                                                <div class='input-group'>
-                                                                    <div class='input-group-prepend'>
-                                                                        <span class='input-group-text' id=''>Currency & Amount</span>
-                                                                    </div>
-                                                                    <input type='text' id='currency' class='form-control' placeholder='eg. SGD/MYR etc'>
-                                                                    <input type='number' id='amount' class='form-control' placeholder='eg. 45, 1200 etc'>
-                                                                </div>
-                                                            </div>
-                            
-                                                            <div class='form-check form-group'>
-                                                                <input class='form-check-input' type='checkbox' value='' id='accomodation_checkbox'>
-                                                                <label class='form-check-label' for='accomodation_checkbox'>Accomodation provided</label>
-                                                            </div>
-                            
-                                                            <div class='form-check form-group'>
-                                                                <input class='form-check-input' type='checkbox' value='' id='airticket_checkbox'>
-                                                                <label class='form-check-label' for='airticket_checkbox'>Air Ticket provided</label>
-                                                            </div>
-                                                        </div>-->
-                            <!--Template End-->
+
 
                             <!--<button type="submit" class="btn btn-primary">Submit</button>-->
                             <button type="submit" id="submit_add_company" class="btn btn-primary">Save changes</button>
@@ -550,6 +414,12 @@ and open the template in the editor.
         </div>
 
         <!--Some unused code-->
+
+
+    </body>
+</html>
+
+<!--Some unused code-->
         <!--        <div class='alert alert-warning' role='alert'> 
                     <div class='form-group'> 
                         <label for='exampleInputPassword1'>Vacancy " + (i + 1) + "</label> 
@@ -593,7 +463,123 @@ and open the template in the editor.
                         <input class='form-check-input' type='checkbox' value='' id='airticket_checkbox" + (i + 1) + "'> 
                         <label class='form-check-label' for='airticket_checkbox" + (i + 1) + "'>Air Ticket provided</label> 
                     </div>
-                </div>-->
+                </div>
+        ========================================================
+                                    <!--Template for multiple vacancies Start-->
+                            <!--                            <div class='alert alert-warning' role='alert'>
+                                                            <div class='form-group'>
+                                                                <label for='exampleInputPassword1'>Vacancy 1</label>
+                            
+                                                                <div class='input-group'>
+                                                                    <div class='input-group-prepend'>
+                                                                        <span class='input-group-text'>Job Role:</span>
+                                                                    </div>
+                                                                    <input type='text' class='form-control' id='jobrole' placeholder='eg. App Dev etc.' on>
+                                                                </div>
+                                                            </div>
+                            
+                                                            <div class='form-group'>
+                                                                <div class='input-group'>
+                                                                    <div class='input-group-prepend'>
+                                                                        <span class='input-group-text'>Start Date:</span>
+                                                                    </div>
+                                                                    <input type='date' class='form-control' id='startdate' placeholder='eg. App Dev etc.' on>
+                                                                </div>
+                                                            </div>
+                            
+                                                            <div class='form-group'>
+                                                                <div class='input-group'>
+                                                                    <div class='input-group-prepend'>
+                                                                        <span class='input-group-text'>End Date:</span>
+                                                                    </div>
+                                                                    <input type='date' class='form-control' id='enddate' placeholder='eg. App Dev etc.' on>
+                                                                </div>
+                                                            </div>
+                            
+                                                            <div class='form-group'>
+                                                                <div class='input-group'>
+                                                                    <div class='input-group-prepend'>
+                                                                        <span class='input-group-text' id=''>Currency & Amount</span>
+                                                                    </div>
+                                                                    <input type='text' id='currency' class='form-control' placeholder='eg. SGD/MYR etc'>
+                                                                    <input type='number' id='amount' class='form-control' placeholder='eg. 45, 1200 etc'>
+                                                                </div>
+                                                            </div>
+                            
+                                                            <div class='form-check form-group'>
+                                                                <input class='form-check-input' type='checkbox' value='' id='accomodation_checkbox'>
+                                                                <label class='form-check-label' for='accomodation_checkbox'>Accomodation provided</label>
+                                                            </div>
+                            
+                                                            <div class='form-check form-group'>
+                                                                <input class='form-check-input' type='checkbox' value='' id='airticket_checkbox'>
+                                                                <label class='form-check-label' for='airticket_checkbox'>Air Ticket provided</label>
+                                                            </div>
+                                                        </div>-->
+                            <!--Template End-->
+                            <!--=========================================-->
+        
+                            <!--// This is added when the number of vacancies are changed in the input field-->
+<!--//            function vacanciesChange() {
+//                $("#void").empty();
+//                var bla = $("#no_of_vacancies").val();
+//                for (var i = 0; i < bla; i++) {
+//                    $("#void").append("<div class='alert alert-warning' role='alert'>" +
+//                            "<div class='form-group'>" +
+//                            "<label for='exampleInputPassword1'>Vacancy " + (i + 1) + "</label>" +
+//                            "<div class='input-group'>" +
+//                            "<div class='input-group-prepend'>" +
+//                            "<span class='input-group-text'>Job Role:</span>" +
+//                            "</div>" +
+//                            "<input type='text' name='job_role' class='form-control' id='jobrole" + (i + 1) + "' placeholder='eg. App Dev etc.' on>" +
+//                            "</div>" +
+//                            "</div>" +
+//                            "<div class='form-group'>" +
+//                            "<div class='input-group'>" +
+//                            "<div class='input-group-prepend'>" +
+//                            "<span class='input-group-text'>Start Date:</span>" +
+//                            "</div>" +
+//                            "<input type='date' name='internship_start_date' class='form-control' id='startdate" + (i + 1) + "' placeholder='' on>" +
+//                            "</div>" +
+//                            "</div>" +
+//                            "<div class='form-group'>" +
+//                            "<div class='input-group'>" +
+//                            "<div class='input-group-prepend'>" +
+//                            "<span class='input-group-text'>End Date:</span>" +
+//                            "</div>" +
+//                            "<input type='date' name='internship_end_date' class='form-control' id='enddate" + (i + 1) + "' placeholder='' on>" +
+//                            "</div>" +
+//                            "</div>" +
+//                            "<div class='form-group'>" +
+//                            "<div class='input-group'>" +
+//                            "<div class='input-group-prepend'>" +
+//                            "<span class='input-group-text' id=''>Currency & Amount</span>" +
+//                            "</div>" +
+//                            "<input type='text' name='allowance_currency' id='currency" + (i + 1) + "' class='form-control' placeholder='eg. SGD/MYR etc'>" +
+//                            "<input type='number' name='company_mthly_allowance' id='amount" + (i + 1) + "' class='form-control' placeholder='eg. 45, 1200 etc'>" +
+//                            "</div>" +
+//                            "</div>" +
+//                            "<div class='form-check form-group'>" +
+//                            "<input class='form-check-input' name='accomodation_provided' type='checkbox' value='' id='accomodation_checkbox" + (i + 1) + "'>" +
+//                            "<label class='form-check-label' for='accomodation_checkbox" + (i + 1) + "'>Accomodation provided</label>" +
+//                            "</div>" +
+//                            "<div class='form-check form-group'>" +
+//                            "<input class='form-check-input' name='air_ticket_provided' type='checkbox' value='' id='airticket_checkbox" + (i + 1) + "'>" +
+//                            "<label class='form-check-label' for='airticket_checkbox" + (i + 1) + "'>Air Ticket provided</label>" +
+//                            "</div>" +
+//                            "</div>");
+//                }
+//            }-->
 
-    </body>
-</html>
+            <!--Sample listed companies-->
+            <!--                <div class="list-group">
+                <a href="#" data-toggle="modal" data-target="#oiip_available_company" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Nagano Kosen</h5>
+                        <small>Nagano, Nagano, Japan</small>
+                    </div>
+                    <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
+                    <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
+                    <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
+                </a>
+            </div>-->
