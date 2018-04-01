@@ -6,11 +6,12 @@ $query = "SELECT * FROM oiip_vacancy JOIN company on oiip_vacancy.company_id = c
 
 $result = mysqli_query($link, $query) or die('Error querying database');
 
-while ($row = mysqli_fetch_assoc($result)) {
-    $vacancies[] = $row;
+if ($result->num_rows > 0){
+    while ($row = $result->fetch_assoc()){
+        echo $row["company_id"];
+    }
 }
+
 mysqli_close($link);
 
-echo json_encode($vacancies);
-echo json_encode($row)
 ?>

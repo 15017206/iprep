@@ -15,6 +15,7 @@ and open the template in the editor.
 
         <script>
             $(document).ready(function (e) {
+                var company_id_array = [];
                 setTimeout(function () {
                     refreshCompanies();
                 }, 1000);
@@ -84,6 +85,7 @@ and open the template in the editor.
                     success: function (response) {
 
                         for (var i = 0; i < response.length; i++) {
+                            alert("response length is : "+response.length + " and i is: " + i);
                             var company_name = response[i].company_name;
                             var company_id = response[i].company_id;
                             var internship_start_date = response[i].internship_start_date;
@@ -95,6 +97,8 @@ and open the template in the editor.
                             var air_ticket_provided = response[i].air_ticket_provided;
                             var country = response[i].country;
 
+                            // This is a list of company_ids. It should not appear more than once.
+                            
                             if (accomodation_provided == 1) {
                                 accomodation_provided = "Have accomodation";
                             } else {
