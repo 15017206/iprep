@@ -19,6 +19,7 @@ and open the template in the editor.
                     refreshCompanies();
                 }, 1000);
 
+                // When submitted to add a company
                 $("#form_add_company").submit(function (e) {
                     if (!e.isDefaultPrevented()) {
                         e.preventDefault();
@@ -78,6 +79,10 @@ and open the template in the editor.
                         $("#small_notification").html($("#no_of_vacancies").val() + " exact vacancy will be written to database.");
                     }
                 });
+                
+                // To show all companies with vacancies
+                
+                
             }); // end of document.ready
 
             // When the "add vacancy" button is pressed
@@ -101,6 +106,7 @@ and open the template in the editor.
                     }
                 });
             }
+            
             // This is a function to refresh all companies
             function refreshCompanies() {
                 var list_of_company_no_vacancies = "";
@@ -132,6 +138,9 @@ and open the template in the editor.
                     }
                 });
             }
+            
+            
+            
         </script>
     </head>
     <body>
@@ -150,28 +159,6 @@ and open the template in the editor.
             <div class="alert alert-warning" role="alert">
                 <p>Companies with Vacancies</p>
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Kisarazu Kosen</h5>
-                            <!--<small>4 months</small>-->
-                        </div>
-                        <a href=""><span class="badge badge-success">Add vacancy</span></a>
-                        <br/><br/>
-                        <ul class="list-group">
-                            <li class="list-group-item justify-content-between align-items-center">
-                                <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
-                                <br/><a href=""><span class="badge badge-warning">Modify</span></a>
-                                <a href=""><span class="badge badge-danger">Remove</span></a>
-                            </li>
-                            <li class="list-group-item justify-content-between align-items-center">
-                                <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
-                                <br/><a href=""><span class="badge badge-warning">Modify</span></a>
-                                <a href=""><span class="badge badge-danger">Remove</span></a>
-                            </li>
-                        </ul>
-                        <br/>
-                        <small>Kisarazu, Chiba, Tokyo</small>
-                    </li>
                     <li class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">Nagano Kosen</h5>
