@@ -15,154 +15,158 @@ and open the template in the editor.
 
         <script>
             $(document).ready(function (e) {
-                setTimeout(function () {
+            setTimeout(function () {
+            refreshCompanies();
+            }, 1000);
+            // When submitted to add a company
+            $("#form_add_company").submit(function (e) {
+            if (!e.isDefaultPrevented()) {
+            e.preventDefault();
+            $.ajax({
+            type: "POST",
+                    url: "http://localhost/iprep/webservices/doAddCompany.php",
+                    data: $("#form_add_company").serialize(),
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (data, textStatus)
+                    {
+                    //$('#form1')[0].reset();
+                    $("#oiip_add_company").modal('hide');
+                    setTimeout(function () {
                     refreshCompanies();
-                }, 1000);
-
-                // When submitted to add a company
-                $("#form_add_company").submit(function (e) {
-                    if (!e.isDefaultPrevented()) {
-                        e.preventDefault();
-
-                        $.ajax({
-                            type: "POST",
-                            url: "http://localhost/iprep/webservices/doAddCompany.php",
-                            data: $("#form_add_company").serialize(),
-                            cache: false,
-                            dataType: "JSON",
-                            success: function (data, textStatus)
-                            {
-                                //$('#form1')[0].reset();
-                                $("#oiip_add_company").modal('hide');
-                                setTimeout(function () {
-                                    refreshCompanies();
-                                }, 1000);
-                            },
-                            error: function (obj, textStatus, errorThrown) {
-                                console.log("Error " + textStatus + ": " + errorThrown);
-                                alert("fail");
-                            }
-                        });
+                    }, 1000);
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                    console.log("Error " + textStatus + ": " + errorThrown);
+                    alert("fail");
                     }
-                });
-
-                // When submitting the form in a modal
-                $("#form_modal_add_new_vacancy").submit(function (e) {
-                    var no_of_vacancies = $("#no_of_vacancies").val();
-                    alert(no_of_vacancies + " vacancies will be added");
-
-                    for (var i = 0; i < no_of_vacancies; i++) {
-                        //doAjax();
-                        $.ajax({
-                            type: "POST",
-                            url: "http://localhost/iprep/webservices/doAddVacancy.php",
-                            data: $("#form_modal_add_new_vacancy").serialize(),
-                            cache: false,
-                            dataType: "JSON",
-                            success: function (data, textStatus) {
-                                alert(textStatus);
-                                //$('#form1')[0].reset();
-                            },
-                            error: function (obj, textStatus, errorThrown) {
-                                console.log("Error " + textStatus + ": " + errorThrown);
-                            }
-                        });
+            });
+            }
+            });
+            // When submitting the form in a modal
+            $("#form_modal_add_new_vacancy").submit(function (e) {
+            var no_of_vacancies = $("#no_of_vacancies").val();
+            alert(no_of_vacancies + " vacancies will be added");
+            for (var i = 0; i < no_of_vacancies; i++) {
+            //doAjax();
+            $.ajax({
+            type: "POST",
+                    url: "http://localhost/iprep/webservices/doAddVacancy.php",
+                    data: $("#form_modal_add_new_vacancy").serialize(),
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (data, textStatus) {
+                    alert(textStatus);
+                    //$('#form1')[0].reset();
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                    console.log("Error " + textStatus + ": " + errorThrown);
                     }
-                    e.preventDefault();
-                });
-
-                // When number of vacancies is changed in the input field
-                $("#no_of_vacancies").change(function () {
-                    if ($("#no_of_vacancies").val() > 1) {
-                        $("#small_notification").html($("#no_of_vacancies").val() + " exact vacancies will be written to database.");
-                    } else {
-                        $("#small_notification").html($("#no_of_vacancies").val() + " exact vacancy will be written to database.");
-                    }
-                });
-                var list_of_company_with_vacancies = "";
-                // To show all companies with vacancies
-                $.ajax({
-                    type: "GET",
+            });
+            }
+            e.preventDefault();
+            });
+            // When number of vacancies is changed in the input field
+            $("#no_of_vacancies").change(function () {
+            if ($("#no_of_vacancies").val() > 1) {
+            $("#small_notification").html($("#no_of_vacancies").val() + " exact vacancies will be written to database.");
+            } else {
+            $("#small_notification").html($("#no_of_vacancies").val() + " exact vacancy will be written to database.");
+            }
+            });
+            var list_of_company_with_vacancies = "";
+            // To show all companies with vacancies
+            $.ajax({
+            type: "GET",
                     url: "http://localhost/iprep/webservices/getVacanciesv2.php",
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
 
-                        for (var i = 0; i < response.length; i++) {
-                            var company_name = response[i].company_name;
-                            var company_id = response[i].company_id;
-                            var internship_start_date = response[i].internship_start_date;
-                            var internship_end_date = response[i].internship_end_date;
-                            var allowance_currency = response[i].allowance_currency;
-                            var job_role = response[i].job_role;
-                            var accomodation_provided = response[i].accomodation_provided;
-                            var air_ticket_provided = response[i].air_ticket_provided;
-                            var country = response[i].country;
-
-                            list_of_company_with_vacancies += "";
-
-                        }
-                        $("#list_of_companies").html(list_of_company_no_vacancies);
+                    for (var i = 0; i < response.length; i++) {
+                    var company_name = response[i].company_name;
+                    var company_id = response[i].company_id;
+                    var internship_start_date = response[i].internship_start_date;
+                    var internship_end_date = response[i].internship_end_date;
+                    var allowance_currency = response[i].allowance_currency;
+                    var job_role = response[i].job_role;
+                    var accomodation_provided = response[i].accomodation_provided;
+                    var air_ticket_provided = response[i].air_ticket_provided;
+                    var country = response[i].country;
+                    list_of_company_with_vacancies += "<li class='list-group-item list-group-item-action flex-column align-items-start'>"+
+                            "<div class='d-flex w-100 justify-content-between'>"+
+                            "<h5 class='mb-1'>"+ company_name +"</h5>"+
+                            "<small>2 days</small>"+
+                            "</div>"+
+                            "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' class='badge badge-success'>Add vacancy</span></a>"+
+                            "<br/><br/>"+
+                            "<ul id='list_of_companies_with_vacancies_small_placeholder' class='list-group'>"+
+                            "<li class='list-group-item justify-content-between align-items-center'>"+
+                            "<small>"+ job_role +", 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>"+
+                            "<br/><a href=''><span class='badge badge-warning'>Modify</span></a>"+
+                            "<a href=''><span class='badge badge-danger'>Remove</span></a>"+
+                            "</li>"+
+                            "</ul>"+
+                            "<br/>"+
+                            "<small>"+ country +"</small>"+
+                            "</li>";
+                    }
+                    $("#list_of_companies_with_vacancies_big_placeholder").html(list_of_company_with_vacancies);
                     },
                     error: function (obj, textStatus, errorThrown) {
-                        console.log("Error " + textStatus + ": " + errorThrown);
+                    console.log("Error " + textStatus + ": " + errorThrown);
                     }
-                });
-
+            });
             }); // end of document.ready
 
             // When the "add vacancy" button is pressed
             function addNewVacancy(company_id) {
-                $("#company_id2").val(company_id);
-
-
-                $.ajax({
-                    type: "GET",
+            $("#company_id2").val(company_id);
+            $.ajax({
+            type: "GET",
                     url: "http://localhost/iprep/webservices/getCompanyById.php",
                     data: "company_id=" + company_id,
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
-                        for (var i = 0; i < response.length; i++) {
-                            $("#exampleModalLongTitle2").html("Add Vacancy to " + response[i].company_name);
-                        }
+                    for (var i = 0; i < response.length; i++) {
+                    $("#exampleModalLongTitle2").html("Add Vacancy to " + response[i].company_name);
+                    }
                     },
                     error: function (obj, textStatus, errorThrown) {
-                        console.log("Error " + textStatus + ": " + errorThrown);
+                    console.log("Error " + textStatus + ": " + errorThrown);
                     }
-                });
+            });
             }
 
             // This is a function to refresh all companies
             function refreshCompanies() {
-                var list_of_company_no_vacancies = "";
-                $.ajax({
-                    type: "GET",
+            var list_of_company_no_vacancies = "";
+            $.ajax({
+            type: "GET",
                     url: "http://localhost/iprep/webservices/getCompanies.php",
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
 
-                        for (var i = 0; i < response.length; i++) {
-                            var company_name = response[i].company_name;
-                            var company_id = response[i].company_id;
-                            var concat = company_id + company_name;
-
-                            list_of_company_no_vacancies += "<li class='list-group-item justify-content-between'>" +
-                                    response[i].company_name +
-                                    "<br/>" +
-                                    "<small>" + response[i].country + ", company id: " + response[i].company_id + "</small>" +
-                                    "<br/>" +
-                                    "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' id='" + response[i].company_id + "_addvacancy' class='badge badge-success'>Add vacancy</span></a>" +
-                                    "</li>";
-
-                        }
-                        $("#list_of_companies").html(list_of_company_no_vacancies);
+                    for (var i = 0; i < response.length; i++) {
+                    var company_name = response[i].company_name;
+                    var company_id = response[i].company_id;
+                    var concat = company_id + company_name;
+                    list_of_company_no_vacancies += "<li class='list-group-item justify-content-between'>" +
+                            response[i].company_name +
+                            "<br/>" +
+                            "<small>" + response[i].country + ", company id: " + response[i].company_id + "</small>" +
+                            "<br/>" +
+                            "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' id='" + response[i].company_id + "_addvacancy' class='badge badge-success'>Add vacancy</span></a>" +
+                            "</li>";
+                    }
+                    $("#list_of_companies").html(list_of_company_no_vacancies);
                     },
                     error: function (obj, textStatus, errorThrown) {
-                        console.log("Error " + textStatus + ": " + errorThrown);
+                    console.log("Error " + textStatus + ": " + errorThrown);
                     }
-                });
+            });
             }
 
 
@@ -184,18 +188,18 @@ and open the template in the editor.
         <div class="container">
             <div class="alert alert-warning" role="alert">
                 <p>Companies with Vacancies</p>
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Nagano Kosen</h5>
-                            <!--<small>2 days</small>-->
+                <ul class='list-group' id='list_of_companies_with_vacancies_big_placeholder'>
+                    <li class='list-group-item list-group-item-action flex-column align-items-start'>
+                        <div class='d-flex w-100 justify-content-between'>
+                            <h5 class='mb-1'>Nagano Kosen</h5>
+                            <small>2 days</small>
                         </div>
                         <a href=''><span class='badge badge-success'>Add vacancy</span></a>
                         <br/><br/>
-                        <ul class='list-group'>
+                        <ul id='list_of_companies_with_vacancies_small_placeholder' class='list-group'>
                             <li class='list-group-item justify-content-between align-items-center'>
                                 <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
-                                <br/><a href=''><span class="badge badge-warning">Modify</span></a>
+                                <br/><a href=''><span class='badge badge-warning'>Modify</span></a>
                                 <a href=''><span class='badge badge-danger'>Remove</span></a>
                             </li>
                         </ul>
