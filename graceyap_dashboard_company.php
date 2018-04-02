@@ -15,7 +15,7 @@ and open the template in the editor.
 
         <script>
             $(document).ready(function (e) {
-                var company_id_array = [];
+                var company_id_array = [0];
                 setTimeout(function () {
                     refreshCompanies();
                 }, 1000);
@@ -85,25 +85,21 @@ and open the template in the editor.
                     success: function (response) {
 
                         for (var i = 0; i < response.length; i++) {
-                            var company_name = response[i].company_name;
+
                             var company_id = response[i].company_id;
 
                             // check if the company_id is in the array. If not inside, add it in.
                             for (var j = 0; j <= company_id_array.length; j++) {
+                                alert(" " + j + " " + company_id + " " + company_id_array[j] + " " + company_id_array.toString());
                                 if (company_id !== company_id_array[j]) {
                                     company_id_array.push(company_id);
-                                    alert("j is now: " + j);
-                                    alert("company_id_array is: " + company_id_array.toString());
-                                    break;
+                                    alert(company_id_array.toString());
                                 } else {
-                                    break;
+                                    alert("skipped");
                                 }
                             }
 
-
-
-                            //alert(company_id_array.length);
-
+                            var company_name = response[i].company_name;
                             var internship_start_date = response[i].internship_start_date;
                             var internship_end_date = response[i].internship_end_date;
                             var allowance_currency = response[i].allowance_currency;
