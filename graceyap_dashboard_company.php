@@ -85,9 +85,25 @@ and open the template in the editor.
                     success: function (response) {
 
                         for (var i = 0; i < response.length; i++) {
-                            alert("response length is : "+response.length + " and i is: " + i);
                             var company_name = response[i].company_name;
                             var company_id = response[i].company_id;
+
+                            // check if the company_id is in the array. If not inside, add it in.
+                            for (var j = 0; j <= company_id_array.length; j++) {
+                                if (company_id !== company_id_array[j]) {
+                                    company_id_array.push(company_id);
+                                    alert("j is now: " + j);
+                                    alert("company_id_array is: " + company_id_array.toString());
+                                    break;
+                                } else {
+                                    break;
+                                }
+                            }
+
+
+
+                            //alert(company_id_array.length);
+
                             var internship_start_date = response[i].internship_start_date;
                             var internship_end_date = response[i].internship_end_date;
                             var allowance_currency = response[i].allowance_currency;
@@ -98,7 +114,7 @@ and open the template in the editor.
                             var country = response[i].country;
 
                             // This is a list of company_ids. It should not appear more than once.
-                            
+
                             if (accomodation_provided == 1) {
                                 accomodation_provided = "Have accomodation";
                             } else {
