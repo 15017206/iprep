@@ -79,6 +79,7 @@ and open the template in the editor.
                 var list_of_company_with_vacancies = "";
 
                 // To show all companies with vacancies
+                // To eliminate repeating companies with 2 or more vacancies
                 $.ajax({
                     type: "GET",
                     url: "http://localhost/iprep/webservices/getVacanciesv2.php",
@@ -111,6 +112,7 @@ and open the template in the editor.
                     }
                 });
 
+                // Second part of ajax
                 $.ajax({
                     type: "GET",
                     url: "http://localhost/iprep/webservices/getVacanciesv2.php",
@@ -120,22 +122,6 @@ and open the template in the editor.
 
                         for (var i = 0; i < response.length; i++) {
                             var company_id = response[i].company_id;
-
-                            // check if the company_id is in the array. If not inside, add it in.
-                            for (var j = 0; j <= company_id_array.length; j++) {
-                                // alert(company_id + " " + j + " " + company_id_array[j] + " " + company_id_array.toString());
-                                if (company_id !== company_id_array[j]) {
-
-                                    // If the array has checked the last index
-                                    if (j === company_id_array.length - 1) {
-                                        company_id_array.push(company_id);
-//                                        alert(company_id_array.toString());
-                                    }
-                                } else {
-                                    break;
-                                }
-                            }
-
                             var company_name = response[i].company_name;
                             var internship_start_date = response[i].internship_start_date;
                             var internship_end_date = response[i].internship_end_date;
