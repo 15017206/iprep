@@ -213,27 +213,25 @@ and open the template in the editor.
 
             function deleteVacancy(vacancy_id) {
                 var confirmation = confirm("Sure to delete?");
-                
+
                 if (confirmation) {
 
-                        $.ajax({
-                            type: "POST",
-                            url: "http://localhost/iprep/webservices/deleteVacancy.php",
-                            data: {vacancy_id: vacancy_id},
-                            cache: false,
-                            dataType: "JSON",
-                            success: function (data, textStatus)
-                            {
-alert("Ok, deleted");
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost/iprep/webservices/deleteVacancy.php",
+                        data: {vacancy_id: vacancy_id},
+                        cache: false,
+                        dataType: "JSON",
+                        success: function (data, textStatus) {
+                            alert("Ok, deleted");
+                        },
+                        error: function (obj, textStatus, errorThrown) {
+                            console.log("Error " + textStatus + ": " + errorThrown);
+                            alert("fail");
+                        }
 
-                            },
-                            error: function (obj, textStatus, errorThrown) {
-                                console.log("Error " + textStatus + ": " + errorThrown);
-                                alert("fail");
-                            }
+                    });
 
-                        });
-                    
                 }
             }
 
