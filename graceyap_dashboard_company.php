@@ -15,7 +15,7 @@ and open the template in the editor.
 
         <script>
             $(document).ready(function (e) {
-                var company_id_array = ["x"];
+                var backlisted_company_id_array = ["x"];
                 setTimeout(function () {
                     refreshCompanies();
                 }, 1000);
@@ -91,12 +91,12 @@ and open the template in the editor.
                             var company_id = response[i].company_id;
 
                             // check if the company_id is in the array. If not inside, add it in.
-                            for (var j = 0; j <= company_id_array.length; j++) {
-                                if (company_id !== company_id_array[j]) {
+                            for (var j = 0; j <= backlisted_company_id_array.length; j++) {
+                                if (company_id !== backlisted_company_id_array[j]) {
 
                                     // If the array has checked the last index
-                                    if (j === company_id_array.length - 1) {
-                                        company_id_array.push(company_id);
+                                    if (j === backlisted_company_id_array.length - 1) {
+                                        backlisted_company_id_array.push(company_id);
 //                                        alert(company_id_array.toString());
                                     }
                                 } else {
@@ -143,31 +143,32 @@ and open the template in the editor.
                                 air_ticket_provided = "dont have air ticket";
                             }
 
-                            alert(company_id + " " +company_id_array[i]); //999, 1,2,5,3,6,4,4,1
-                            if (company_id === company_id_array[i]) {
-                                list_of_company_with_vacancies += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
-                                        "<div class='d-flex w-100 justify-content-between'>" +
-                                        "<h5 class='mb-1'>" + company_name + "</h5>" +
-                                        "<small>2 days</small>" +
-                                        "</div>" +
-                                        "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' class='badge badge-success'>Add vacancy</span></a>" +
-                                        "<br/><br/>" +
-                                        "<ul id='list_of_companies_with_vacancies_small_placeholder' class='list-group'>" +
-                                        // Need another for loop to loop various vacancies here
+                            for (var m = 0; m < backlisted_company_id_array.length; m++) {
+                                alert(company_id + " " + backlisted_company_id_array[m]);
+                                if (company_id === backlisted_company_id_array[m]) {
+                                    alert("same");
+                                    list_of_company_with_vacancies += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
+                                            "<div class='d-flex w-100 justify-content-between'>" +
+                                            "<h5 class='mb-1'>" + company_name + "</h5>" +
+                                            "<small>2 days</small>" +
+                                            "</div>" +
+                                            "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' class='badge badge-success'>Add vacancy</span></a>" +
+                                            "<br/><br/>" +
+                                            "<ul id='list_of_companies_with_vacancies_small_placeholder' class='list-group'>" +
+                                            // Need another for loop to loop various vacancies here
 
-                                        // "<li class='list-group-item justify-content-between align-items-center'>" +
-                                        // "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
-                                        // "<br/><a href=''><span class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
-                                        // "<a href=''><span class='badge badge-danger'>Remove vacancy</span></a>" +
-                                        // "</li>" +
-                                        "</ul>" +
-                                        "<br/>" +
-                                        "<small>" + country + "</small>" +
-                                        "</li>";
+                                            // "<li class='list-group-item justify-content-between align-items-center'>" +
+                                            // "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
+                                            // "<br/><a href=''><span class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
+                                            // "<a href=''><span class='badge badge-danger'>Remove vacancy</span></a>" +
+                                            // "</li>" +
+                                            "</ul>" +
+                                            "<br/>" +
+                                            "<small>" + country + "</small>" +
+                                            "</li>";
+                                    break;
+                                }
                             }
-
-
-
                         }
                         $("#list_of_companies_with_vacancies_big_placeholder").html(list_of_company_with_vacancies);
                     },
