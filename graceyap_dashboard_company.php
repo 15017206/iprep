@@ -99,6 +99,7 @@ and open the template in the editor.
                             var company_id = response[i].company_id;
 
                             //Related to vacancies, put response[i] here
+                            var vacancy_id = response[i].vacancy_id;
                             var job_role = response[i].job_role;
                             var internship_start_date = response[i].internship_start_date;
                             var internship_end_date = response[i].internship_end_date;
@@ -156,7 +157,7 @@ and open the template in the editor.
                             list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
                                     "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
                                     "<br/><a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='modifyVacancy(" + company_id + ")' class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
-                                    "<a href=''><span onclick='deleteVacancy(" + company_id + ")' class='badge badge-danger'>Remove vacancy</span></a>" +
+                                    "<a href=''><span onclick='deleteVacancy(" + vacancy_id + ")' class='badge badge-danger'>Remove vacancy</span></a>" +
                                     "</li>";
                             $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
                         }
@@ -210,8 +211,30 @@ and open the template in the editor.
                 });
             }
 
-            function deleteVacancy(company_id) {
+            function deleteVacancy(vacancy_id) {
+                var confirmation = confirm("Sure to delete?");
+                
+                if (confirmation) {
 
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/iprep/webservices/deleteVacancy.php",
+                            data: {vacancy_id: vacancy_id},
+                            cache: false,
+                            dataType: "JSON",
+                            success: function (data, textStatus)
+                            {
+alert("Ok, deleted");
+
+                            },
+                            error: function (obj, textStatus, errorThrown) {
+                                console.log("Error " + textStatus + ": " + errorThrown);
+                                alert("fail");
+                            }
+
+                        });
+                    
+                }
             }
 
             // This is a function to refresh all companies
