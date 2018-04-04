@@ -15,8 +15,8 @@ if (isset($_POST)) {
     
     $query = "UPDATE `oiip_vacancy` SET `internship_start_date`='$startDate',`internship_end_date`='$endDate',"
             . "`company_mthly_allowance`='$allowance', `allowance_currency`='$currency',`job_role`='$role',"
-            . "`company_id`='$company_id',`accomodation_provided`='$accprovided',`air_ticket_provided`)='$tixprovided'"
-            . "WHERE `vacancy_id='$vacancy_id'";
+            . "`company_id`='$company_id',`accomdation_provided`='$accprovided',`air_ticket_provided`='$tixprovided'"
+            . "WHERE `vacancy_id`='$vacancy_id'";
     
     $result = mysqli_query($link, $query);
     

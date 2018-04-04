@@ -71,6 +71,41 @@ and open the template in the editor.
                         // else if the person clicks on modify vacancy
                     } else if (vacancy_type == "modify") {
                         alert("modify vacancy");
+
+                        var vacancy_id = $("#vacancy_id2").val();
+                        var company_id = $("#company_id2").val();
+                        var job_role = $("#job_role").val();
+                        var start_date = $("#startdate2").val();
+                        var end_date = $("#enddate2").val();
+                        var currency = $("#currency2").val();
+                        var amount = $("#amount2").val();
+
+                        var accomodation = "0";
+                        var air_ticket = "0";
+                        if (document.getElementById("accomodationCheckbox").checked === true) {
+                            accomodation = "1";
+                        } else {
+                            accomodation = "0";
+                        }
+                        if (document.getElementById("airticketCheckbox").checked === true) {
+                            air_ticket = "1";
+                        } else {
+                            air_ticket = "0";
+                        }
+                        alert(vacancy_id + company_id + job_role + start_date + end_date + currency + amount + accomodation + air_ticket);
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/iprep/webservices/editVacancy.php",
+                            data: {company_id: company_id, vacancy_id: vacancy_id, iip_start_date: start_date, iip_end_date: end_date, mthly_allowance: amount, currency: currency, role: job_role, accomodation_provided: accomodation, air_ticket_provided: air_ticket},
+                            cache: false,
+                            dataType: "JSON",
+                            success: function (response) {
+                                alert("success");
+                            },
+                            error: function (obj, textStatus, errorThrown) {
+                                console.log("Error " + textStatus + ": " + errorThrown);
+                            }
+                        });
                     }
                     e.preventDefault();
                 });
@@ -156,7 +191,7 @@ and open the template in the editor.
                             }
                             list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
                                     "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
-                                    "<br/><a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='modifyVacancy(" + company_id + ")' class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
+                                    "<br/><a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='modifyVacancy(" + vacancy_id + ")' class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
                                     "<a href=''><span onclick='deleteVacancy(" + vacancy_id + ")' class='badge badge-danger'>Remove vacancy</span></a>" +
                                     "</li>";
                             $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
@@ -173,6 +208,7 @@ and open the template in the editor.
                 $("#submit_add_vacancy").html("Add Vacancy");
                 vacancy_type = "add";
                 $("#company_id2").val(company_id);
+                $("#small_notification_another").text("Company id: " + company_id);
                 $.ajax({
                     type: "GET",
                     url: "http://localhost/iprep/webservices/getCompanyById.php",
@@ -190,19 +226,38 @@ and open the template in the editor.
                 });
             }
 
-            function modifyVacancy(company_id) {
+            function modifyVacancy(vacancy_id) {
                 $("#submit_add_vacancy").html("Modify Vacancy");
                 vacancy_type = "modify";
-                $("#company_id2").val(company_id);
+                $("#company_id2").val(vacancy_id);
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getCompanyById.php",
-                    data: "company_id=" + company_id,
+                    url: "http://localhost/iprep/webservices/getVacanciesById.php",
+                    data: "vacancy_id=" + vacancy_id,
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
                         for (var i = 0; i < response.length; i++) {
                             $("#exampleModalLongTitle2").html("Modify Vacancy to " + response[i].company_name);
+                            $("#no_of_vacancies").prop('disabled', true);
+                            $("#small_notification_another").text("Vacancy id: " + vacancy_id);
+                            $("#vacancy_id2").val(vacancy_id);
+                            $("#company_id2").val(response[i].company_id);
+                            $("#job_role").val(response[i].job_role);
+                            $("#startdate2").val(response[i].internship_start_date);
+                            $("#enddate2").val(response[i].internship_end_date);
+                            $("#currency2").val(response[i].allowance_currency);
+                            $("#amount2").val(response[i].company_mthly_allowance);
+                            if (response[i].accomdation_provided == "1") {
+                                $("#accomodationCheckbox").prop('checked', true);
+                            } else {
+                                $("#accomodationCheckbox").prop('checked', false);
+                            }
+                            if (response[i].air_ticket_provided == "1") {
+                                $("#airticketCheckbox").prop('checked', true);
+                            } else {
+                                $("#airticketCheckbox").prop('checked', false);
+                            }
                         }
                     },
                     error: function (obj, textStatus, errorThrown) {
@@ -444,15 +499,19 @@ and open the template in the editor.
                     <form id="form_modal_add_modify_vacancy" action="" method="">
                         <div class="modal-header">
                             <input id="company_id2" type="hidden" value="1" name="company_id">
+                            <input id="vacancy_id2" type="hidden" value="1" name="vacancy_id">
                             <h5 class="modal-title" id="exampleModalLongTitle2">Modal title</h5>
+
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
+
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="no_of_vacancies">Number of Vacancies</label>
                                 <input type="number" class="form-control" id="no_of_vacancies" placeholder="eg. 1,2,3 etc" onchange="">
+                                <small id="small_notification_another"></small><br/>
                                 <small id="small_notification">Vacancies will be the same</small>
                             </div>
 
