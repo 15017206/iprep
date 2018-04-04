@@ -15,7 +15,7 @@ and open the template in the editor.
 
         <script>
             $(document).ready(function (e) {
-                var company_id_array = [0];
+                var company_id_array = [999];
                 setTimeout(function () {
                     refreshCompanies();
                 }, 1000);
@@ -90,12 +90,16 @@ and open the template in the editor.
 
                             // check if the company_id is in the array. If not inside, add it in.
                             for (var j = 0; j <= company_id_array.length; j++) {
-                                alert(" " + j + " " + company_id + " " + company_id_array[j] + " " + company_id_array.toString());
+                                alert(company_id + " " + j + " " + company_id_array[j] + " " + company_id_array.toString());
                                 if (company_id !== company_id_array[j]) {
-                                    company_id_array.push(company_id);
-                                    alert(company_id_array.toString());
+
+                                    // If the array has checked the last index
+                                    if (j === company_id_array.length - 1) {
+                                        company_id_array.push(company_id);
+                                        alert(company_id_array.toString());
+                                    }
                                 } else {
-                                    alert("skipped");
+                                    break;
                                 }
                             }
 
