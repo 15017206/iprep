@@ -92,7 +92,24 @@ and open the template in the editor.
                         for (var i = 0; i < response.length; i++) {
                             var company_id = response[i].company_id;
                             alert(company_id);
+                            var job_role = response[i].job_role;
+                            var internship_start_date = response[i].internship_start_date;
+                            var internship_end_date = response[i].internship_end_date;
+                            var allowance_currency = response[i].allowance_currency;
+                            var company_mthly_allowance = response[i].company_mthly_allowance;
+                            var accomodation_provided = response[i].accomdation_provided;
+                            var air_ticket_provided = response[i].air_ticket_provided;
 
+                            if (accomodation_provided == 1) {
+                                accomodation_provided = "Have accomodation";
+                            } else {
+                                accomodation_provided = "Dont have accomodation";
+                            }
+                            if (air_ticket_provided == 1) {
+                                air_ticket_provided = "have air ticket";
+                            } else {
+                                air_ticket_provided = "dont have air ticket";
+                            }
 
                             // check if the company_id is in the array. If not inside, add it in.
                             for (var j = 0; j <= company_id_array.length; j++) {
@@ -107,29 +124,18 @@ and open the template in the editor.
                                         // alert(company_id_array.toString());
 
                                         var company_name = response[i].company_name;
-                                        var internship_start_date = response[i].internship_start_date;
-                                        var internship_end_date = response[i].internship_end_date;
-                                        var allowance_currency = response[i].allowance_currency;
-                                        var company_mthly_allowance = response[i].company_mthly_allowance;
-                                        var job_role = response[i].job_role;
-                                        var accomodation_provided = response[i].accomdation_provided;
-                                        var air_ticket_provided = response[i].air_ticket_provided;
+
+
+
+
+
                                         var country = response[i].country;
 
-                                        if (accomodation_provided == 1) {
-                                            accomodation_provided = "Have accomodation";
-                                        } else {
-                                            accomodation_provided = "Dont have accomodation";
-                                        }
-                                        if (air_ticket_provided == 1) {
-                                            air_ticket_provided = "have air ticket";
-                                        } else {
-                                            air_ticket_provided = "dont have air ticket";
-                                        }
+
                                         list_of_company_with_vacancies += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
                                                 "<div class='d-flex w-100 justify-content-between'>" +
                                                 "<h5 class='mb-1'>" + company_name + "</h5>" +
-                                                "<small>2 days"+ company_id +"</small>" +
+                                                "<small>2 days, " + company_id + "</small>" +
                                                 "</div>" +
                                                 "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' class='badge badge-success'>Add vacancy</span></a>" +
                                                 "<br/><br/>" +
@@ -150,12 +156,12 @@ and open the template in the editor.
 
 
                             }
-                                list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
-                                        "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
-                                        "<br/><a href=''><span class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
-                                        "<a href=''><span class='badge badge-danger'>Remove vacancy</span></a>" +
-                                        "</li>";
-                                $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
+                            list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
+                                    "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
+                                    "<br/><a href=''><span class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
+                                    "<a href=''><span class='badge badge-danger'>Remove vacancy</span></a>" +
+                                    "</li>";
+                            $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
 
 
                         }
