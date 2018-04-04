@@ -15,7 +15,7 @@ and open the template in the editor.
 
         <script>
             $(document).ready(function (e) {
-                var company_id_array = [999];
+                var company_id_array = ["x"];
                 setTimeout(function () {
                     refreshCompanies();
                 }, 1000);
@@ -92,7 +92,6 @@ and open the template in the editor.
 
                             // check if the company_id is in the array. If not inside, add it in.
                             for (var j = 0; j <= company_id_array.length; j++) {
-                                // alert(company_id + " " + j + " " + company_id_array[j] + " " + company_id_array.toString());
                                 if (company_id !== company_id_array[j]) {
 
                                     // If the array has checked the last index
@@ -121,7 +120,8 @@ and open the template in the editor.
                     success: function (response) {
 
                         for (var i = 0; i < response.length; i++) {
-                            var company_id = response[i].company_id;
+                            var company_id = response[i].company_id + "";
+
                             var company_name = response[i].company_name;
                             var internship_start_date = response[i].internship_start_date;
                             var internship_end_date = response[i].internship_end_date;
@@ -131,8 +131,6 @@ and open the template in the editor.
                             var accomodation_provided = response[i].accomdation_provided;
                             var air_ticket_provided = response[i].air_ticket_provided;
                             var country = response[i].country;
-
-                            // This is a list of company_ids. It should not appear more than once.
 
                             if (accomodation_provided == 1) {
                                 accomodation_provided = "Have accomodation";
@@ -145,7 +143,8 @@ and open the template in the editor.
                                 air_ticket_provided = "dont have air ticket";
                             }
 
-                            if (company_id_array.lastIndexOf(company_id)) {
+                            alert(company_id + " " +company_id_array[i]); //999, 1,2,5,3,6,4,4,1
+                            if (company_id === company_id_array[i]) {
                                 list_of_company_with_vacancies += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
                                         "<div class='d-flex w-100 justify-content-between'>" +
                                         "<h5 class='mb-1'>" + company_name + "</h5>" +
@@ -165,12 +164,10 @@ and open the template in the editor.
                                         "<br/>" +
                                         "<small>" + country + "</small>" +
                                         "</li>";
-                                alert(company_id_array.toString());
-
-                                var index = company_id_array.indexOf(company_id_array[i]);
-                                if (index !== -1)
-                                    company_id_array.splice(index, 1);
                             }
+
+
+
                         }
                         $("#list_of_companies_with_vacancies_big_placeholder").html(list_of_company_with_vacancies);
                     },
