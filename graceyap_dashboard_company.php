@@ -44,12 +44,12 @@ and open the template in the editor.
                         });
                     }
                 });
+
                 // When submitting the form in a modal
                 $("#form_modal_add_new_vacancy").submit(function (e) {
                     var no_of_vacancies = $("#no_of_vacancies").val();
                     alert(no_of_vacancies + " vacancies will be added");
                     for (var i = 0; i < no_of_vacancies; i++) {
-                        //doAjax();
                         $.ajax({
                             type: "POST",
                             url: "http://localhost/iprep/webservices/doAddVacancy.php",
@@ -67,6 +67,7 @@ and open the template in the editor.
                     }
                     e.preventDefault();
                 });
+
                 // When number of vacancies is changed in the input field
                 $("#no_of_vacancies").change(function () {
                     if ($("#no_of_vacancies").val() > 1) {
@@ -76,6 +77,7 @@ and open the template in the editor.
                     }
                 });
                 var list_of_company_with_vacancies = "";
+
                 // To show all companies with vacancies
                 $.ajax({
                     type: "GET",
@@ -85,18 +87,49 @@ and open the template in the editor.
                     success: function (response) {
 
                         for (var i = 0; i < response.length; i++) {
-
                             var company_id = response[i].company_id;
 
                             // check if the company_id is in the array. If not inside, add it in.
                             for (var j = 0; j <= company_id_array.length; j++) {
-                                alert(company_id + " " + j + " " + company_id_array[j] + " " + company_id_array.toString());
+                                // alert(company_id + " " + j + " " + company_id_array[j] + " " + company_id_array.toString());
                                 if (company_id !== company_id_array[j]) {
 
                                     // If the array has checked the last index
                                     if (j === company_id_array.length - 1) {
                                         company_id_array.push(company_id);
-                                        alert(company_id_array.toString());
+//                                        alert(company_id_array.toString());
+                                    }
+                                } else {
+                                    break;
+                                }
+                            }
+                        }
+                        $("#list_of_companies_with_vacancies_big_placeholder").html(list_of_company_with_vacancies);
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
+
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/iprep/webservices/getVacanciesv2.php",
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+
+                        for (var i = 0; i < response.length; i++) {
+                            var company_id = response[i].company_id;
+
+                            // check if the company_id is in the array. If not inside, add it in.
+                            for (var j = 0; j <= company_id_array.length; j++) {
+                                // alert(company_id + " " + j + " " + company_id_array[j] + " " + company_id_array.toString());
+                                if (company_id !== company_id_array[j]) {
+
+                                    // If the array has checked the last index
+                                    if (j === company_id_array.length - 1) {
+                                        company_id_array.push(company_id);
+//                                        alert(company_id_array.toString());
                                     }
                                 } else {
                                     break;
@@ -126,24 +159,32 @@ and open the template in the editor.
                                 air_ticket_provided = "dont have air ticket";
                             }
 
-                            list_of_company_with_vacancies += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
-                                    "<div class='d-flex w-100 justify-content-between'>" +
-                                    "<h5 class='mb-1'>" + company_name + "</h5>" +
-                                    "<small>2 days</small>" +
-                                    "</div>" +
-                                    "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' class='badge badge-success'>Add vacancy</span></a>" +
-                                    "<br/><br/>" +
-                                    "<ul id='list_of_companies_with_vacancies_small_placeholder' class='list-group'>" +
-                                    // Need another for loop to loop various vacancies here
-//                                    "<li class='list-group-item justify-content-between align-items-center'>" +
-//                                    "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
-//                                    "<br/><a href=''><span class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
-//                                    "<a href=''><span class='badge badge-danger'>Remove vacancy</span></a>" +
-//                                    "</li>" +
-                                    "</ul>" +
-                                    "<br/>" +
-                                    "<small>" + country + "</small>" +
-                                    "</li>";
+                            if (company_id_array.lastIndexOf(company_id)) {
+                                list_of_company_with_vacancies += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
+                                        "<div class='d-flex w-100 justify-content-between'>" +
+                                        "<h5 class='mb-1'>" + company_name + "</h5>" +
+                                        "<small>2 days</small>" +
+                                        "</div>" +
+                                        "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' class='badge badge-success'>Add vacancy</span></a>" +
+                                        "<br/><br/>" +
+                                        "<ul id='list_of_companies_with_vacancies_small_placeholder' class='list-group'>" +
+                                        // Need another for loop to loop various vacancies here
+
+                                        // "<li class='list-group-item justify-content-between align-items-center'>" +
+                                        // "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
+                                        // "<br/><a href=''><span class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
+                                        // "<a href=''><span class='badge badge-danger'>Remove vacancy</span></a>" +
+                                        // "</li>" +
+                                        "</ul>" +
+                                        "<br/>" +
+                                        "<small>" + country + "</small>" +
+                                        "</li>";
+                                alert(company_id_array.toString());
+
+                                var index = company_id_array.indexOf(company_id_array[i]);
+                                if (index !== -1)
+                                    company_id_array.splice(index, 1);
+                            }
                         }
                         $("#list_of_companies_with_vacancies_big_placeholder").html(list_of_company_with_vacancies);
                     },
@@ -202,9 +243,6 @@ and open the template in the editor.
                     }
                 });
             }
-
-
-
         </script>
     </head>
     <body>
