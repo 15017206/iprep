@@ -91,7 +91,8 @@ and open the template in the editor.
 
                         for (var i = 0; i < response.length; i++) {
                             var company_id = response[i].company_id;
-                            alert(company_id);
+
+                            //Related to vacancies, put response[i] here
                             var job_role = response[i].job_role;
                             var internship_start_date = response[i].internship_start_date;
                             var internship_end_date = response[i].internship_end_date;
@@ -121,16 +122,10 @@ and open the template in the editor.
                                     // If the array has checked the last index
                                     if (j === company_id_array.length - 1) {
                                         company_id_array.push(company_id);
-                                        // alert(company_id_array.toString());
 
-                                        var company_name = response[i].company_name;
-
-
-
-
-
+                                        // Related to companies, put response[i] here
+                                        var company_name = response[i].company_name
                                         var country = response[i].country;
-
 
                                         list_of_company_with_vacancies += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
                                                 "<div class='d-flex w-100 justify-content-between'>" +
@@ -147,14 +142,10 @@ and open the template in the editor.
                                                 "</li>";
 
                                         $("#list_of_companies_with_vacancies_big_placeholder").append(list_of_company_with_vacancies);
-
-
                                     }
                                 } else {
                                     break;
                                 }
-
-
                             }
                             list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
                                     "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
@@ -162,20 +153,12 @@ and open the template in the editor.
                                     "<a href=''><span class='badge badge-danger'>Remove vacancy</span></a>" +
                                     "</li>";
                             $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
-
-
                         }
-
-
-
                     },
                     error: function (obj, textStatus, errorThrown) {
                         console.log("Error " + textStatus + ": " + errorThrown);
                     }
                 });
-
-
-
             }); // end of document.ready
             //
             // When the "add vacancy" button is pressed
