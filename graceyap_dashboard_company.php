@@ -14,7 +14,7 @@ and open the template in the editor.
         ?>
 
         <script>
-
+            var vacancy_type = "";
             $(document).ready(function (e) {
 
                 setTimeout(function () {
@@ -47,29 +47,35 @@ and open the template in the editor.
                 });
 
                 // When submitting the form in a modal
-                $("#form_modal_add_new_vacancy").submit(function (e) {
-                    var no_of_vacancies = $("#no_of_vacancies").val();
-                    alert(no_of_vacancies + " vacancies will be added");
-                    for (var i = 0; i < no_of_vacancies; i++) {
-                        $.ajax({
-                            type: "POST",
-                            url: "http://localhost/iprep/webservices/doAddVacancy.php",
-                            data: $("#form_modal_add_new_vacancy").serialize(),
-                            cache: false,
-                            dataType: "JSON",
-                            success: function (data, textStatus) {
-                                alert(textStatus);
-                                //$('#form1')[0].reset();
-                            },
-                            error: function (obj, textStatus, errorThrown) {
-                                console.log("Error " + textStatus + ": " + errorThrown);
-                            }
-                        });
+                $("#form_modal_add_modify_vacancy").submit(function (e) {
+                    // If the person clicks on add vacancy            
+                    if (vacancy_type == "add") {
+                        var no_of_vacancies = $("#no_of_vacancies").val();
+                        alert(no_of_vacancies + " vacancies will be added");
+                        for (var i = 0; i < no_of_vacancies; i++) {
+                            $.ajax({
+                                type: "POST",
+                                url: "http://localhost/iprep/webservices/doAddVacancy.php",
+                                data: $("#form_modal_add_modify_vacancy").serialize(),
+                                cache: false,
+                                dataType: "JSON",
+                                success: function (data, textStatus) {
+                                    alert(textStatus);
+                                    //$('#form1')[0].reset();
+                                },
+                                error: function (obj, textStatus, errorThrown) {
+                                    console.log("Error " + textStatus + ": " + errorThrown);
+                                }
+                            });
+                        }
+                        // else if the person clicks on modify vacancy
+                    } else if (vacancy_type == "modify") {
+                        alert("modify vacancy");
                     }
                     e.preventDefault();
                 });
 
-                // When number of vacancies is changed in the input field
+                // When number of vacancies is changed in the input field - cosmetic
                 $("#no_of_vacancies").change(function () {
                     if ($("#no_of_vacancies").val() > 1) {
                         $("#small_notification").html($("#no_of_vacancies").val() + " exact vacancies will be written to database.");
@@ -149,8 +155,8 @@ and open the template in the editor.
                             }
                             list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
                                     "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
-                                    "<br/><a href=''><span class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
-                                    "<a href=''><span class='badge badge-danger'>Remove vacancy</span></a>" +
+                                    "<br/><a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='modifyVacancy(" + company_id + ")' class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
+                                    "<a href=''><span onclick='deleteVacancy(" + company_id + ")' class='badge badge-danger'>Remove vacancy</span></a>" +
                                     "</li>";
                             $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
                         }
@@ -163,6 +169,8 @@ and open the template in the editor.
             //
             // When the "add vacancy" button is pressed
             function addNewVacancy(company_id) {
+                $("#submit_add_vacancy").html("Add Vacancy");
+                vacancy_type = "add";
                 $("#company_id2").val(company_id);
                 $.ajax({
                     type: "GET",
@@ -179,6 +187,31 @@ and open the template in the editor.
                         console.log("Error " + textStatus + ": " + errorThrown);
                     }
                 });
+            }
+
+            function modifyVacancy(company_id) {
+                $("#submit_add_vacancy").html("Modify Vacancy");
+                vacancy_type = "modify";
+                $("#company_id2").val(company_id);
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/iprep/webservices/getCompanyById.php",
+                    data: "company_id=" + company_id,
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+                        for (var i = 0; i < response.length; i++) {
+                            $("#exampleModalLongTitle2").html("Modify Vacancy to " + response[i].company_name);
+                        }
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
+            }
+
+            function deleteVacancy(company_id) {
+
             }
 
             // This is a function to refresh all companies
@@ -383,11 +416,11 @@ and open the template in the editor.
             </div>
         </div>
 
-        <!--Modal for adding new vacancy to company-->
+        <!--Modal for adding/modifying new vacancy to company-->
         <div class="modal fade" id="modal_add_new_vacancy" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form id="form_modal_add_new_vacancy" action="" method="">
+                    <form id="form_modal_add_modify_vacancy" action="" method="">
                         <div class="modal-header">
                             <input id="company_id2" type="hidden" value="1" name="company_id">
                             <h5 class="modal-title" id="exampleModalLongTitle2">Modal title</h5>
@@ -456,15 +489,12 @@ and open the template in the editor.
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" id="submit_add_vacancy" class="btn btn-primary">Save changes</button>
+                            <button type="submit" id="submit_add_vacancy" value="" class="btn btn-primary">x</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
-        <!--Some unused code-->
-
 
     </body>
 </html>
