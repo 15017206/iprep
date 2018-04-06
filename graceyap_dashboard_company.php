@@ -20,6 +20,7 @@ and open the template in the editor.
                 setTimeout(function () {
                     refreshCompanies();
                 }, 1000);
+
                 // When submitted to add a company
                 $("#form_add_company").submit(function (e) {
                     if (!e.isDefaultPrevented()) {
@@ -47,6 +48,7 @@ and open the template in the editor.
                 });
 
                 // When submitting the form in a modal
+                // To modify & delete vacancies in a company
                 $("#form_modal_add_modify_vacancy").submit(function (e) {
                     // If the person clicks on add vacancy            
                     if (vacancy_type == "add") {
@@ -68,8 +70,8 @@ and open the template in the editor.
                                 }
                             });
                         }
-                        // else if the person clicks on modify vacancy
-                    } else if (vacancy_type == "modify") {
+                        refreshCompanies();
+                    } else if (vacancy_type == "modify") { // else if the person clicks on modify vacancy
                         alert("modify vacancy");
 
                         var vacancy_id = $("#vacancy_id2").val();
@@ -106,6 +108,7 @@ and open the template in the editor.
                                 console.log("Error " + textStatus + ": " + errorThrown);
                             }
                         });
+                        refreshCompanies();
                     }
                     e.preventDefault();
                 });
@@ -119,9 +122,8 @@ and open the template in the editor.
                     }
                 });
 
-
                 // To show all companies with vacancies
-                // To eliminate repeating companies with 2 or more vacancies
+                // Code is meant to prevent repeating companies with 2 or more vacancies
                 var company_id_array = ["x"];
                 $.ajax({
                     type: "GET",
@@ -201,8 +203,9 @@ and open the template in the editor.
                         console.log("Error " + textStatus + ": " + errorThrown);
                     }
                 });
+
             }); // end of document.ready
-            //
+
             // When the "add vacancy" button is pressed
             function addNewVacancy(company_id) {
                 $("#submit_add_vacancy").html("Add Vacancy");
@@ -337,23 +340,7 @@ and open the template in the editor.
             <div class="alert alert-warning" role="alert">
                 <p>Companies with Vacancies</p>
                 <ul class='list-group' id='list_of_companies_with_vacancies_big_placeholder'>
-                    <!--                    <li class='list-group-item list-group-item-action flex-column align-items-start'>
-                                            <div class='d-flex w-100 justify-content-between'>
-                                                <h5 class='mb-1'>Nagano Kosen</h5>
-                                                <small>2 days</small>
-                                            </div>
-                                            <a href=''><span class='badge badge-success'>Add vacancy</span></a>
-                                            <br/><br/>
-                                            <ul id='list_of_companies_with_vacancies_small_placeholder' class='list-group'>
-                                                <li class='list-group-item justify-content-between align-items-center'>
-                                                    <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
-                                                    <br/><a href=''><span class='badge badge-warning'>Modify</span></a>
-                                                    <a href=''><span class='badge badge-danger'>Remove</span></a>
-                                                </li>
-                                            </ul>
-                                            <br/>
-                                            <small>Tokuma, Nagano, Japan</small>
-                                        </li>-->
+
                 </ul>
             </div>
 
@@ -469,21 +456,7 @@ and open the template in the editor.
                             </div>
 
 
-                            <!--For vacancies. Unused-->
-                            <!--                            <div class="form-group">
-                                                            <label for="no_of_vacancies">Number of Vacancies</label>
-                                                            <input type="number" class="form-control" id="no_of_vacancies" placeholder="eg. 1,2,3 etc" onchange="vacanciesChange()">
-                                                        </div>
-                            
-                                                        <div class="form-check form-group">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                            <label class="form-check-label" for="defaultCheck1">All Applicants same data as Vacancy 1</label>
-                                                        </div>-->
 
-
-
-
-                            <!--<button type="submit" class="btn btn-primary">Submit</button>-->
                             <button type="submit" id="submit_add_company" class="btn btn-primary">Save changes</button>
 
                         </form>
@@ -743,3 +716,37 @@ and open the template in the editor.
         <small>IT Developer, 1 Jan 2011 to 5 Dec 2017, SGD 1200, accomodation provided, air ticket provided</small><br/>
     </a>
 </div>-->
+<!--=============================================-->
+<!--                    <li class='list-group-item list-group-item-action flex-column align-items-start'>
+                        <div class='d-flex w-100 justify-content-between'>
+                            <h5 class='mb-1'>Nagano Kosen</h5>
+                            <small>2 days</small>
+                        </div>
+                        <a href=''><span class='badge badge-success'>Add vacancy</span></a>
+                        <br/><br/>
+                        <ul id='list_of_companies_with_vacancies_small_placeholder' class='list-group'>
+                            <li class='list-group-item justify-content-between align-items-center'>
+                                <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                <br/><a href=''><span class='badge badge-warning'>Modify</span></a>
+                                <a href=''><span class='badge badge-danger'>Remove</span></a>
+                            </li>
+                        </ul>
+                        <br/>
+                        <small>Tokuma, Nagano, Japan</small>
+                    </li>-->
+
+<!--For vacancies. Unused-->
+<!--                            <div class="form-group">
+                                <label for="no_of_vacancies">Number of Vacancies</label>
+                                <input type="number" class="form-control" id="no_of_vacancies" placeholder="eg. 1,2,3 etc" onchange="vacanciesChange()">
+                            </div>
+
+                            <div class="form-check form-group">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">All Applicants same data as Vacancy 1</label>
+                            </div>-->
+
+
+
+
+<!--<button type="submit" class="btn btn-primary">Submit</button>-->
