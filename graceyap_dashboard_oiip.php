@@ -192,8 +192,8 @@ and open the template in the editor.
                                 <li class="list-group-item justify-content-between align-items-center">
                                     <div>Toh Kee Heng</div>
                                     <small>Hacker, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
-                                    <br/><a href=""><span class="badge badge-warning">Modify</span></a>
-                                    <a href=""><span class="badge badge-danger">Remove</span></a>
+                                    <br/><a href=""><span class="badge badge-warning">Change student</span></a>
+                                    <a href=""><span class="badge badge-danger">Remove student</span></a>
                                 </li>
                             </ul>
                             <br/>
