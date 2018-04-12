@@ -6,14 +6,21 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title></title>
         <?php
         include 'scripts.php';
         include 'navbar_staff.php';
         ?>
         <script src="scripts/courses_staffDashboard.js" type="text/javascript"></script>
-         
+        <script>
+            $(document).ready(function () {
+                $("#course_dropdown a").on('click', function () {
+                    alert($(this).text());
+                });
+            });
+        </script>
+
     </head>
     <body>
         <!--About courses-->
@@ -41,7 +48,7 @@ and open the template in the editor.
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Genres
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu" id="course_dropdown" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">Programming</a>
                                     <a class="dropdown-item" href="#">IT Security</a>
                                     <a class="dropdown-item" href="#">Computer Science</a>
@@ -55,7 +62,7 @@ and open the template in the editor.
                         </ul>
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" id="filterCourse" placeholder="Name or studentID" aria-label="Search">
-                             
+
                         </form>
                     </div>
                 </nav>
@@ -81,7 +88,7 @@ and open the template in the editor.
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Name of new course:</label>
-                                    <input type="text" class="form-control" id="" placeholder="eg. Introduction to IoT" name="name">
+                                    <input type="text" class="form-control" placeholder="eg. Introduction to IoT" name="name">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Course Genre:</label>
@@ -102,12 +109,12 @@ and open the template in the editor.
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">S$</span>
                                         </div>
-                                        <input type="number" class="form-control" id="" placeholder="Please put in SGD, eg. SGD$0.06" name="cost" step="0.01" min="0">
+                                        <input type="number" class="form-control" placeholder="Please put in SGD, eg. SGD$0.06" name="cost" step="0.01" min="0">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Course Provider:</label>
-                                    <input type="text" class="form-control" id="" placeholder="eg. Coursera, Codeacademy" name="provider">
+                                    <input type="text" class="form-control" placeholder="eg. Coursera, Codeacademy" name="provider">
                                 </div>
                             </div>
 

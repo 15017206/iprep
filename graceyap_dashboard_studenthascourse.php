@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title></title>
         <?php
         include 'scripts.php';
@@ -18,7 +18,6 @@ and open the template in the editor.
                     alert($(this).text());
                 })
             });
-
         </script>
     </head>
     <body>
