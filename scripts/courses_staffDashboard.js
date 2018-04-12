@@ -4,11 +4,60 @@
  * and open the template in the editor.
  */
 $(document).ready(function () {
-    refreshCourses(); 
+    refreshCourses();
+    
+    genre = "";
+    $("#course_dropdown a").on('click', function () {
+        selected = $(this).text();
+        if(selected != "All"){
+            $("#filterCourse").val("");
+            genre = selected;
+            var printCourseDetails = "";
+            $.ajax({
+               type: "GET",
+               url: "http://localhost/iprep/webservices/getCourseByGenre.php",
+               data: "genre="+genre,
+               cache: false,
+               dataType: "JSON",
+               success: function (response) { 
+                   if(response.length > 0){
+                       for (i = 0; i < response.length; i++) {
+                            printCourseDetails += "<a href='#' data-toggle='modal' data-target='#courses_only_modal_modify' data-target='#courses_modal' data-id='"+response[i].course_id +"' class='list-group-item list-group-item-action flex-column align-items-start'>"
+                                    + "<div class='d-flex w-100 justify-content-between'>"
+                                    + "<h5 class='mb-1'>" + response[i].name+ "</h5>"
+                                    + "<small>" + response[i].genre + "</small>"
+                                    + "</div>"
+                                    + " <div class='d-flex w-100'>"
+                                    + " <span class='badge badge-warning'>S$" + response[i].cost + "</span>"
+                                    + "<input type='hidden' value='" + response[i].course_id + "' id='course" + response[i].course_id + "'/>"
+                                    + " </div>"
+                                    + "  <small>" + response[i].course_provider + "</small>"
+                                    + " </a>";
+
+
+                        }
+
+                   } else {
+                       printCourseDetails += "<a class='list-group-item'>No courses found</a>";
+
+                   }
+                   $("#courseDetails").html(printCourseDetails);
+               },
+               error: function (obj, textStatus, errorThrown) {
+                   console.log("Error " + textStatus + ": " + errorThrown);
+               }
+           });
+            
+        } else {
+            $("#filterCourse").val("");
+            refreshCourses();
+        }
+        
+        
+    }); 
     
     $("#filterCourse").keyup(function() {
-        var course = $("#filterCourse").val();
-        var genre = "" //unable to fix getting value from bootstrap dropdown
+        var course = $("#filterCourse").val(); 
         var printCourseDetails = "";
         $.ajax({
            type: "GET",
@@ -35,7 +84,7 @@ $(document).ready(function () {
                     }
 
                } else {
-                   printCourseDetails += "<a class='list-group-item'>No such courses</a>";
+                   printCourseDetails += "<a class='list-group-item'>No courses found</a>";
 
                }
                $("#courseDetails").html(printCourseDetails);
@@ -169,23 +218,30 @@ $(document).ready(function () {
             url: "http://localhost/iprep/webservices/getCourses.php",
             cache: false,
             dataType: "JSON",
-            success: function (response) {
+            success: function (response) { 
+                if(response.length > 0){
+                   for (i = 0; i < response.length; i++) {
+                        printCourseDetails += "<a href='#' data-toggle='modal' data-target='#courses_only_modal_modify' data-target='#courses_modal' data-id='"+response[i].course_id +"' class='list-group-item list-group-item-action flex-column align-items-start'>"
+                                + "<div class='d-flex w-100 justify-content-between'>"
+                                + "<h5 class='mb-1'>" + response[i].name+ "</h5>"
+                                + "<small>" + response[i].genre + "</small>"
+                                + "</div>"
+                                + " <div class='d-flex w-100'>"
+                                + " <span class='badge badge-warning'>S$" + response[i].cost + "</span>"
+                                + "<input type='hidden' value='" + response[i].course_id + "' id='course" + response[i].course_id + "'/>"
+                                + " </div>"
+                                + "  <small>" + response[i].course_provider + "</small>"
+                                + " </a>";
 
-                for (i = 0; i < response.length; i++) {
-                    printCourseDetails += "<a href='#' data-toggle='modal' data-target='#courses_only_modal_modify' data-target='#courses_modal' data-id='"+response[i].course_id +"' class='list-group-item list-group-item-action flex-column align-items-start'>"
-                            + "<div class='d-flex w-100 justify-content-between'>"
-                            + "<h5 class='mb-1'>" + response[i].name+ "</h5>"
-                            + "<small>" + response[i].genre + "</small>"
-                            + "</div>"
-                            + " <div class='d-flex w-100'>"
-                            + " <span class='badge badge-warning'>S$" + response[i].cost + "</span>"
-                            + "<input type='hidden' value='" + response[i].course_id + "' id='course" + response[i].course_id + "'/>"
-                            + " </div>"
-                            + "  <small>" + response[i].course_provider + "</small>"
-                            + " </a>";
+                        
+                    }
 
-                    $("#courseDetails").html(printCourseDetails);
-                }
+               } else {
+                   printCourseDetails += "<a class='list-group-item'>No courses found</a>";
+
+               }
+               
+               $("#courseDetails").html(printCourseDetails);
 
             },
             error: function (obj, textStatus, errorThrown) {
