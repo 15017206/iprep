@@ -12,9 +12,9 @@ and open the template in the editor.
         include 'scripts.php';
         include 'navbar_staff.php';
         ?>
-        
+
         <script src="scripts/company_staffDashboard.js" type="text/javascript"></script>
- 
+
     </head>
     <body>
         <br/>
@@ -140,17 +140,11 @@ and open the template in the editor.
                             <div class="form-group">
                                 <label for="exampleInputEmail2">Company Name</label>
                                 <input type="text" class="form-control" id="company_name" name="company_name" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
-
                             </div>
-
                             <div class="form-group">
                                 <?php include 'allCountriesDropdown.html' ?>
                             </div>
-
-
-
                             <button type="submit" id="submit_add_company" class="btn btn-primary">Save changes</button>
-
                         </form>
                     </div> 
                 </div>

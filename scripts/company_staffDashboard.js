@@ -4,7 +4,7 @@ var vacancy_type = "";
 $(document).ready(function (e) {
     refreshCompanies();
     refreshVacancies();
-    
+
     // When submitted to add a company
     $("#form_add_company").submit(function (e) {
         if (!e.isDefaultPrevented()) {
@@ -174,6 +174,7 @@ $(document).ready(function (e) {
         }
     });
 }); // end of document.ready
+
 // When the "add vacancy" button is pressed
 function addNewVacancy(company_id) {
     $("#submit_add_vacancy").html("Add Vacancy");
@@ -196,6 +197,7 @@ function addNewVacancy(company_id) {
         }
     });
 }
+
 function modifyVacancy(vacancy_id) {
     $("#submit_add_vacancy").html("Modify Vacancy");
     vacancy_type = "modify";
@@ -235,6 +237,7 @@ function modifyVacancy(vacancy_id) {
         }
     });
 }
+
 function deleteVacancy(vacancy_id) {
     var confirmation = confirm("Sure to delete?");
     if (confirmation) {
@@ -254,6 +257,7 @@ function deleteVacancy(vacancy_id) {
         });
     }
 }
+
 // This is a function to refresh all companies
 function refreshCompanies() {
     var list_of_company_no_vacancies = "";
@@ -283,10 +287,7 @@ function refreshCompanies() {
     });
 }
 
-
-
-
-function refreshVacancies(){
+function refreshVacancies() {
     // To show all companies with vacancies
     // To eliminate repeating companies with 2 or more vacancies
     var company_id_array = ["x"];
