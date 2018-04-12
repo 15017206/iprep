@@ -12,6 +12,14 @@ and open the template in the editor.
         include 'scripts.php';
         include 'navbar_staff.php';
         ?>
+        <script>
+            $(document).ready(function () {
+                $("#genreDropdown a").on('click', function () {
+                    alert($(this).text());
+                })
+            });
+
+        </script>
     </head>
     <body>
         <div class="container">
@@ -27,29 +35,29 @@ and open the template in the editor.
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
 
-<!--                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Month
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">March</a>
-                                <a class="dropdown-item" href="#">October</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Year
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">2018</a>
-                            </div>
-                        </li>-->
+                        <!--                        <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Month
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                        <a class="dropdown-item" href="#">March</a>
+                                                        <a class="dropdown-item" href="#">October</a>
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Year
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                        <a class="dropdown-item" href="#">2018</a>
+                                                    </div>
+                                                </li>-->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Diploma
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">DBA</a>
+                            <div class="dropdown-menu" id="genreDropdown" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item"  href="#">DBA</a>
                                 <a class="dropdown-item" href="#">DBIS</a>
                                 <a class="dropdown-item" href="#">DIT</a>
                                 <a class="dropdown-item" href="#">DIDM</a>
