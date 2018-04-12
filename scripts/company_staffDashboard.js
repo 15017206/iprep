@@ -1,3 +1,5 @@
+//to be added into graceyap_dashboard_company.php
+
 var vacancy_type = "";
 $(document).ready(function (e) {
     refreshCompanies();
@@ -280,6 +282,7 @@ function refreshCompanies() {
         }
     });
 }
+
 
 
 
