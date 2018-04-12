@@ -32,8 +32,7 @@ and open the template in the editor.
                         data: "student_id=" + studentId,
                         cache: false,
                         dataType: "JSON",
-                        success: function (data, textStatus)
-                        {
+                        success: function (data, textStatus){
                             modal.find('#student_id').val(data[0].student_id);
                             modal.find('#name').val(data[0].name);
                             modal.find('#diploma').val(data[0].diploma);
@@ -48,12 +47,8 @@ and open the template in the editor.
                         error: function (obj, textStatus, errorThrown) {
                             console.log("Error " + textStatus + ": " + errorThrown);
                         }
-
                     });
-
-
                 });
-
 
                 $("#update_student").submit(function (e) {
                     var modal = $("#update_student");
@@ -79,8 +74,7 @@ and open the template in the editor.
                             data: data,
                             cache: false,
                             dataType: "JSON",
-                            success: function (data, textStatus)
-                            {
+                            success: function (data, textStatus){
 
                                 $('#update_student').modal('hide');
                                 console.log(data["result"]);
@@ -93,12 +87,8 @@ and open the template in the editor.
                             error: function (obj, textStatus, errorThrown) {
                                 console.log("Error " + textStatus + ": " + errorThrown);
                             }
-
                         });
-
                     }
-
-
                 });
 
                 // Create new student to DB
@@ -111,25 +101,20 @@ and open the template in the editor.
                             data: $("#add_student").serialize(),
                             cache: false,
                             dataType: "JSON",
-                            success: function (data, textStatus)
-                            {
-
+                            success: function (data, textStatus){
                                 $('#add_student')[0].reset();
                                 setTimeout(function () {
                                     refreshStudents();
                                 }, 1000);
                                 //$('#form1')[0].reset();
-
                             },
                             error: function (obj, textStatus, errorThrown) {
                                 console.log("Error " + textStatus + ": " + errorThrown);
                                 alert("fail");
                             }
-
                         });
                     }
                 });
-
 
                 $("#delete_student").on("show.bs.modal", function (e) {
                     var clicked = $(e.relatedTarget);
@@ -137,11 +122,7 @@ and open the template in the editor.
                     var studentId = clicked.data('id');
                     var modal = $(this);
                     modal.find("#hidden_id").val(studentId);
-
-
-
                 });
-
                 $("#delete_student").submit(function (e) {
                     var modal = $("#delete_student");
                     var studentId = modal.find("#hidden_id").val();
@@ -172,8 +153,6 @@ and open the template in the editor.
                     }
 
                 })
-                
-                
                 $("#filterCohort").keyup(function() {
                      var cohort = $("#filterCohort").val();
                      var output = "";
@@ -205,14 +184,7 @@ and open the template in the editor.
                     });
                 });
                  
-
-
-
-
-
             }); //End of document.ready
-
-
 
             function refreshStudents() {
                 // Read all students from DB
@@ -240,7 +212,6 @@ and open the template in the editor.
                 });
 
             }
-
 
         </script>
 
