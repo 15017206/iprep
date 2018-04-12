@@ -189,8 +189,7 @@ and open the template in the editor.
 
                                     output += "<li class='list-group-item'><small>" + response[i].name + "</small><br/>" +
                                              "<small>" + response[i].cohort + ", " + response[i].student_id + ", " + response[i].diploma + "</small><br/>" +
--                                            "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student'  class='badge badge-warning'>Update</a>"+
-+                                            "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student'  class='badge badge-warning'>Update</a>"+ "&nbsp;" +
+                                            "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student'  class='badge badge-warning'>Update</a>"+ "&nbsp;" +
                                              "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#delete_student'  class='badge badge-danger'>Delete</a></li>";
                                 }
                                 
