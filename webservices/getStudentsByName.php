@@ -18,7 +18,7 @@ if (isset($_GET['name'])) {
 
     mysqli_close($link);
 
-    echo json_encode($student);
+    echo json_encode($students);
 }
 
 ?>

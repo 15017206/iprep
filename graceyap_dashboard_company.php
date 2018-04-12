@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title></title>
         <?php
         include 'scripts.php';
@@ -19,7 +19,7 @@ and open the template in the editor.
     <body>
         <br/>
         <!--Button to add new company to OIIP-->
-        <form class="" method="" action="">
+        <form class="" method="post" action="">
 
             <div class="form-group">
                 <div class="container">
@@ -74,7 +74,7 @@ and open the template in the editor.
                                         <div class='input-group-prepend'>
                                             <span class='input-group-text'>Job Role:</span>
                                         </div>
-                                        <input type='text' class='form-control' id='jobrole' placeholder='eg. App Dev etc.' on>
+                                        <input type='text' class='form-control' id='jobrole' placeholder='eg. App Dev etc.'>
                                     </div>
                                 </div>
 
@@ -83,7 +83,7 @@ and open the template in the editor.
                                         <div class='input-group-prepend'>
                                             <span class='input-group-text'>Start Date:</span>
                                         </div>
-                                        <input type='date' class='form-control' id='startdate' placeholder='eg. App Dev etc.' on>
+                                        <input type='date' class='form-control' id='startdate' placeholder='eg. App Dev etc.'>
                                     </div>
                                 </div>
 
@@ -92,14 +92,14 @@ and open the template in the editor.
                                         <div class='input-group-prepend'>
                                             <span class='input-group-text'>End Date:</span>
                                         </div>
-                                        <input type='date' class='form-control' id='enddate' placeholder='eg. App Dev etc.' on>
+                                        <input type='date' class='form-control' id='enddate' placeholder='eg. App Dev etc.'>
                                     </div>
                                 </div>
 
                                 <div class='form-group'>
                                     <div class='input-group'>
                                         <div class='input-group-prepend'>
-                                            <span class='input-group-text' id=''>Currency & Amount</span>
+                                            <span class='input-group-text'>Currency & Amount</span>
                                         </div>
                                         <input type='text' id='currency' class='form-control' placeholder='eg. SGD/MYR etc'>
                                         <input type='number' id='amount' class='form-control' placeholder='eg. 45, 1200 etc'>
@@ -136,7 +136,7 @@ and open the template in the editor.
                         </button>
                     </div>
                     <div class="modal-body form">
-                        <form id="form_add_company" method="" action="">
+                        <form id="form_add_company" method="post" action="">
                             <div class="form-group">
                                 <label for="exampleInputEmail2">Company Name</label>
                                 <input type="text" class="form-control" id="company_name" name="company_name" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
@@ -161,7 +161,7 @@ and open the template in the editor.
         <div class="modal fade" id="modal_add_new_vacancy" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form id="form_modal_add_modify_vacancy" action="" method="">
+                    <form id="form_modal_add_modify_vacancy" action="" method="post">
                         <div class="modal-header">
                             <input id="company_id2" type="hidden" value="1" name="company_id">
                             <input id="vacancy_id2" type="hidden" value="1" name="vacancy_id">
@@ -187,7 +187,7 @@ and open the template in the editor.
                                         <div class='input-group-prepend'>
                                             <span class='input-group-text'>Job Role:</span> 
                                         </div> 
-                                        <input type='text' class='form-control' name="job_role" id='job_role' placeholder='eg. App Dev etc.' on> 
+                                        <input type='text' class='form-control' name="job_role" id='job_role' placeholder='eg. App Dev etc.'> 
                                     </div> 
                                 </div> 
                                 <div class='form-group'> 
@@ -195,7 +195,7 @@ and open the template in the editor.
                                         <div class='input-group-prepend'> 
                                             <span class='input-group-text'>Start Date:</span> 
                                         </div> 
-                                        <input type='date' class='form-control' name="internship_start_date" id='startdate2' placeholder='eg. App Dev etc.' on> 
+                                        <input type='date' class='form-control' name="internship_start_date" id='startdate2' placeholder='eg. App Dev etc.'> 
                                     </div> 
                                 </div> 
                                 <div class='form-group'> 
@@ -203,13 +203,13 @@ and open the template in the editor.
                                         <div class='input-group-prepend'>
                                             <span class='input-group-text'>End Date:</span> 
                                         </div> 
-                                        <input type='date' class='form-control' name="internship_end_date" id='enddate2' placeholder='eg. App Dev etc.' on> 
+                                        <input type='date' class='form-control' name="internship_end_date" id='enddate2' placeholder='eg. App Dev etc.'> 
                                     </div> 
                                 </div> 
                                 <div class='form-group'> 
                                     <div class='input-group'> 
                                         <div class='input-group-prepend'> 
-                                            <span class='input-group-text' id=''>Curr. & Amt:</span> 
+                                            <span class='input-group-text'>Curr. & Amt:</span> 
                                         </div> 
                                         <input type='text' id='currency2' name="allowance_currency" class='form-control' placeholder='eg. SGD/MYR'> 
                                         <input type='number' id='amount2' name="company_mthly_allowance" class='form-control' placeholder='eg. 45, 1200'> 
