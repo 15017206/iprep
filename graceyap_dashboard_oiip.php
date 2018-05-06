@@ -14,8 +14,6 @@
                 getUnassignedVacancies();
                 getAssignedVacancies();
                 getAllStudents();
-                //Some testing here - start
-                //Some testing here - end
 
             }); // end of document.ready
 
@@ -162,8 +160,8 @@
                                     "<small style='font-weight: bold; color: limegreen'>Assigned Vacancy</small><br/>" +
                                     "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + " " + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
                                     "<br/><small>Taken by " + student_name + ", " + student_diploma + ", " + gpa + ", " + tech_subj_score + ", " + mobile + ", " + cohort + "</small><br/>" +
-                                    "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='reassignStudent(" + vacancy_id + ")' class='badge badge-primary'>Reassign student</span></a>" + "&nbsp;" +
-                                    "<a href=''><span onclick='removeStudent(" + vacancy_id + ")' class='badge badge-secondary'>Remove student</span></a>" +
+                                    "<a href='#' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='assignStudent(" + vacancy_id + ")' class='badge badge-primary'>Reassign student</span></a>" + "&nbsp;" +
+                                    "<a href='#'><span onclick='removeStudent(" + vacancy_id + ")' class='badge badge-secondary'>Remove student</span></a>" +
                                     "</li>";
                             $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
                         }
@@ -183,11 +181,10 @@
                     success: function (response) {
                         for (var i = 0; i < response.length; i++) {
                             if (response[i].iprep_status == "valid") {
-                                list_of_students += "<a class='dropdown-item' href='#'>" + response[i].name + "</a>";
+                                list_of_students += "<a href='#' class='dropdown-item' onclick='submitStudentToVacancy(" + response[i].student_id + ")'>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + "</a>";
                             } else {
-                                list_of_students += "<a class='dropdown-item disabled'  href='#'>" + response[i].name + " (" + response[i].iprep_status + ")</a>";
+                                list_of_students += "<a href='#' class='dropdown-item disabled'>" + response[i].name + " (" + response[i].iprep_status + ")</a>";
                             }
-
                         }
                         $("#listOfStudents").append(list_of_students);
                     },
@@ -196,7 +193,15 @@
                     }
                 });
             }
+
+            // triggers when the modal is opened
             function assignStudent(vacancy_id) {
+                var accomodation_provided = "";
+                var air_ticket_provided = "";
+                $("#modal_vacancy_desc").empty();
+                $("#modal_vacancy_desc2").empty();
+                $("#modal_vacancy_desc3").empty();
+                $("#modal_vacancy_desc4").empty();
                 $.ajax({
                     type: "GET",
                     url: "http://localhost/iprep/webservices/getVacanciesAndCompaniesByVacancyId.php?vacancy_id=" + vacancy_id,
@@ -204,13 +209,29 @@
                     dataType: "JSON",
                     success: function (response) {
                         $("#exampleModalLongTitle").html("Assign student to a vacancy in " + response.company_name);
-                        $("#modal_vacancy_desc").text("This vacancy is: " + response.job_role + " in " + response.country + ", " + " allowance is " + response.allowance_currency + " " + response.company_mthly_allowance);
+                        $("#modal_vacancy_desc").text("This vacancy is: " + response.job_role + " in " + response.country + ", allowance is " + response.allowance_currency + " " + response.company_mthly_allowance);
                         $("#modal_vacancy_desc2").text("The duration is from " + response.internship_start_date + " to " + response.internship_end_date);
+                        if (response.accomodation_provided == 1) {
+                            accomodation_provided = "Have accomodation";
+                        } else {
+                            accomodation_provided = "Dont have accomodation";
+                        }
+                        if (air_ticket_provided == 1) {
+                            air_ticket_provided = "have air ticket";
+                        } else {
+                            air_ticket_provided = "dont have air ticket";
+                        }
+                        $("#modal_vacancy_desc3").text(accomodation_provided + ", " + air_ticket_provided);
                     },
                     error: function (obj, textStatus, errorThrown) {
                         console.log("Error " + textStatus + ": " + errorThrown);
                     }
                 });
+            }
+            function submitStudentToVacancy(student_id) {
+                $("#modal_vacancy_desc4").text("You have chosen " + student_id + ". Database updated.");
+            }
+            function removeStudent(){
             }
         </script>
     </head>
@@ -321,20 +342,20 @@
                     </div>
                     <div class="modal-body">
                         <form>
-                            <small id='modal_vacancy_desc'>XXX pr0n</small>
+                            <small id='modal_vacancy_desc'></small>
                             <br/>
                             <small id="modal_vacancy_desc2"></small>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Choose
-                                </button>
+                            <br/>
+                            <small id="modal_vacancy_desc3"></small>
+                            <div class="dropdown" id="student_dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose</button>
                                 <div class="dropdown-menu" id="listOfStudents" aria-labelledby="dropdownMenuButton">
                                 </div>
                             </div>
-
+                            <small id="modal_vacancy_desc4"></small>
                             <br/>
                             <!--<button type="submit" class="btn btn-primary">Submit</button>-->
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <!--<button type="submit" class="btn btn-primary">Save changes</button>-->
                         </form>
                     </div>
                 </div>
