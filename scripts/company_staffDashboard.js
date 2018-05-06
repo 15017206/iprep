@@ -45,7 +45,7 @@ $(document).ready(function (e) {
                     cache: false,
                     dataType: "JSON",
                     success: function (data, textStatus) {
-                        alert(textStatus);
+//                        alert(textStatus);
                         //$('#form1')[0].reset();
                     },
                     error: function (obj, textStatus, errorThrown) {
@@ -92,6 +92,7 @@ $(document).ready(function (e) {
             refreshVacancies();
         }
         e.preventDefault();
+        $("#modal_add_new_vacancy").modal('hide');
     });
     // When number of vacancies is changed in the input field - cosmetic
     $("#no_of_vacancies").change(function () {
@@ -171,6 +172,7 @@ function modifyVacancy(vacancy_id) {
 }
 
 function deleteVacancy(vacancy_id) {
+    
     var confirmation = confirm("Sure to delete?");
     if (confirmation) {
         $.ajax({
@@ -180,7 +182,7 @@ function deleteVacancy(vacancy_id) {
             cache: false,
             dataType: "JSON",
             success: function (data, textStatus) {
-                alert("Ok, deleted");
+//                alert("Ok, deleted");
             },
             error: function (obj, textStatus, errorThrown) {
                 console.log("Error " + textStatus + ": " + errorThrown);
