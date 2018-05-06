@@ -65,7 +65,7 @@
                                         list_of_company_with_vacancies += "<li id='companyID_" + company_id + "' class='list-group-item list-group-item-action flex-column align-items-start'>" +
                                                 "<div class='d-flex w-100 justify-content-between'>" +
                                                 "<h5 class='mb-1'>" + company_name + "</h5>" +
-                                                "<small>Company ID: , " + company_id + "</small>" +
+                                                "<small>Company ID: " + company_id + "</small>" +
                                                 "</div>" +
                                                 "<ul id='list_of_companies_with_vacancies_small_placeholder" + company_id + "' class='list-group'>" +
                                                 // Need another for loop to loop various vacancies here

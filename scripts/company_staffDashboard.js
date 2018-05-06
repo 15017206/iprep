@@ -278,7 +278,7 @@ function refreshVacancies() {
                             list_of_company_with_vacancies += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
                                     "<div class='d-flex w-100 justify-content-between'>" +
                                     "<h5 class='mb-1'>" + company_name + "</h5>" +
-                                    "<small>company ID: , " + company_id + "</small>" +
+                                    "<small>company ID: " + company_id + "</small>" +
                                     "</div>" +
                                     "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' class='badge badge-success'>Add vacancy</span></a>" +
                                     "<br/><br/>" +
