@@ -2,7 +2,7 @@
 
 include 'dbconn.php';
 
-$query = "SELECT * FROM student";
+$query = "SELECT * FROM student WHERE `student`.student_id NOT IN (SELECT `student_id` FROM `student_oiip_assignment`)";
 
 $result = mysqli_query($link, $query) or die('Error querying database');
 

@@ -14,7 +14,7 @@ session_start();
         <title></title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light navbar-fixed-top">
 
             <a class="navbar-brand" href="#">Welcome, Grace Yap</a>
 
