@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,7 +8,17 @@ and open the template in the editor.
         include 'navbar_staff.php';
         ?>
         <script>
+            list_of_vacancies2 = "";
             $(document).ready(function () {
+                getUnallocatedVacancies();
+                getAllocatedVacancies();
+                //Some testing here - start
+                //Some testing here - end
+
+
+            }); // end of document.ready
+
+            function getUnallocatedVacancies() {
                 var company_id_array = ["x"];
                 $.ajax({
                     type: "GET",
@@ -44,6 +49,7 @@ and open the template in the editor.
                             } else {
                                 air_ticket_provided = "dont have air ticket";
                             }
+
                             // check if the company_id is in the array. If not inside, add it in.
                             for (var j = 0; j <= company_id_array.length; j++) {
                                 var list_of_company_with_vacancies = "";
@@ -55,10 +61,10 @@ and open the template in the editor.
                                         // Related to companies, put response[i] here
                                         var company_name = response[i].company_name
                                         var country = response[i].country;
-                                        list_of_company_with_vacancies += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
+                                        list_of_company_with_vacancies += "<li id='companyID_" + company_id + "' class='list-group-item list-group-item-action flex-column align-items-start'>" +
                                                 "<div class='d-flex w-100 justify-content-between'>" +
                                                 "<h5 class='mb-1'>" + company_name + "</h5>" +
-                                                "<small>2 days, " + company_id + "</small>" +
+                                                "<small>Company ID: , " + company_id + "</small>" +
                                                 "</div>" +
                                                 "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' class='badge badge-success'>Add vacancy</span></a>" +
                                                 "<br/><br/>" +
@@ -86,7 +92,8 @@ and open the template in the editor.
                         console.log("Error " + textStatus + ": " + errorThrown);
                     }
                 });
-
+            }
+            function getAllocatedVacancies() {
                 var company_id_array = ["y"];
                 $.ajax({
                     type: "GET",
@@ -117,49 +124,23 @@ and open the template in the editor.
                             } else {
                                 air_ticket_provided = "dont have air ticket";
                             }
-                            // check if the company_id is in the array. If not inside, add it in.
-//                            for (var j = 0; j <= company_id_array.length; j++) {
-//                                var list_of_company_with_vacancies = "";
-//                                var list_of_vacancies = "";
-//                                if (company_id !== company_id_array[j]) {
-//                                    // If the array has checked the last index
-//                                    if (j === company_id_array.length - 1) {
-//                                        company_id_array.push(company_id);
-//                                        // Related to companies, put response[i] here
-//                                        var company_name = response[i].company_name
-//                                        var country = response[i].country;
-//                                        list_of_company_with_vacancies += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
-//                                                "<div class='d-flex w-100 justify-content-between'>" +
-//                                                "<h5 class='mb-1'>" + company_name + "</h5>" +
-//                                                "<small>2 days, " + company_id + "</small>" +
-//                                                "</div>" +
-//                                                "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' class='badge badge-success'>Add vacancy</span></a>" +
-//                                                "<br/><br/>" +
-//                                                "<ul id='list_of_companies_with_vacancies_small_placeholder" + company_id + "' class='list-group'>" +
-//                                                // Need another for loop to loop various vacancies here
-//                                                "</ul>" +
-//                                                "<br/>" +
-//                                                "<small>" + country + "</small>" +
-//                                                "</li>";
-//                                        // $("#container_vacancies_students").append(list_of_company_with_vacancies);
-//                                    }
-//                                } else {
-//                                    break;
-//                                }
-//                            }
+                            var student_name = response[i].name;
+                            
+
+                            var list_of_vacancies = "";
                             list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
-                                    "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
-                                    "<br/><a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='modifyVacancy(" + vacancy_id + ")' class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
-                                    "<a href=''><span onclick='deleteVacancy(" + vacancy_id + ")' class='badge badge-danger'>Remove vacancy</span></a>" +
+                                    "<small>" + job_role + student_name + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
+                                    "<br/><a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='modifyVacancy(" + vacancy_id + ")' class='badge badge-primary'>Reassign student</span></a>" + "&nbsp;" +
+                                    "<a href=''><span onclick='deleteVacancy(" + vacancy_id + ")' class='badge badge-secondary'>Remove student</span></a>" +
                                     "</li>";
-                             $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
+                            $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
                         }
                     },
                     error: function (obj, textStatus, errorThrown) {
                         console.log("Error " + textStatus + ": " + errorThrown);
                     }
                 });
-            }); // end of document.ready
+            }
         </script>
     </head>
     <body>
@@ -251,29 +232,7 @@ and open the template in the editor.
                     <!--end of filter navbar-->
                     <br/>
                     <ul class="list-group" id="container_vacancies_students">
-                        <!--                        <li class="list-group-item list-group-item-action flex-column align-items-start">
-                                                    <div class="d-flex w-100 justify-content-between">
-                                                        <h5 class="mb-1">ABC Pte Ltd</h5>
-                                                        <small>2 days</small>
-                                                    </div>
-                                                    <br/>
-                                                    <ul class="list-group" id="container2">
-                                                        <li class="list-group-item justify-content-between align-items-center">
-                                                            <div>Vacant</div>
-                                                            <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
-                                                            <br/><a href=""><span class="badge badge-success">Allocate Student</span></a>
-                        
-                                                        </li>
-                                                        <li class="list-group-item justify-content-between align-items-center">
-                                                            <div>Toh Kee Heng</div>
-                                                            <small>Hacker, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
-                                                            <br/><a href=""><span class="badge badge-warning">Change student</span></a>
-                                                            <a href=""><span class="badge badge-danger">Remove student</span></a>
-                                                        </li>
-                                                    </ul>
-                                                    <br/>
-                                                    <small>Tokuma, Nagano, Japan</small>
-                                                </li>-->
+
                     </ul>
                 </div>
             </div>
@@ -345,3 +304,57 @@ and open the template in the editor.
         </div>
     </body>
 </html>
+<!--                        <li class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">ABC Pte Ltd</h5>
+                                <small>2 days</small>
+                            </div>
+                            <br/>
+                            <ul class="list-group" id="container2">
+                                <li class="list-group-item justify-content-between align-items-center">
+                                    <div>Vacant</div>
+                                    <small>IT Developer, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                    <br/><a href=""><span class="badge badge-success">Allocate Student</span></a>
+
+                                </li>
+                                <li class="list-group-item justify-content-between align-items-center">
+                                    <div>Toh Kee Heng</div>
+                                    <small>Hacker, 1 Jan 2017 to 31 Dec 2016, SGD 1200, accomodation provided, air ticket provided</small>
+                                    <br/><a href=""><span class="badge badge-warning">Change student</span></a>
+                                    <a href=""><span class="badge badge-danger">Remove student</span></a>
+                                </li>
+                            </ul>
+                            <br/>
+                            <small>Tokuma, Nagano, Japan</small>
+                        </li>-->
+
+<!--                            // check if the company_id is in the array. If not inside, add it in.
+//                            for (var j = 0; j <= company_id_array.length; j++) {
+//                                var list_of_company_with_vacancies = "";
+//                                var list_of_vacancies = "";
+//                                if (company_id !== company_id_array[j]) {
+//                                    // If the array has checked the last index
+//                                    if (j === company_id_array.length - 1) {
+//                                        company_id_array.push(company_id);
+//                                        // Related to companies, put response[i] here
+//                                        var company_name = response[i].company_name
+//                                        var country = response[i].country;
+//                                        list_of_company_with_vacancies += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
+//                                                "<div class='d-flex w-100 justify-content-between'>" +
+//                                                "<h5 class='mb-1'>" + company_name + "</h5>" +
+//                                                "<small>2 days, " + company_id + "</small>" +
+//                                                "</div>" +
+//                                                "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' class='badge badge-success'>Add vacancy</span></a>" +
+//                                                "<br/><br/>" +
+//                                                "<ul id='list_of_companies_with_vacancies_small_placeholder" + company_id + "' class='list-group'>" +
+//                                                // Need another for loop to loop various vacancies here
+//                                                "</ul>" +
+//                                                "<br/>" +
+//                                                "<small>" + country + "</small>" +
+//                                                "</li>";
+//                                        // $("#container_vacancies_students").append(list_of_company_with_vacancies);
+//                                    }
+//                                } else {
+//                                    break;
+//                                }
+//                            }-->
