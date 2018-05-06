@@ -16,11 +16,10 @@
                 //Some testing here - start
                 //Some testing here - end
 
-
             }); // end of document.ready
 
             function getUnallocatedVacancies() {
-                
+
                 $.ajax({
                     type: "GET",
                     url: "http://localhost/iprep/webservices/getUnallocatedVacancies.php",
@@ -79,8 +78,8 @@
                                 }
                             }
                             list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
-                                    "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + " " +company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
-                                    "<br/><a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='modifyVacancy(" + vacancy_id + ")' class='badge badge-info'>Assign student</span></a>" + "&nbsp;" +
+                                    "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + " " + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
+                                    "<br/><a href='' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='assignStudent(" + vacancy_id + ")' class='badge badge-info'>Assign student</span></a>" + "&nbsp;" +
                                     "</li>";
                             $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
                         }
@@ -158,10 +157,10 @@
 
                             var list_of_vacancies = "";
                             list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
-                                    "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency +" "+ company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
-                                    "<br/><small>Taken by "+ student_name + ", " + student_diploma + ", " + gpa +", " +  tech_subj_score +", " +  mobile +", " +  cohort + "</small><br/>"+
-                                    "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='modifyVacancy(" + vacancy_id + ")' class='badge badge-primary'>Reassign student</span></a>" + "&nbsp;" +
-                                    "<a href=''><span onclick='deleteVacancy(" + vacancy_id + ")' class='badge badge-secondary'>Remove student</span></a>" +
+                                    "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + " " + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
+                                    "<br/><small>Taken by " + student_name + ", " + student_diploma + ", " + gpa + ", " + tech_subj_score + ", " + mobile + ", " + cohort + "</small><br/>" +
+                                    "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='reassignStudent(" + vacancy_id + ")' class='badge badge-primary'>Reassign student</span></a>" + "&nbsp;" +
+                                    "<a href=''><span onclick='removeStudent(" + vacancy_id + ")' class='badge badge-secondary'>Remove student</span></a>" +
                                     "</li>";
                             $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
                         }
@@ -267,27 +266,30 @@
                 </div>
             </div>
         </div>
-        <!--Modal for assigning student to Companies-->
-        <div class="modal fade" id="assigning_student_to_companies" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+        <!--Modal for assigning student to Vacancies-->
+        <div class="modal fade" id="modal_assign_student_vacancy" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Student with Courses</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Assign Student</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Company Name</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Choose student
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Country</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="eg. Zimbabwe, Syria etc">
-                            </div>
+                            <br/>
                             <!--<button type="submit" class="btn btn-primary">Submit</button>-->
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </form>
@@ -296,42 +298,6 @@
             </div>
         </div>
 
-        <!--Modal for editing or deleting students already assigned to Companies-->
-        <div class="modal fade" id="edit_delete_student_to_companies" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Student with Courses</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Select Company</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail2">Number of Vacancies</label>
-                                <input type="number" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="eg. NEC Ltd">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword2">Country</label>
-                                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="eg. Zimbabwe, Syria etc">
-                            </div>
-                            <!--<button type="submit" class="btn btn-primary">Submit</button>-->
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     </body>
 </html>
 <!--                        <li class="list-group-item list-group-item-action flex-column align-items-start">
