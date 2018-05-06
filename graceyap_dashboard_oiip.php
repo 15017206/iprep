@@ -67,12 +67,9 @@
                                                 "<h5 class='mb-1'>" + company_name + "</h5>" +
                                                 "<small>Company ID: , " + company_id + "</small>" +
                                                 "</div>" +
-                                                "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' class='badge badge-success'>Add vacancy</span></a>" +
-                                                "<br/><br/>" +
                                                 "<ul id='list_of_companies_with_vacancies_small_placeholder" + company_id + "' class='list-group'>" +
                                                 // Need another for loop to loop various vacancies here
                                                 "</ul>" +
-                                                "<br/>" +
                                                 "<small>" + country + "</small>" +
                                                 "</li>";
                                         $("#container_vacancies_students").append(list_of_company_with_vacancies);
@@ -82,9 +79,8 @@
                                 }
                             }
                             list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
-                                    "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
-                                    "<br/><a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='modifyVacancy(" + vacancy_id + ")' class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
-                                    "<a href=''><span onclick='deleteVacancy(" + vacancy_id + ")' class='badge badge-danger'>Remove vacancy</span></a>" +
+                                    "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + " " +company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
+                                    "<br/><a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='modifyVacancy(" + vacancy_id + ")' class='badge badge-info'>Assign student</span></a>" + "&nbsp;" +
                                     "</li>";
                             $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
                         }
@@ -126,6 +122,11 @@
                                 air_ticket_provided = "dont have air ticket";
                             }
                             var student_name = response[i].name;
+                            var student_diploma = response[i].diploma;
+                            var gpa = response[i].gpa;
+                            var tech_subj_score = response[i].tech_subj_score;
+                            var mobile = response[i].mobile;
+                            var cohort = response[i].cohort;
 
                             // check if the company_id is in the array. If not inside, add it in.
                             for (var j = 0; j <= company_id_array.length; j++) {
@@ -143,12 +144,9 @@
                                                 "<h5 class='mb-1'>" + company_name + "</h5>" +
                                                 "<small>Company ID: , " + company_id + "</small>" +
                                                 "</div>" +
-                                                "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' class='badge badge-success'>Add vacancy</span></a>" +
-                                                "<br/><br/>" +
                                                 "<ul id='list_of_companies_with_vacancies_small_placeholder" + company_id + "' class='list-group'>" +
                                                 // Need another for loop to loop various vacancies here
                                                 "</ul>" +
-                                                "<br/>" +
                                                 "<small>" + country + "</small>" +
                                                 "</li>";
                                         $("#container_vacancies_students").append(list_of_company_with_vacancies);
@@ -160,8 +158,9 @@
 
                             var list_of_vacancies = "";
                             list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
-                                    "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
-                                    "<br/><small>Taken by "+ student_name +"</small><br/><a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='modifyVacancy(" + vacancy_id + ")' class='badge badge-primary'>Reassign student</span></a>" + "&nbsp;" +
+                                    "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency +" "+ company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
+                                    "<br/><small>Taken by "+ student_name + ", " + student_diploma + ", " + gpa +", " +  tech_subj_score +", " +  mobile +", " +  cohort + "</small><br/>"+
+                                    "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='modifyVacancy(" + vacancy_id + ")' class='badge badge-primary'>Reassign student</span></a>" + "&nbsp;" +
                                     "<a href=''><span onclick='deleteVacancy(" + vacancy_id + ")' class='badge badge-secondary'>Remove student</span></a>" +
                                     "</li>";
                             $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);

@@ -285,7 +285,6 @@ function refreshVacancies() {
                                     "<ul id='list_of_companies_with_vacancies_small_placeholder" + company_id + "' class='list-group'>" +
                                     // Need another for loop to loop various vacancies here
                                     "</ul>" +
-                                    "<br/>" +
                                     "<small>" + country + "</small>" +
                                     "</li>";
 
@@ -296,7 +295,7 @@ function refreshVacancies() {
                     }
                 }
                 list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
-                        "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
+                        "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency +" " +company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
                         "<br/><a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='modifyVacancy(" + vacancy_id + ")' class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
                         "<a href=''><span onclick='deleteVacancy(" + vacancy_id + ")' class='badge badge-danger'>Remove vacancy</span></a>" +
                         "</li>";
