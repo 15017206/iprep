@@ -231,7 +231,7 @@
             function submitStudentToVacancy(student_id) {
                 $("#modal_vacancy_desc4").text("You have chosen " + student_id + ". Database updated.");
             }
-            function removeStudent(){
+            function removeStudent() {
             }
         </script>
     </head>
@@ -352,6 +352,14 @@
                                 <div class="dropdown-menu" id="listOfStudents" aria-labelledby="dropdownMenuButton">
                                 </div>
                             </div>
+
+                            <div class='form-group'>
+                                <label for='exampleFormControlSelect1'>Example select</label>
+                                <select class='form-control' id='exampleFormControlSelect1'>
+                                    <option>1</option>
+                                </select>
+                            </div>
+
                             <small id="modal_vacancy_desc4"></small>
                             <br/>
                             <!--<button type="submit" class="btn btn-primary">Submit</button>-->
