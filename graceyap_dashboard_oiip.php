@@ -235,6 +235,9 @@
             function submitStudentToVacancy(student_id) {
                 $("#modal_vacancy_desc4").text("You have chosen " + student_id + ". Database updated.");
             }
+            function editStudentDetails(student_id) {
+                
+            }
             function removeStudent() {
             }
         </script>
