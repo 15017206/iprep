@@ -3,14 +3,12 @@
 include 'dbconn.php';
 
 if (isset($_POST)) { 
-    $oiip_id = $_POST['oiip_assignment_id'];
-    $student_id = $_POST['student_id'];
     $vacancy_id = $_POST['vacancy_id'];
     $fundStatus = $_POST['funding_status'];
     $jobStatus = $_POST['job_status'];
+    $fundingSource = $_POST['funding_source'];
     
-    $query = "UPDATE `student_oiip_assignment` SET `student_id`='$student_id',`vacancy_id`='$vacancy_id', `funding_status`='$fundStatus',"
-            . "`job_status`='$jobStatus' WHERE `oiip_assignment_id='$oiip_id'";
+    $query = "UPDATE `student_oiip_assignment` SET `funding_status`='$fundStatus', `job_status`='$jobStatus', `funding_source`='$fundingSource' WHERE `vacancy_id`='$vacancy_id' ";
     
     $result = mysqli_query($link, $query);
     

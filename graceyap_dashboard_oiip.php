@@ -18,22 +18,49 @@
                 $("#form_modal").submit(function () {
                     if (crud_status == "assign") {
                         alert("assign");
-                    } else if (crud_status == "update") {
-                        alert("update");
+
+                        var student_id = $("#exampleFormControlSelect1").val();
+                        var vacancy_id = $("#vacancy_id").val();
+                        var funding_status = $("#exampleFormControlSelect2").val();
+                        var job_status = $("#exampleFormControlSelect3").val();
+                        var funding_source = $("#exampleFormControlSelect4").val();
 
                         $.ajax({
                             type: "POST",
-                            url: "http://localhost/iprep/webservices/editVacancy.php",
-                            data: {student_id: student_id},
+                            url: "http://localhost/iprep/webservices/doAssignOIIP.php",
+                            data: {student_id: student_id, vacancy_id: vacancy_id, funding_status: funding_status, job_status: job_status, funding_source: funding_source},
                             cache: false,
                             dataType: "JSON",
                             success: function (response) {
-                                alert("success");
+                                alert(response.result);
                             },
                             error: function (obj, textStatus, errorThrown) {
                                 console.log("Error " + textStatus + ": " + errorThrown);
                             }
                         });
+                        location.reload();
+                    } else if (crud_status == "update") {
+                        alert("update");
+
+                        var vacancy_id = $("#vacancy_id").val();
+                        var funding_status = $("#exampleFormControlSelect2").val();
+                        var job_status = $("#exampleFormControlSelect3").val();
+                        var funding_source = $("#exampleFormControlSelect4").val();
+
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/iprep/webservices/editOIIPAssignment.php",
+                            data: {vacancy_id: vacancy_id, funding_status: funding_status, job_status: job_status, funding_source: funding_source},
+                            cache: false,
+                            dataType: "JSON",
+                            success: function (response) {
+                                alert(response.result);
+                            },
+                            error: function (obj, textStatus, errorThrown) {
+                                console.log("Error " + textStatus + ": " + errorThrown);
+                            }
+                        });
+                        location.reload();
                     }
                 })
 
@@ -148,6 +175,10 @@
                             var tech_subj_score = response[i].tech_subj_score;
                             var mobile = response[i].mobile;
                             var cohort = response[i].cohort;
+                            
+                            var funding_status = response[i].funding_status;
+                            var job_status = response[i].job_status;
+                            var funding_source = response[i].funding_source;
 
                             // check if the company_id is in the array. If not inside, add it in.
                             for (var j = 0; j <= company_id_array.length; j++) {
@@ -182,6 +213,7 @@
                                     "<small style='font-weight: bold; color: limegreen'>Assigned Vacancy</small><br/>" +
                                     "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + " " + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
                                     "<br/><small>Taken by " + student_name + ", " + student_diploma + ", " + gpa + ", " + tech_subj_score + ", " + mobile + ", " + cohort + "</small><br/>" +
+                                    "<small>Funding status: " + funding_status + ", Job status: " + job_status + " Funding source: " + funding_source + "</small><br/>" +
                                     "<a href='#' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='getVacancyAndCompanyRecordsAssign(" + vacancy_id + ")' class='badge badge-primary'>Reassign student to vacancy</span></a>" + "&nbsp;" +
                                     "<a href='#' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='getOIIPAssignment(" + vacancy_id + "\, " + student_id + ")' class='badge badge-warning'>Update student assignment details</span></a>" + "&nbsp;" +
                                     "<a href='#'><span onclick='removeStudent(" + vacancy_id + ")' class='badge badge-secondary'>Remove student from vacancy</span></a>" +
@@ -352,10 +384,23 @@
                     }
                 });
             }
-            function removeStudent() {
+            function removeStudent(vacancy_id) {
                 if (confirm("Delete?")) {
-                    alert("ok, deleted");
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost/iprep/webservices/deleteOIIPAssignment.php",
+                        data: {vacancy_id: vacancy_id},
+                        cache: false,
+                        dataType: "JSON",
+                        success: function (response) {
+                            alert(response.result);
+                        },
+                        error: function (obj, textStatus, errorThrown) {
+                            console.log("Error " + textStatus + ": " + errorThrown);
+                        }
+                    });
                 }
+                location.reload();
             }
 
             function clearModal() {
@@ -495,12 +540,12 @@
                                 <label for='exampleFormControlSelect2'>Funding status:</label>
                                 <select class='form-control' id='exampleFormControlSelect2'>
                                     <option value=""></option>
-                                    <option value="applied">Applied</option>
-                                    <option value="approved">Approved</option>
-                                    <option value="rejected">Rejected</option>
-                                    <option value="claim requested">Claim requested</option>
-                                    <option value="claim paid">Claim paid</option>
-                                    <option value="claim reimbursed">Claim reimbursed</option>
+                                    <option value="Applied">Applied</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="Rejected">Rejected</option>
+                                    <option value="Claim requested">Claim requested</option>
+                                    <option value="Claim paid">Claim paid</option>
+                                    <option value="Claim reimbursed">Claim reimbursed</option>
                                 </select>
                             </div>
 
@@ -508,11 +553,11 @@
                                 <label for='exampleFormControlSelect3'>Job status:</label>
                                 <select class='form-control' id='exampleFormControlSelect3'>
                                     <option value=""></option>
-                                    <option value="new">New</option>
-                                    <option value="apply">Apply</option>
-                                    <option value="interview">Interview</option>
-                                    <option value="accepted">Accepted</option>
-                                    <option value="rejected">Rejected</option>
+                                    <option value="New">New</option>
+                                    <option value="Apply">Apply</option>
+                                    <option value="Interview">Interview</option>
+                                    <option value="Accepted">Accepted</option>
+                                    <option value="Rejected">Rejected</option>
 
                                 </select>
                             </div>
@@ -521,9 +566,9 @@
                                 <label for='exampleFormControlSelect4'>Funding source:</label>
                                 <select class='form-control' id='exampleFormControlSelect4'>
                                     <option></option>
-                                    <option value="ytp">YTP</option>
-                                    <option value="iprep">iPrep</option>
-                                    <option value="self">Self</option>
+                                    <option value="YTP">YTP</option>
+                                    <option value="iPrep">iPrep</option>
+                                    <option value="Self">Self</option>
                                 </select>
                             </div>
 
