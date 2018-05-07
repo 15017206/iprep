@@ -79,7 +79,7 @@
                             list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
                                     "<small style='font-weight: bold; color: red'>Unassigned Vacancy</small><br/>" +
                                     "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + " " + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
-                                    "<br/><a href='' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='assignStudent(" + vacancy_id + ")' class='badge badge-info'>Assign student</span></a>" + "&nbsp;" +
+                                    "<br/><a href='' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='assignStudent(" + vacancy_id + ")' class='badge badge-info'>Assign student to vacancy</span></a>" + "&nbsp;" +
                                     "</li>";
                             $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
                         }
@@ -160,8 +160,9 @@
                                     "<small style='font-weight: bold; color: limegreen'>Assigned Vacancy</small><br/>" +
                                     "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + " " + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
                                     "<br/><small>Taken by " + student_name + ", " + student_diploma + ", " + gpa + ", " + tech_subj_score + ", " + mobile + ", " + cohort + "</small><br/>" +
-                                    "<a href='#' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='assignStudent(" + vacancy_id + ")' class='badge badge-primary'>Reassign student</span></a>" + "&nbsp;" +
-                                    "<a href='#'><span onclick='removeStudent(" + vacancy_id + ")' class='badge badge-secondary'>Remove student</span></a>" +
+                                    "<a href='#' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='assignStudent(" + vacancy_id + ")' class='badge badge-primary'>Reassign student to vacancy</span></a>" + "&nbsp;" +
+                                    "<a href='#' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='assignStudent(" + vacancy_id + ")' class='badge badge-warning'>Update student assignment details</span></a>" + "&nbsp;" +
+                                    "<a href='#'><span onclick='removeStudent(" + vacancy_id + ")' class='badge badge-secondary'>Remove student from vacancy</span></a>" +
                                     "</li>";
                             $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
                         }
@@ -181,12 +182,14 @@
                     success: function (response) {
                         for (var i = 0; i < response.length; i++) {
                             if (response[i].iprep_status == "valid") {
+                                list_of_students += "<option>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + "</option>";
                                 list_of_students += "<a href='#' class='dropdown-item' onclick='submitStudentToVacancy(" + response[i].student_id + ")'>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + "</a>";
                             } else {
-                                list_of_students += "<a href='#' class='dropdown-item disabled'>" + response[i].name + " (" + response[i].iprep_status + ")</a>";
+//                                list_of_students += "<a href='#' class='dropdown-item disabled'>" + response[i].name + " (" + response[i].iprep_status + ")</a>";
+                                list_of_students += "<option disabled>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + " (" + response[i].iprep_status + ")</option>";
                             }
                         }
-                        $("#listOfStudents").append(list_of_students);
+                        $("#exampleFormControlSelect1").append(list_of_students);
                     },
                     error: function (obj, textStatus, errorThrown) {
                         console.log("Error " + textStatus + ": " + errorThrown);
@@ -198,6 +201,7 @@
             function assignStudent(vacancy_id) {
                 var accomodation_provided = "";
                 var air_ticket_provided = "";
+                $("#vacancy_id").val(vacancy_id);
                 $("#modal_vacancy_desc").empty();
                 $("#modal_vacancy_desc2").empty();
                 $("#modal_vacancy_desc3").empty();
@@ -347,23 +351,56 @@
                             <small id="modal_vacancy_desc2"></small>
                             <br/>
                             <small id="modal_vacancy_desc3"></small>
-                            <div class="dropdown" id="student_dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose</button>
-                                <div class="dropdown-menu" id="listOfStudents" aria-labelledby="dropdownMenuButton">
-                                </div>
+
+                            <div class="form-group">
+                                <label for="vacancy_id">Vacancy ID:</label>
+                                <input type="text" disabled class="form-control" id="vacancy_id" aria-describedby="textHelp1" placeholder="">
+                                <!--<small id="textHelp1" class="form-text text-muted">Applied, New, etc</small>-->
                             </div>
 
                             <div class='form-group'>
-                                <label for='exampleFormControlSelect1'>Example select</label>
-                                <select class='form-control' id='exampleFormControlSelect1'>
-                                    <option>1</option>
+                                <label for='exampleFormControlSelect1'>Choose student:</label>
+                                <select class='form-control' id='exampleFormControlSelect1'></select>
+                            </div>
+
+                            <div class='form-group'>
+                                <label for='exampleFormControlSelect2'>Funding status:</label>
+                                <select class='form-control' id='exampleFormControlSelect2'>
+                                    <option>Applied</option>
+                                    <option>Approved</option>
+                                    <option>Rejected</option>
+                                    <option>Claim requested</option>
+                                    <option>Claim paid</option>
+                                    <option>Claim reimbursed</option>
+                                </select>
+                            </div>
+
+                            <div class='form-group'>
+                                <label for='exampleFormControlSelect3'>Job status:</label>
+                                <select class='form-control' id='exampleFormControlSelect3'>
+                                    <option>New</option>
+                                    <option>Apply</option>
+                                    <option>Interview</option>
+                                    <option>Accepted</option>
+                                    <option>Rejected</option>
+
+                                </select>
+                            </div>
+
+                            <div class='form-group'>
+                                <label for='exampleFormControlSelect4'>Funding source:</label>
+                                <select class='form-control' id='exampleFormControlSelect4'>
+                                    <option>YTP</option>
+                                    <option>iPrep</option>
+                                    <option>Self</option>
+
                                 </select>
                             </div>
 
                             <small id="modal_vacancy_desc4"></small>
                             <br/>
                             <!--<button type="submit" class="btn btn-primary">Submit</button>-->
-                            <!--<button type="submit" class="btn btn-primary">Save changes</button>-->
+                            <button type="submit" class="btn btn-primary">Save changes</button>
                         </form>
                     </div>
                 </div>
