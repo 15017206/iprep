@@ -10,15 +10,36 @@
         <script>
             var company_id_array = ["x"];
             list_of_vacancies2 = "";
+            var crud_status = "";
             $(document).ready(function () {
                 getUnassignedVacancies();
                 getAssignedVacancies();
-                getAllStudents();
+
+                $("#form_modal").submit(function () {
+                    if (crud_status == "assign") {
+                        alert("assign");
+                    } else if (crud_status == "update") {
+                        alert("update");
+
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/iprep/webservices/editVacancy.php",
+                            data: {student_id: student_id},
+                            cache: false,
+                            dataType: "JSON",
+                            success: function (response) {
+                                alert("success");
+                            },
+                            error: function (obj, textStatus, errorThrown) {
+                                console.log("Error " + textStatus + ": " + errorThrown);
+                            }
+                        });
+                    }
+                })
 
             }); // end of document.ready
 
             function getUnassignedVacancies() {
-
                 $.ajax({
                     type: "GET",
                     url: "http://localhost/iprep/webservices/getUnallocatedVacancies.php",
@@ -79,7 +100,7 @@
                             list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
                                     "<small style='font-weight: bold; color: red'>Unassigned Vacancy</small><br/>" +
                                     "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + " " + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
-                                    "<br/><a href='' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='assignStudent(" + vacancy_id + ")' class='badge badge-info'>Assign student to vacancy</span></a>" + "&nbsp;" +
+                                    "<br/><a href='' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='getVacancyAndCompanyRecordsAssign(" + vacancy_id + ")' class='badge badge-info'>Assign student to vacancy</span></a>" + "&nbsp;" +
                                     "</li>";
                             $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
                         }
@@ -101,6 +122,7 @@
                             var company_id = response[i].company_id;
                             //Related to vacancies, put response[i] here
 
+                            var student_id = response[i].student_id;
                             var country = response[i].country;
                             var vacancy_id = response[i].vacancy_id;
                             var internship_start_date = response[i].internship_start_date;
@@ -160,8 +182,8 @@
                                     "<small style='font-weight: bold; color: limegreen'>Assigned Vacancy</small><br/>" +
                                     "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + " " + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
                                     "<br/><small>Taken by " + student_name + ", " + student_diploma + ", " + gpa + ", " + tech_subj_score + ", " + mobile + ", " + cohort + "</small><br/>" +
-                                    "<a href='#' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='assignStudent(" + vacancy_id + ")' class='badge badge-primary'>Reassign student to vacancy</span></a>" + "&nbsp;" +
-                                    "<a href='#' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='assignStudent(" + vacancy_id + ")' class='badge badge-warning'>Update student assignment details</span></a>" + "&nbsp;" +
+                                    "<a href='#' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='getVacancyAndCompanyRecordsAssign(" + vacancy_id + ")' class='badge badge-primary'>Reassign student to vacancy</span></a>" + "&nbsp;" +
+                                    "<a href='#' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='getOIIPAssignment(" + vacancy_id + "\, " + student_id + ")' class='badge badge-warning'>Update student assignment details</span></a>" + "&nbsp;" +
                                     "<a href='#'><span onclick='removeStudent(" + vacancy_id + ")' class='badge badge-secondary'>Remove student from vacancy</span></a>" +
                                     "</li>";
                             $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
@@ -172,33 +194,42 @@
                     }
                 });
             }
-            function getAllStudents() {
-                var list_of_students = "";
+
+            // this triggers when the "Update student assignment details" button is clicked
+            function getOIIPAssignment(vacancy_id, student_id) {
+                clearModal();
+                crud_status = "update";
+                $("#exampleFormControlSelect1").attr("disabled", true);
+                getVacancyAndCompanyRecordsUpdate(vacancy_id);
+                getAllStudentsWithAssignedVacancies();
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getStudentsWithoutAllocation.php",
+                    url: "http://localhost/iprep/webservices/getOIIPAssignments.php",
+                    data: {vacancy_id: vacancy_id, student_id: student_id},
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
                         for (var i = 0; i < response.length; i++) {
-                            if (response[i].iprep_status == "valid") {
-                                list_of_students += "<option>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + "</option>";
-                                list_of_students += "<a href='#' class='dropdown-item' onclick='submitStudentToVacancy(" + response[i].student_id + ")'>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + "</a>";
-                            } else {
-//                                list_of_students += "<a href='#' class='dropdown-item disabled'>" + response[i].name + " (" + response[i].iprep_status + ")</a>";
-                                list_of_students += "<option disabled>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + " (" + response[i].iprep_status + ")</option>";
-                            }
+                            $("#exampleFormControlSelect1").val(response[i].student_id);
+                            $("#exampleFormControlSelect2").val(response[i].funding_status);
+                            $("#exampleFormControlSelect3").val(response[i].job_status);
+                            $("#exampleFormControlSelect4").val(response[i].funding_source);
                         }
-                        $("#exampleFormControlSelect1").append(list_of_students);
                     },
                     error: function (obj, textStatus, errorThrown) {
                         console.log("Error " + textStatus + ": " + errorThrown);
                     }
                 });
+
+
             }
 
-            // triggers when the modal is opened
-            function assignStudent(vacancy_id) {
+            // this triggers when the "Reassign/assign student to vacancy" button is clicked
+            function getVacancyAndCompanyRecordsAssign(vacancy_id) {
+                crud_status = "assign";
+                clearModal();
+                $("#exampleFormControlSelect1").attr("disabled", false);
+                getAllStudentsWithoutAssignedVacancies();
                 var accomodation_provided = "";
                 var air_ticket_provided = "";
                 $("#vacancy_id").val(vacancy_id);
@@ -232,18 +263,89 @@
                     }
                 });
             }
-            function submitStudentToVacancy(student_id) {
-                $("#modal_vacancy_desc4").text("You have chosen " + student_id + ". Database updated.");
-            }
-            function editStudentDetails(student_id) {
+
+            // this is to populate the dropdown list with students who has not been allocated any vacancies
+            function getAllStudentsWithoutAssignedVacancies() {
+                var list_of_students = "<option value=''></option>";
                 $.ajax({
-                    type: "POST",
-                    url: "http://localhost/iprep/webservices/editVacancy.php",
-                    data: {student_id: student_id},
+                    type: "GET",
+                    url: "http://localhost/iprep/webservices/getStudentsWithoutAllocation.php",
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
-                        alert("success");
+                        for (var i = 0; i < response.length; i++) {
+                            if (response[i].iprep_status == "valid") {
+                                list_of_students += "<option value='" + response[i].student_id + "'>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + "</option>";
+//                                list_of_students += "<a href='#' class='dropdown-item' onclick='submitStudentToVacancy(" + response[i].student_id + ")'>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + "</a>";
+                            } else {
+//                                list_of_students += "<a href='#' class='dropdown-item disabled'>" + response[i].name + " (" + response[i].iprep_status + ")</a>";
+                                list_of_students += "<option disabled>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + " (" + response[i].iprep_status + ")</option>";
+                            }
+                        }
+                        $("#exampleFormControlSelect1").html(list_of_students);
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
+            }
+
+            // this is to simply add description only via vacancy_id
+            function getVacancyAndCompanyRecordsUpdate(vacancy_id) {
+                getAllStudentsWithAssignedVacancies();
+                var accomodation_provided = "";
+                var air_ticket_provided = "";
+                $("#vacancy_id").val(vacancy_id);
+                $("#modal_vacancy_desc").empty();
+                $("#modal_vacancy_desc2").empty();
+                $("#modal_vacancy_desc3").empty();
+                $("#modal_vacancy_desc4").empty();
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/iprep/webservices/getVacanciesAndCompaniesByVacancyId.php?vacancy_id=" + vacancy_id,
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+                        $("#exampleModalLongTitle").html("Assign student to a vacancy in " + response.company_name);
+                        $("#modal_vacancy_desc").text("This vacancy is: " + response.job_role + " in " + response.country + ", allowance is " + response.allowance_currency + " " + response.company_mthly_allowance);
+                        $("#modal_vacancy_desc2").text("The duration is from " + response.internship_start_date + " to " + response.internship_end_date);
+                        if (response.accomodation_provided == 1) {
+                            accomodation_provided = "Have accomodation";
+                        } else {
+                            accomodation_provided = "Dont have accomodation";
+                        }
+                        if (air_ticket_provided == 1) {
+                            air_ticket_provided = "have air ticket";
+                        } else {
+                            air_ticket_provided = "dont have air ticket";
+                        }
+                        $("#modal_vacancy_desc3").text(accomodation_provided + ", " + air_ticket_provided);
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
+            }
+
+            // This is to populate the dropdown list with students with allocation to vacancies
+            function getAllStudentsWithAssignedVacancies() {
+                var list_of_students = "<option value=''></option>";
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/iprep/webservices/getStudentsWithAllocation.php",
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+                        for (var i = 0; i < response.length; i++) {
+                            if (response[i].iprep_status == "valid") {
+                                list_of_students += "<option value='" + response[i].student_id + "'>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + "</option>";
+//                                list_of_students += "<a href='#' class='dropdown-item' onclick='submitStudentToVacancy(" + response[i].student_id + ")'>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + "</a>";
+                            } else {
+//                                list_of_students += "<a href='#' class='dropdown-item disabled'>" + response[i].name + " (" + response[i].iprep_status + ")</a>";
+                                list_of_students += "<option disabled>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + " (" + response[i].iprep_status + ")</option>";
+                            }
+                        }
+                        $("#exampleFormControlSelect1").html(list_of_students);
                     },
                     error: function (obj, textStatus, errorThrown) {
                         console.log("Error " + textStatus + ": " + errorThrown);
@@ -254,6 +356,13 @@
                 if (confirm("Delete?")) {
                     alert("ok, deleted");
                 }
+            }
+
+            function clearModal() {
+                $("#exampleFormControlSelect1").val("");
+                $("#exampleFormControlSelect2").val("");
+                $("#exampleFormControlSelect3").val("");
+                $("#exampleFormControlSelect4").val("");
             }
         </script>
     </head>
@@ -363,7 +472,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="form_modal">
                             <small id='modal_vacancy_desc'></small>
                             <br/>
                             <small id="modal_vacancy_desc2"></small>
@@ -378,29 +487,32 @@
 
                             <div class='form-group'>
                                 <label for='exampleFormControlSelect1'>Choose student:</label>
-                                <select class='form-control' id='exampleFormControlSelect1'></select>
+                                <select class='form-control' id='exampleFormControlSelect1'>
+                                </select>
                             </div>
 
                             <div class='form-group'>
                                 <label for='exampleFormControlSelect2'>Funding status:</label>
                                 <select class='form-control' id='exampleFormControlSelect2'>
-                                    <option>Applied</option>
-                                    <option>Approved</option>
-                                    <option>Rejected</option>
-                                    <option>Claim requested</option>
-                                    <option>Claim paid</option>
-                                    <option>Claim reimbursed</option>
+                                    <option value=""></option>
+                                    <option value="applied">Applied</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="rejected">Rejected</option>
+                                    <option value="claim requested">Claim requested</option>
+                                    <option value="claim paid">Claim paid</option>
+                                    <option value="claim reimbursed">Claim reimbursed</option>
                                 </select>
                             </div>
 
                             <div class='form-group'>
                                 <label for='exampleFormControlSelect3'>Job status:</label>
                                 <select class='form-control' id='exampleFormControlSelect3'>
-                                    <option>New</option>
-                                    <option>Apply</option>
-                                    <option>Interview</option>
-                                    <option>Accepted</option>
-                                    <option>Rejected</option>
+                                    <option value=""></option>
+                                    <option value="new">New</option>
+                                    <option value="apply">Apply</option>
+                                    <option value="interview">Interview</option>
+                                    <option value="accepted">Accepted</option>
+                                    <option value="rejected">Rejected</option>
 
                                 </select>
                             </div>
@@ -408,10 +520,10 @@
                             <div class='form-group'>
                                 <label for='exampleFormControlSelect4'>Funding source:</label>
                                 <select class='form-control' id='exampleFormControlSelect4'>
-                                    <option>YTP</option>
-                                    <option>iPrep</option>
-                                    <option>Self</option>
-
+                                    <option></option>
+                                    <option value="ytp">YTP</option>
+                                    <option value="iprep">iPrep</option>
+                                    <option value="self">Self</option>
                                 </select>
                             </div>
 
@@ -424,7 +536,7 @@
                 </div>
             </div>
         </div>
-
+        <small>There is a bug when clicking Update student assignment details doesnt work. Clicking it again will solve the issue</small>
     </body>
 </html>
 <!--                        <li class="list-group-item list-group-item-action flex-column align-items-start">
