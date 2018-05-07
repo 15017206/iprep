@@ -236,9 +236,24 @@
                 $("#modal_vacancy_desc4").text("You have chosen " + student_id + ". Database updated.");
             }
             function editStudentDetails(student_id) {
-                
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/iprep/webservices/editVacancy.php",
+                    data: {student_id: student_id},
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+                        alert("success");
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
             }
             function removeStudent() {
+                if (confirm("Delete?")) {
+                    alert("ok, deleted");
+                }
             }
         </script>
     </head>
