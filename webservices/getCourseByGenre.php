@@ -6,7 +6,7 @@ if (isset($_GET['genre'])) {
     $genre = $_GET['genre'];
 
    
-    $query = "SELECT * FROM course where genre='$genre'";
+    $query = "SELECT * FROM course where course_genre='$genre'";
     $result = mysqli_query($link, $query);
     while ($row = mysqli_fetch_assoc($result)) {
         $courses[] = $row;

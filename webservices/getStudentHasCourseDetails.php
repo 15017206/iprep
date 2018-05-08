@@ -13,9 +13,6 @@ if (isset($_GET['course_id']) && isset($_GET['student_id'])) {
     while ($row = mysqli_fetch_assoc($result)) {
         $details[] = $row;
     }
-     
-    
-
     mysqli_close($link);
 
     echo json_encode($details);

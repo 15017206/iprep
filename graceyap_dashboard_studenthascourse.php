@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,7 +12,79 @@ and open the template in the editor.
                 $("#genreDropdown a").on('click', function () {
                     alert($(this).text());
                 })
+                show();
             });
+            function show() {
+                var company_id_array = ["x"];
+                var list_of_courses = "";
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/iprep/webservices/getStudentHasCourse.php",
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+                        for (var i = 0; i < response.length; i++) {
+                            var course_id = response[i].course_id;
+                            //Related to vacancies, put response[i] here
+
+                            var course_name = response[i].course_name;
+                            var course_cost = response[i].course_cost;
+                            var course_status = response[i].status;
+                            var course_genre = response[i].course_genre;
+                            var course_provider = response[i].course_provider;
+
+                            var student_name = response[i].name;
+                            var student_diploma = response[i].diploma;
+                            var student_gpa = response[i].gpa;
+                            var tech_subj_score = response[i].tech_subj_score;
+                            var student_mobile = response[i].mobile;
+                            var student_personal_email = response[i].personal_email;
+                            var student_iprep_status = response[i].iprep_status;
+                            var student_oiip_interest = response[i].oiip_interest;
+                            var student_cohort = response[i].cohort;
+
+                            // check if the company_id is in the array. If not inside, add it in.
+                            for (var j = 0; j <= company_id_array.length; j++) {
+                                var list_of_courses_with_students = "";
+                                var list_of_courses = "";
+                                if (course_id !== company_id_array[j]) {
+                                    // If the array has checked the last index
+                                    if (j === company_id_array.length - 1) {
+                                        company_id_array.push(course_id);
+                                        // Related to companies, put response[i] here
+
+                                        list_of_courses_with_students += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
+                                                "<div class='d-flex w-100 justify-content-between'>" +
+                                                "<h5 class='mb-1'>" + course_name + "</h5>" +
+                                                "<small>" + course_genre + "</small>" +
+                                                "</div>" +
+                                                "<span class='badge badge-success'>$" + course_cost + "</span>" +
+                                                "<br/>" +
+                                                "<ul class='list-group' id='course_" + course_id + "'>" +
+                                                "</ul>" +
+                                                "<br/>" +
+                                                "<small>" + course_provider + "</small>" +
+                                                "</li>";
+                                        $("#big_container").append(list_of_courses_with_students);
+                                    }
+                                } else {
+                                    break;
+                                }
+                            }
+                            list_of_courses += "<li class='list-group-item justify-content-between align-items-center'>" +
+                                    student_name + "&nbsp;<span class='badge badge-info'>" + student_diploma + ", " + student_gpa + "</span>" +
+                                    "<br/><small>Tech Sub Score: " + tech_subj_score + " | Mobile: " + student_mobile + " | Personal Email: " + student_personal_email +"</small>" +
+                                    "<br/><small>iPrep status: " + student_iprep_status + " | Oiip interest: " + student_oiip_interest + " | Cohort: " + student_cohort +"</small>" +
+                                    "<br/><span class='badge badge-warning'>" + course_status + "</span>" +
+                                    "</li>";
+                            $("#course_" + course_id).append(list_of_courses);
+                        }
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
+            }
         </script>
     </head>
     <body>
@@ -76,43 +143,39 @@ and open the template in the editor.
             <!--Add some students here-->
             <div class="list-group">
 
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Introduction of ioT & Embedded Systems</h5>
-                            <small>4 months</small>
-                        </div>
-                        <span class="badge badge-success">$600.00</span>
-                        <br/>
-                        <ul class="list-group">
-                            <li class="list-group-item justify-content-between align-items-center">
-                                Lee Tze Jian&nbsp;<span class="badge badge-info">DMSD</span>
-                                <br/><span class="badge badge-warning">Ongoing</span>
-                            </li>
-                            <li class="list-group-item justify-content-between align-items-center">
-                                Grace Yap&nbsp;<span class="badge badge-info">DDDD</span>
-                                <br/><span class="badge badge-warning">Completed</span>
-                            </li>
-                        </ul>
-                        <br/>
-                        <small>Coursera</small>
-                    </li>
-                    <li class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">How to hack LEO 2.0 - Hacking course</h5>
-                            <small>2 days</small>
-                        </div>
-                        <span class="badge badge-success">$600.00</span>
-                        <br/>
-                        <ul class="list-group">
-                            <li class="list-group-item justify-content-between align-items-center">
-                                Toh Kee Heng&nbsp;<span class="badge badge-info">DIT</span>
-                                <br/><span class="badge badge-warning">Ongoing</span>
-                            </li>
-                        </ul>
-                        <br/>
-                        <small>Code Academy</small>
-                    </li>
+                <ul id="big_container" class="list-group">
+                    <!--                    <li class='list-group-item list-group-item-action flex-column align-items-start'>
+                                            <div class='d-flex w-100 justify-content-between'>
+                                                <h5 class='mb-1'>Introduction of ioT & Embedded Systems</h5>
+                                                <small>4 months</small>
+                                            </div>
+                                            <span class='badge badge-success'>$600.00</span>
+                                            <br/>
+                                            <ul class='list-group'>
+                                                <li class='list-group-item justify-content-between align-items-center'>
+                                                    Lee Tze Jian&nbsp;<span class='badge badge-info'>DMSD</span>
+                                                    <br/><span class='badge badge-warning'>Ongoing</span>
+                                                </li>
+                                            </ul>
+                                            <br/>
+                                            <small>Coursera</small>
+                                        </li>-->
+                    <!--                    <li class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h5 class="mb-1">How to hack LEO 2.0 - Hacking course</h5>
+                                                <small>2 days</small>
+                                            </div>
+                                            <span class="badge badge-success">$600.00</span>
+                                            <br/>
+                                            <ul class="list-group">
+                                                <li class="list-group-item justify-content-between align-items-center">
+                                                    Toh Kee Heng&nbsp;<span class="badge badge-info">DIT</span>
+                                                    <br/><span class="badge badge-warning">Ongoing</span>
+                                                </li>
+                                            </ul>
+                                            <br/>
+                                            <small>Code Academy</small>
+                                        </li>-->
                 </ul>
 
                 <!--                <a href="#" data-toggle="modal" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
