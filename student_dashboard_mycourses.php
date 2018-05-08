@@ -12,6 +12,39 @@ and open the template in the editor.
         include 'scripts.php';
         include 'navbar_student.php';
         ?>
+        <script>
+            $(document).ready(function () {
+                showMyEnrolledCourses();
+            });
+
+            function showMyEnrolledCourses() {
+                var output = "";
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/iprep/webservices/getCourses.php",
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+                        for (var i = 0; i < response.length; i++) {
+                            output += "<li href='#' data-toggle='modal' data-target='#courses_only_modal_modify' data-target='#courses_modal' class='list-group-item list-group-item-action flex-column align-items-start'>" +
+                                    "<div class='d-flex w-100 justify-content-between'>" +
+                                    "<h5 class='mb-1'>" + response[i].course_name + "</h5>" +
+                                    "<small>" + response[i].course_genre + "</small>" +
+                                    "</div>" +
+                                    "<div class='w-100'>" +
+                                    "<span class='badge badge-warning'>$" + response[i].course_cost + "</span>&nbsp;<a href='#' onclick='enrollCourse(" + response[i].course_id + ")'><span class='badge badge-success'>Enroll course</span></a>" +
+                                    "</div>" +
+                                    "<small>" + response[i].course_provider + "</small>" +
+                                    "</li>";
+                        }
+                        $("#big_container").html(output);
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
+            }
+        </script>
     </head>
     <body>
 
@@ -20,23 +53,26 @@ and open the template in the editor.
 
             <!--List of courses Applied-->
             <div class="alert alert-success" role="alert">
+
                 <!--Add some-->
                 <p>List of courses applied:</p>
                 <div class="list-group">
-                    <ul class="list-group">
-                        <li data-toggle="modal" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">How to hack LEO 2.0 - Hackathon</h5>
+                    <ul class="list-group" id="big_container">
+
+                        <li class='list-group-item list-group-item-action flex-column align-items-start'>
+                            <div class='d-flex w-100 justify-content-between'>
+                                <h5 class='mb-1'>How to hack LEO 2.0 - Hackathon</h5>
                                 <small>IT Security</small>
                             </div>
-                            <p class="mb-1"></p>
-                            <span class="badge badge-warning">$60.00</span>&nbsp;<span class="badge badge-success">Approved</span>
+                            <p class='mb-1'></p>
+                            <span class='badge badge-warning'>$60.00</span>&nbsp;<span class='badge badge-success'>Approved</span>
                             <br/>
-                            <a href=""><span class="badge badge-info">Make claim</span></a>
-                            <a href=""><span class="badge badge-info">Submit IMDA approval email</span></a>
+                            <a href=''><span class='badge badge-info'>Make claim</span></a>
+                            <a href=''><span class='badge badge-info'>Submit IMDA approval email</span></a>
                             <br/>
                             <small>Coursera</small>
                         </li>
+
                     </ul>
                 </div>
             </div>
