@@ -213,7 +213,7 @@
                                     "<small style='font-weight: bold; color: limegreen'>Assigned Vacancy</small><br/>" +
                                     "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + " " + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
                                     "<br/><small>Taken by " + student_name + ", " + student_diploma + ", " + gpa + ", " + tech_subj_score + ", " + mobile + ", " + cohort + "</small><br/>" +
-                                    "<small>Funding status: " + funding_status + ", Job status: " + job_status + " Funding source: " + funding_source + "</small><br/>" +
+                                    "<small>Funding status: " + funding_status + " | Job status: " + job_status + " | Funding source: " + funding_source + "</small><br/>" +
                                     "<a href='#' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='getVacancyAndCompanyRecordsAssign(" + vacancy_id + ")' class='badge badge-primary'>Reassign student to vacancy</span></a>" + "&nbsp;" +
                                     "<a href='#' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='getOIIPAssignment(" + vacancy_id + "\, " + student_id + ")' class='badge badge-warning'>Update student assignment details</span></a>" + "&nbsp;" +
                                     "<a href='#'><span onclick='removeStudent(" + vacancy_id + ")' class='badge badge-secondary'>Remove student from vacancy</span></a>" +
