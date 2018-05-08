@@ -6,7 +6,8 @@ and open the template in the editor.
 -->
 <?php
 session_start();
-//$_SESSION[''];
+$_SESSION['student_id'] = 15035033;
+$_SESSION['student_name'] = "John";
 ?>
 <html>
     <head>
@@ -15,7 +16,7 @@ session_start();
     </head>
     <body>
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <a class="navbar-brand" href="#">Welcome, Student</a>
+            <a class="navbar-brand" href="#">Welcome, <?php echo $_SESSION['student_name']; ?></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
