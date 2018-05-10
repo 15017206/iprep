@@ -33,7 +33,7 @@ and open the template in the editor.
                                     "<small>"+ response[i].course_genre +"</small>" +
                                     "</div>" +
                                     "<p class='mb-1'></p>" +
-                                    "<span class='badge badge-warning'>"+response[i].course_cost+"</span>&nbsp;<span class='badge badge-success'>"+response[i].status+"</span>" +
+                                    "<span class='badge badge-warning'>$"+response[i].course_cost+"</span>&nbsp;<span class='badge badge-success'>"+response[i].status+"</span>" +
                                     "<br/>" +
                                     "<a href=''><span class='badge badge-info'>Make claim</span></a>&nbsp;" +
                                     "<a href=''><span class='badge badge-info'>Submit IMDA approval email</span></a>" +

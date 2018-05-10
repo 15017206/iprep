@@ -42,16 +42,16 @@ and open the template in the editor.
                 <p>OIIP assignment:</p>
                 <div class="list-group">
                     <ul class="list-group">
-                        <li data-toggle="modal" data-target="#courses_modal" class="list-group-item list-group-item-action flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Translation of Braille to English Text</h5>
+                        <li data-toggle='modal' data-target='#courses_modal' class='list-group-item list-group-item-action flex-column align-items-start'>
+                            <div class='d-flex w-100 justify-content-between'>
+                                <h5 class='mb-1'>Translation of Braille to English Text</h5>
                                 <small>Tokushima, Nagano, Japan</small>
                             </div>
-                            <p class="mb-1"></p>
-                            <span class="badge badge-warning">Funding Status: Applied</span>&nbsp;<span class="badge badge-warning">Job Status: Accepted</span>&nbsp;<span class="badge badge-warning">Funding source: YTP</span>
+                            <p class='mb-1'></p>
+                            <span class='badge badge-warning'>Funding Status: Applied</span>&nbsp;<span class='badge badge-warning'>Job Status: Accepted</span>&nbsp;<span class='badge badge-warning'>Funding source: YTP</span>
                             <br/><br/>
 
-                            <button type="button" data-toggle="modal" data-target="#uploadfiles" class="btn btn-primary btn-sm">Upload Files</button>
+                            <button type='button' data-toggle='modal' data-target='#uploadfiles' class='btn btn-primary btn-sm'>Upload Files</button>
 <!--                            <a href=""><span class="badge badge-info">Request OIIP approval from IMDA</span></a>
                             <a href=""><span class="badge badge-info">Submit OIIP approval email</span></a>-->
                             <br/>
