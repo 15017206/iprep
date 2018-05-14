@@ -16,7 +16,7 @@
 
                 // When a modal is submitted
                 $('#course_status_form').submit(function () {
-                    var student_id = $('#') ;
+                    var student_id = $('#student_id_input').val();
                     var status = $('#course_status_dropdown').val();
                     $.ajax({
                         type: "POST",
@@ -116,6 +116,7 @@
                     success: function (response) {
                         $("#change_course_status_title").text("Change course for " + response.name);
                         $('#course_status_dropdown').val(response.status);
+                        $('#student_id_input').val(response.student_id);
                     },
                     error: function (obj, textStatus, errorThrown) {
                         console.log("Error " + textStatus + ": " + errorThrown);
@@ -344,7 +345,9 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <input class="form-control" type="text" placeholder="Readonly input here…" readonly>
+                                <label for="student_id_input">Student ID:</label>
+                                <input class="form-control" id="student_id_input" type="text" placeholder="" readonly>
+                                <br/>
                                 <select class="form-control" id="course_status_dropdown">
                                     <option value="New">New</option>
                                     <option value="Approved">Approved</option>
@@ -357,7 +360,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
                         </div>
                     </form>
