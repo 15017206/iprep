@@ -32,7 +32,7 @@ and open the template in the editor.
                         data: "student_id=" + studentId,
                         cache: false,
                         dataType: "JSON",
-                        success: function (data, textStatus){
+                        success: function (data, textStatus) {
                             modal.find('#student_id').val(data[0].student_id);
                             modal.find('#name').val(data[0].name);
                             modal.find('#diploma').val(data[0].diploma);
@@ -74,7 +74,7 @@ and open the template in the editor.
                             data: data,
                             cache: false,
                             dataType: "JSON",
-                            success: function (data, textStatus){
+                            success: function (data, textStatus) {
 
                                 $('#update_student').modal('hide');
                                 console.log(data["result"]);
@@ -101,7 +101,7 @@ and open the template in the editor.
                             data: $("#add_student").serialize(),
                             cache: false,
                             dataType: "JSON",
-                            success: function (data, textStatus){
+                            success: function (data, textStatus) {
                                 $('#add_student')[0].reset();
                                 setTimeout(function () {
                                     refreshStudents();
@@ -130,7 +130,7 @@ and open the template in the editor.
                     if (!e.isDefaultPrevented()) {
                         e.preventDefault();
                         $.ajax({
-                            type: "POST",
+                            type: "GET",
                             url: "http://localhost/iprep/webservices/deleteStudent.php",
                             data: {student_id: studentId},
                             cache: false,
@@ -153,28 +153,28 @@ and open the template in the editor.
                     }
 
                 })
-                $("#filterCohort").keyup(function() {
-                     var cohort = $("#filterCohort").val();
-                     var output = "";
-                     $.ajax({
+                $("#filterCohort").keyup(function () {
+                    var cohort = $("#filterCohort").val();
+                    var output = "";
+                    $.ajax({
                         type: "GET",
                         url: "http://localhost/iprep/webservices/getStudentsByCohort.php",
-                        data: "cohort="+cohort,
+                        data: "cohort=" + cohort,
                         cache: false,
                         dataType: "JSON",
                         success: function (response) {
-                            if(response.length > 0){
+                            if (response.length > 0) {
                                 for (var i = 0; i < response.length; i++) {
 
                                     output += "<li class='list-group-item'><small>" + response[i].name + "</small><br/>" +
-                                             "<small>" + response[i].cohort + ", " + response[i].student_id + ", " + response[i].diploma + "</small><br/>" +
-                                            "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student'  class='badge badge-warning'>Update</a>"+ "&nbsp;" +
-                                             "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#delete_student'  class='badge badge-danger'>Delete</a></li>";
+                                            "<small>" + response[i].cohort + ", " + response[i].student_id + ", " + response[i].diploma + "</small><br/>" +
+                                            "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student'  class='badge badge-warning'>Update</a>" + "&nbsp;" +
+                                            "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#delete_student'  class='badge badge-danger'>Delete</a></li>";
                                 }
-                                
+
                             } else {
                                 output += "<li class='list-group-item'>No students in this cohort</li>";
-                            
+
                             }
                             $("#listgroup1").html(output);
                         },
@@ -183,7 +183,7 @@ and open the template in the editor.
                         }
                     });
                 });
-                 
+
             }); //End of document.ready
 
             function refreshStudents() {
@@ -200,9 +200,10 @@ and open the template in the editor.
                         for (var i = 0; i < response.length; i++) {
 
                             output += "<li class='list-group-item'><small>" + response[i].name + "</small><br/>" +
-                                     "<small>" + response[i].cohort + ", " + response[i].student_id + ", " + response[i].diploma + "</small><br/>" +
-                                     "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student'  class='badge badge-warning'>Update</a>" + "&nbsp;" +
-                                     "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#delete_student'  class='badge badge-danger'>Delete</a></li>";
+                                    "<small>" + response[i].cohort + ", " + response[i].student_id + ", " + response[i].diploma + "</small><br/>" +
+                                    "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student'  class='badge badge-warning'>Update</a>" + "&nbsp;" +
+//                                    "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#delete_student'  class='badge badge-danger'>Delete</a>" +
+                                    "</li>";
                         }
                         $("#listgroup1").html(output);
                     },
@@ -294,12 +295,12 @@ and open the template in the editor.
                     <div class="alert alert-info" role="alert">
                         <h5>Students currently in db</h5>
 
-                        
+
                         <div class="form-group">
                             <label for="filterCohort">Filter Cohort:</label>
                             <input type="number" name="filterCohort" required class="form-control" id="filterCohort" placeholder="Year of Enrolment">
                         </div> 
-                        
+
                         <br/>
 
                         <ul class="list-group" id="listgroup1">

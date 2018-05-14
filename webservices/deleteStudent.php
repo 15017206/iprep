@@ -2,8 +2,8 @@
 
 include 'dbconn.php';
 
-if (isset($_POST)) {    
-    $student_id = $_POST['student_id']; 
+if (isset($_GET)) {    
+    $student_id = $_GET['student_id']; 
     
     $query = "DELETE FROM `student` WHERE student_id = '$student_id'";
  
@@ -18,7 +18,6 @@ if (isset($_POST)) {
     mysqli_close($link);
 
     echo json_encode($response);
- 
 
 }
 

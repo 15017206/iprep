@@ -7,7 +7,7 @@ and open the template in the editor.
 <?php
 session_start();
 $_SESSION['student_id'] = 15035033;
-$_SESSION['student_name'] = "John";
+$_SESSION['student_name'] = "Da Ming";
 ?>
 <html>
     <head>

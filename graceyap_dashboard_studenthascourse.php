@@ -32,7 +32,7 @@
                             var course_status = response[i].status;
                             var course_genre = response[i].course_genre;
                             var course_provider = response[i].course_provider;
-
+                            var student_id = response[i].student_id;
                             var student_name = response[i].name;
                             var student_diploma = response[i].diploma;
                             var student_gpa = response[i].gpa;
@@ -72,10 +72,10 @@
                                 }
                             }
                             list_of_courses += "<li class='list-group-item justify-content-between align-items-center'>" +
-                                    student_name + "&nbsp;<span class='badge badge-info'>" + student_diploma + ", " + student_gpa + "</span>" +
-                                    "<br/><small>Tech Sub Score: " + tech_subj_score + " | Mobile: " + student_mobile + " | Personal Email: " + student_personal_email +"</small>" +
-                                    "<br/><small>iPrep status: " + student_iprep_status + " | Oiip interest: " + student_oiip_interest + " | Cohort: " + student_cohort +"</small>" +
-                                    "<br/><span class='badge badge-warning'>" + course_status + "</span>" +
+                                    "<div style='font-weight:bold'>" + student_name + ", " + student_id + "</div><span class='badge badge-info'>" + student_diploma + ", " + student_gpa + "</span>" +
+                                    "<br/><small>Tech Sub Score: " + tech_subj_score + " | Mobile: " + student_mobile + " | Personal Email: " + student_personal_email + "</small>" +
+                                    "<br/><small>iPrep status: " + student_iprep_status + " | Oiip interest: " + student_oiip_interest + " | Cohort: " + student_cohort + "</small>" +
+                                    "<br/><a href='#' class='badge badge-warning'>" + course_status + "</a>" +
                                     "</li>";
                             $("#course_" + course_id).append(list_of_courses);
                         }
@@ -138,6 +138,13 @@
                     </form>
                 </div>
             </nav>
+            <br/>
+
+            <br/>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                <label class="form-check-label" for="defaultCheck1">Show only Unassigned Vacancies</label>
+            </div>
             <br/>
 
             <!--Add some students here-->

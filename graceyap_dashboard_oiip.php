@@ -175,7 +175,7 @@
                             var tech_subj_score = response[i].tech_subj_score;
                             var mobile = response[i].mobile;
                             var cohort = response[i].cohort;
-                            
+
                             var funding_status = response[i].funding_status;
                             var job_status = response[i].job_status;
                             var funding_source = response[i].funding_source;
@@ -212,7 +212,7 @@
                             list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
                                     "<small style='font-weight: bold; color: limegreen'>Assigned Vacancy</small><br/>" +
                                     "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + " " + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
-                                    "<br/><small>Taken by " + student_name + ", " + student_diploma + ", " + gpa + ", " + tech_subj_score + ", " + mobile + ", " + cohort + "</small><br/>" +
+                                    "<br/><small style='font-weight:bold'>Taken by " + student_name + ", " + student_diploma + ", " + gpa + ", " + tech_subj_score + ", " + mobile + ", " + cohort + "</small><br/>" +
                                     "<small>Funding status: " + funding_status + " | Job status: " + job_status + " | Funding source: " + funding_source + "</small><br/>" +
                                     "<a href='#' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='getVacancyAndCompanyRecordsAssign(" + vacancy_id + ")' class='badge badge-primary'>Reassign student to vacancy</span></a>" + "&nbsp;" +
                                     "<a href='#' data-toggle='modal' data-target='#modal_assign_student_vacancy'><span onclick='getOIIPAssignment(" + vacancy_id + "\, " + student_id + ")' class='badge badge-warning'>Update student assignment details</span></a>" + "&nbsp;" +
@@ -498,6 +498,11 @@
                         </div>
                     </nav>
                     <!--end of filter navbar-->
+                    <br/>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">Show only Unassigned Vacancies</label>
+                    </div>
                     <br/>
                     <ul class="list-group" id="container_vacancies_students">
 
