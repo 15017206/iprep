@@ -27,7 +27,7 @@
 
                         $.ajax({
                             type: "POST",
-                            url: "http://localhost/iprep/webservices/editCourseStatusByStudentId.php",
+                            url: "http://localhost/iprep/webservices/doAssignOIIP.php",
                             data: {student_id: student_id, vacancy_id: vacancy_id, funding_status: funding_status, job_status: job_status, funding_source: funding_source},
                             cache: false,
                             dataType: "JSON",
