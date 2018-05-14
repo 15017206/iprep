@@ -13,7 +13,27 @@
                     alert($(this).text());
                 })
                 show();
-            });
+
+                // When a modal is submitted
+                $('#course_status_form').submit(function () {
+                    var student_id = $('#') ;
+                    var status = $('#course_status_dropdown').val();
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost/iprep/webservices/editCourseStatusByStudentId.php",
+                        data: {student_id: student_id, status: status},
+                        cache: false,
+                        dataType: "JSON",
+                        success: function (response) {
+                            alert(response.result);
+                        },
+                        error: function (obj, textStatus, errorThrown) {
+                            console.log("Error " + textStatus + ": " + errorThrown);
+                        }
+                    });
+                });
+            }); // end of document.ready
+
             function show() {
                 var company_id_array = ["x"];
                 var list_of_courses = "";
@@ -75,10 +95,27 @@
                                     "<div style='font-weight:bold'>" + student_name + ", " + student_id + "</div><span class='badge badge-info'>" + student_diploma + ", " + student_gpa + "</span>" +
                                     "<br/><small>Tech Sub Score: " + tech_subj_score + " | Mobile: " + student_mobile + " | Personal Email: " + student_personal_email + "</small>" +
                                     "<br/><small>iPrep status: " + student_iprep_status + " | Oiip interest: " + student_oiip_interest + " | Cohort: " + student_cohort + "</small>" +
-                                    "<br/><a href='#' class='badge badge-warning'>" + course_status + "</a>" +
+                                    "<br/><a href='#' onclick='getCourseStatusFromStudentId(" + student_id + ")' class='cell_class badge badge-warning' data-toggle='modal' data-target='#change_course_status'>" + course_status + "</a>" +
                                     "</li>";
                             $("#course_" + course_id).append(list_of_courses);
                         }
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
+            }
+
+            function getCourseStatusFromStudentId(student_id) {
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/iprep/webservices/getStudentHasCourseByStudentId.php",
+                    data: {student_id: student_id},
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+                        $("#change_course_status_title").text("Change course for " + response.name);
+                        $('#course_status_dropdown').val(response.status);
                     },
                     error: function (obj, textStatus, errorThrown) {
                         console.log("Error " + textStatus + ": " + errorThrown);
@@ -292,6 +329,38 @@
                             <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!--Modal to change course status-->
+            <div class="modal fade" id="change_course_status" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <form id="course_status_form" method="" action="">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="change_course_status_title">Change course status</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input class="form-control" type="text" placeholder="Readonly input here…" readonly>
+                                <select class="form-control" id="course_status_dropdown">
+                                    <option value="New">New</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="Completed">Completed</option>
+                                    <option value="Payment requested">Payment requested</option>
+                                    <option value="Payment received">Payment received</option>
+                                    <option value="Payment disbursed">Payment disbursed</option>
+                                    <option value="Rejected">Rejected</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
