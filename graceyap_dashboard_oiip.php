@@ -304,7 +304,7 @@
                     dataType: "JSON",
                     success: function (response) {
                         for (var i = 0; i < response.length; i++) {
-                            if (response[i].iprep_status == "valid") {
+                            if (response[i].iprep_status == "Valid") {
                                 list_of_students += "<option value='" + response[i].student_id + "'>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + "</option>";
 //                                list_of_students += "<a href='#' class='dropdown-item' onclick='submitStudentToVacancy(" + response[i].student_id + ")'>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + "</a>";
                             } else {
@@ -367,7 +367,7 @@
                     dataType: "JSON",
                     success: function (response) {
                         for (var i = 0; i < response.length; i++) {
-                            if (response[i].iprep_status == "valid") {
+                            if (response[i].iprep_status == "Valid") {
                                 list_of_students += "<option value='" + response[i].student_id + "'>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + "</option>";
 //                                list_of_students += "<a href='#' class='dropdown-item' onclick='submitStudentToVacancy(" + response[i].student_id + ")'>" + response[i].name + "/" + response[i].diploma + "/" + response[i].student_id + "</a>";
                             } else {

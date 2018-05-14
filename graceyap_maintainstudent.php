@@ -101,7 +101,8 @@ and open the template in the editor.
                             data: $("#add_student").serialize(),
                             cache: false,
                             dataType: "JSON",
-                            success: function (data, textStatus) {
+                            success: function (response) {
+                                alert(response.result);
                                 $('#add_student')[0].reset();
                                 setTimeout(function () {
                                     refreshStudents();
@@ -146,7 +147,7 @@ and open the template in the editor.
                             },
                             error: function (obj, textStatus, errorThrown) {
                                 console.log("Error " + textStatus + ": " + errorThrown);
-                                alert("fail");
+//                                alert("fail"); fail but still can successfully add. weird
                             }
 
                         });
@@ -167,9 +168,10 @@ and open the template in the editor.
                                 for (var i = 0; i < response.length; i++) {
 
                                     output += "<li class='list-group-item'><small>" + response[i].name + "</small><br/>" +
-                                            "<small>" + response[i].cohort + ", " + response[i].student_id + ", " + response[i].diploma + "</small><br/>" +
+                                            "<small>" + response[i].cohort + ", " + response[i].student_id + ", " + response[i].diploma + ", " + response[i].iprep_status + "</small><br/>" +
                                             "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student'  class='badge badge-warning'>Update</a>" + "&nbsp;" +
-                                            "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#delete_student'  class='badge badge-danger'>Delete</a></li>";
+//                                            "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#delete_student'  class='badge badge-danger'>Delete</a>"+
+                                            "</li>";
                                 }
 
                             } else {
@@ -200,7 +202,7 @@ and open the template in the editor.
                         for (var i = 0; i < response.length; i++) {
 
                             output += "<li class='list-group-item'><small>" + response[i].name + "</small><br/>" +
-                                    "<small>" + response[i].cohort + ", " + response[i].student_id + ", " + response[i].diploma + "</small><br/>" +
+                                    "<small>" + response[i].cohort + ", " + response[i].student_id + ", " + response[i].diploma + ", " + response[i].iprep_status + "</small><br/>" +
                                     "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#update_student'  class='badge badge-warning'>Update</a>" + "&nbsp;" +
 //                                    "<a href='#' data-id='" + response[i].student_id + "' data-toggle='modal' data-target='#delete_student'  class='badge badge-danger'>Delete</a>" +
                                     "</li>";
@@ -228,19 +230,19 @@ and open the template in the editor.
                             <!--Student ID-->
                             <div class="form-group">
                                 <label for="input1">Student ID:</label>
-                                <input type="number" name="student_id" required class="form-control" id="input1" placeholder="">
+                                <input type="number" name="student_id" required class="form-control" id="input1" placeholder="required">
                             </div>
 
                             <!--Name-->
                             <div class="form-group">
                                 <label for="input1">Name:</label>
-                                <input type="text" name="name" class="form-control" required id="input1" placeholder="">
+                                <input type="text" name="name" class="form-control" required id="input1" placeholder="required">
                             </div>
 
                             <!--Diploma-->
                             <div class="form-group">
                                 <label for="input1">Diploma:</label>
-                                <input type="text" name="diploma" class="form-control" required id="input1" placeholder="">
+                                <input type="text" name="diploma" class="form-control" required id="input1" placeholder="required">
                             </div>
 
                             <!--GPA-->
@@ -258,31 +260,41 @@ and open the template in the editor.
                             <!--Mobile No.-->
                             <div class="form-group">
                                 <label for="input1">Mobile:</label>
-                                <input type="tel" name="mobile" class="form-control" required id="input1" placeholder="">
+                                <input type="tel" name="mobile" class="form-control" required id="input1" placeholder="required">
                             </div>
 
                             <!--personal email-->
                             <div class="form-group">
                                 <label for="input1">personal email:</label>
-                                <input type="email" name="email" class="form-control" required id="input1" placeholder="">
+                                <input type="email" name="email" class="form-control" required id="input1" placeholder="required">
                             </div>
 
                             <!--iprep statuses-->
+                            <!--                            <div class="form-group">
+                                                            <label for="input1">iprep status:</label>
+                                                            <input type="text" name="iprep_status" class="form-control" id="input1" placeholder="">
+                                                        </div>-->
                             <div class="form-group">
-                                <label for="input1">iprep status:</label>
-                                <input type="text" name="iprep_status" class="form-control" id="input1" placeholder="">
+                                <label for="iprep_status">iPrep status</label>
+                                <select class="form-control" name="iprep_status" id="iprep_status">
+                                    <option value="Valid">Valid</option>
+                                    <option value="Withdrawn">Withdrawn</option>
+                                    <option value="KIV">KIV</option>
+                                    <option value="Rejected">Rejected</option>
+                                    <option value="Not applicable">Not applicable</option>
+                                </select>
                             </div>
 
                             <!--oiip interest-->
-                            <div class="form-group">
-                                <label for="input1">oiip interest:</label>
-                                <input type="text" name="oiip_interest" class="form-control" id="input1" placeholder="">
-                            </div>
+                            <!--                            <div class="form-group">
+                                                            <label for="input1">oiip interest:</label>
+                                                            <input type="text" name="oiip_interest" class="form-control" id="input1" placeholder="">
+                                                        </div>-->
 
                             <!--cohort-->
                             <div class="form-group">
                                 <label for="input1">cohort</label>
-                                <input type="number" name="cohort" class="form-control" required id="input1" placeholder="">
+                                <input type="number" name="cohort" class="form-control" required id="input1" placeholder="required">
                                 <small>eg. 2019, 2080</small>
                             </div>
 
@@ -373,9 +385,19 @@ and open the template in the editor.
                             </div>
 
                             <!--iprep statuses-->
+                            <!--                            <div class="form-group">
+                                                            <label for="iprep_status">iprep status:</label>
+                                                            <input type="text" name="iprep_status" class="form-control" id="iprep_status" placeholder="">
+                                                        </div>-->
                             <div class="form-group">
-                                <label for="iprep_status">iprep status:</label>
-                                <input type="text" name="iprep_status" class="form-control" id="iprep_status" placeholder="">
+                                <label for="iprep_status">iPrep status</label>
+                                <select class="form-control" name="iprep_status" id="iprep_status">
+                                    <option value="Valid">Valid</option>
+                                    <option value="Withdrawn">Withdrawn</option>
+                                    <option value="KIV">KIV</option>
+                                    <option value="Rejected">Rejected</option>
+                                    <option value="Not applicable">Not applicable</option>
+                                </select>
                             </div>
 
                             <!--oiip interest-->
