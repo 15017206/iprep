@@ -22,8 +22,7 @@ and open the template in the editor.
                 $.ajax({
                     type: "GET",
                     url: "http://localhost/iprep/webservices/getStudentHasCourseByStudentId.php",
-                    //data: {student_id: "<?php // echo $student_id; ?>"},
-                    data: {student_id: 15082233},
+                    data: {student_id: "<?php  echo $student_id; ?>"},
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
@@ -36,8 +35,8 @@ and open the template in the editor.
                                     "<p class='mb-1'></p>" +
                                     "<span class='badge badge-warning'>$"+response[i].course_cost+"</span>&nbsp;<span class='badge badge-success'>"+response[i].status+"</span>" +
                                     "<br/>" +
-                                    "<a href=''><span class='badge badge-info'>Make claim</span></a>&nbsp;" +
-                                    "<a href=''><span class='badge badge-info'>Submit IMDA approval email</span></a>" +
+//                                    "<a href=''><span class='badge badge-info'>Make claim</span></a>&nbsp;" +
+//                                    "<a href=''><span class='badge badge-info'>Submit IMDA approval email</span></a>" +
                                     "<br/>" +
                                     "<small>"+response[i].course_provider+"</small>" +
                                     "</li>";

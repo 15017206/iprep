@@ -6,8 +6,10 @@ and open the template in the editor.
 -->
 <?php
 session_start();
-$_SESSION['student_id'] = 15082233;
-$_SESSION['student_name'] = "Da li";
+if (!isset($_SESSION['user_type'])) {
+    header("Location: login.php");
+die();
+}
 ?>
 <html>
     <head>
@@ -16,7 +18,7 @@ $_SESSION['student_name'] = "Da li";
     </head>
     <body>
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <a class="navbar-brand" href="#">Welcome, <?php echo $_SESSION['student_name']; ?></a>
+            <a class="navbar-brand" href="#">Welcome, <?php echo $_SESSION['student_name'] . ", " . $_SESSION['student_id']; ?></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,7 +34,7 @@ $_SESSION['student_name'] = "Da li";
                         <a class="nav-link" href="student_dashboard_oiip.php">OIIP</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="logout.php">Logout</a>
                     </li>
                 </ul>
             </div>

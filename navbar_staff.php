@@ -7,6 +7,10 @@ and open the template in the editor.
 <?php
 session_start();
 //$_SESSION[''];
+if (!isset($_SESSION['user_type'])) {
+    header("Location: login.php");
+    die();
+}
 ?>
 <html>
     <head>
@@ -16,7 +20,7 @@ session_start();
     <body>
         <nav class="navbar navbar-expand-sm navbar-light bg-light navbar-fixed-top">
 
-            <a class="navbar-brand" href="#">Welcome, Grace Yap</a>
+            <a class="navbar-brand" href="#">Welcome, Admin</a>
 
             <!--Links in navbar-->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +44,7 @@ session_start();
                         <a class="nav-link" href="graceyap_maintainstudent.php">Maintain Student</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="logout.php">Logout</a>
                     </li>
 
                 </ul>

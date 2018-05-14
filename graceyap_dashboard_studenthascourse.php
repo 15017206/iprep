@@ -13,7 +13,6 @@
                     alert($(this).text());
                 })
                 show();
-
                 // When a modal is submitted
                 $('#course_status_form').submit(function () {
                     var student_id = $('#student_id_input').val();
@@ -62,7 +61,6 @@
                             var student_iprep_status = response[i].iprep_status;
                             var student_oiip_interest = response[i].oiip_interest;
                             var student_cohort = response[i].cohort;
-
                             // check if the company_id is in the array. If not inside, add it in.
                             for (var j = 0; j <= company_id_array.length; j++) {
                                 var list_of_courses_with_students = "";
@@ -114,9 +112,13 @@
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
-                        $("#change_course_status_title").text("Change course for " + response.name);
-                        $('#course_status_dropdown').val(response.status);
-                        $('#student_id_input').val(response.student_id);
+                        for (var i = 0; i < response.length; i++) {
+                            $("#change_course_status_title").text("Change course for " + response[i].name);
+                            $('#course_status_dropdown').val(response[i].status);
+                            $('#student_id_input').val(response[i].student_id);
+                        }
+
+
                     },
                     error: function (obj, textStatus, errorThrown) {
                         console.log("Error " + textStatus + ": " + errorThrown);
@@ -130,7 +132,7 @@
             <br/>
             <p>List of students with courses:</p>
 
-            <nav class="navbar navbar-expand-sm navbar-light bg-light">
+<!--            <nav class="navbar navbar-expand-sm navbar-light bg-light">
                 <a class="navbar-brand" href="#">Filter:</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -138,24 +140,6 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-
-                        <!--                        <li class="nav-item dropdown">
-                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        Month
-                                                    </a>
-                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                        <a class="dropdown-item" href="#">March</a>
-                                                        <a class="dropdown-item" href="#">October</a>
-                                                    </div>
-                                                </li>
-                                                <li class="nav-item dropdown">
-                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        Year
-                                                    </a>
-                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                        <a class="dropdown-item" href="#">2018</a>
-                                                    </div>
-                                                </li>-->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Diploma
@@ -175,14 +159,14 @@
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
-            </nav>
+            </nav>-->
             <br/>
 
             <br/>
-            <div class="form-check">
+<!--            <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                 <label class="form-check-label" for="defaultCheck1">Show only Unassigned Vacancies</label>
-            </div>
+            </div>-->
             <br/>
 
             <!--Add some students here-->
