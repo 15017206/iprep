@@ -22,7 +22,8 @@ and open the template in the editor.
                 $.ajax({
                     type: "GET",
                     url: "http://localhost/iprep/webservices/getStudentHasCourseByStudentId.php",
-                    data: {student_id: "<?php echo $student_id; ?>"},
+                    //data: {student_id: "<?php // echo $student_id; ?>"},
+                    data: {student_id: 15082233},
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
@@ -60,7 +61,7 @@ and open the template in the editor.
 
                 <!--Add some-->
                 <p>List of courses applied:</p>
-                <div cla        ss="list-group">
+                <div class="list-group">
                     <ul class="list-group" id="big_container">
 
 <!--                        <li class='list-group-item list-group-item-action flex-column align-items-start'>

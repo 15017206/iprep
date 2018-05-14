@@ -209,7 +209,7 @@
                             }
 
                             var list_of_vacancies = "";
-                            list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
+                            list_of_vacancies += "<li class='collapse panel list-group-item justify-content-between align-items-center'>" +
                                     "<small style='font-weight: bold; color: limegreen'>Assigned Vacancy</small><br/>" +
                                     "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + " " + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
                                     "<br/><small style='font-weight:bold'>Taken by " + student_name + ", " + student_diploma + ", " + gpa + ", " + tech_subj_score + ", " + mobile + ", " + cohort + "</small><br/>" +
@@ -252,8 +252,6 @@
                         console.log("Error " + textStatus + ": " + errorThrown);
                     }
                 });
-
-
             }
 
             // this triggers when the "Reassign/assign student to vacancy" button is clicked
@@ -384,6 +382,7 @@
                     }
                 });
             }
+
             function removeStudent(vacancy_id) {
                 if (confirm("Delete?")) {
                     $.ajax({
@@ -500,8 +499,8 @@
                     <!--end of filter navbar-->
                     <br/>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">Show only Unassigned Vacancies</label>
+                        <input data-toggle="collapse" data-target=".panel" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">Show Assigned Vacancies also</label>
                     </div>
                     <br/>
                     <ul class="list-group" id="container_vacancies_students">

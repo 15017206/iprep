@@ -11,52 +11,119 @@ and open the template in the editor.
         <?php
         include 'scripts.php';
         include 'navbar_student.php';
+        $student_id = $_SESSION['student_id'];
         ?>
+        <script>
+            $(document).ready(function () {
+                showMyOIIP();
+                checkIfOIIPInterestIsSet("<?php echo $student_id; ?>");
+                $('#oiip_interest').submit(function () {
+                    var answer = $('input[name=exampleRadios]:checked').val();
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost/iprep/webservices/doIIPInterest.php",
+                        data: {student_id: "<?php echo $student_id; ?>", oiip_interest: answer},
+                        cache: false,
+                        dataType: "JSON",
+                        success: function (response) {
+                            alert(response.result);
+                        },
+                        error: function (obj, textStatus, errorThrown) {
+                            console.log("Error " + textStatus + ": " + errorThrown);
+                        }
+                    });
+
+                });
+            });
+            function showMyOIIP() {
+                var output = "";
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/iprep/webservices/getOIIPAssignmentsByStudentId.php",
+                    data: {student_id: "<?php echo $student_id; ?>"},
+//                    data: {student_id: 15082233},
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+                        for (var i = 0; i < response.length; i++) {
+                            output += "<li data-toggle='modal' data-target='#courses_modal' class='list-group-item list-group-item-action flex-column align-items-start'>" +
+                                    "<div class='d-flex w-100 justify-content-between'>" +
+                                    "<h5 class='mb-1'>" + response[i].job_role + "</h5>" +
+                                    "<small>" + response[i].country + "</small>" +
+                                    "</div>" +
+                                    "<p class='mb-1'></p>" +
+                                    "<span class='badge badge-warning'>Funding Status: Applied</span>&nbsp;<span class='badge badge-warning'>Job Status: " + response[i].job_status + "</span>&nbsp;<span class='badge badge-warning'>Funding source: " + response[i].funding_source + "</span>" +
+                                    "<br/><br/>" +
+//                                    "<button type='button' data-toggle='modal' data-target='#uploadfiles' class='btn btn-primary btn-sm'>Upload Files</button>" +
+//                            "<a href=''><span class='badge badge-info'>Request OIIP approval from IMDA</span></a>"+
+//                            "<a href=''><span class='badge badge-info'>Submit OIIP approval email</span></a>"+
+                                    "<br/>" +
+                                    "<small>" + response[i].allowance_currency + " " + response[i].company_mthly_allowance + "</small>" +
+                                    "</li>";
+                        }
+                        $("#big_container").html(output);
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
+            }
+
+            function checkIfOIIPInterestIsSet(student_id) {
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/iprep/webservices/checkOIIPInterestSet.php",
+                    data: {student_id: student_id},
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+                        if (response.result == null) {
+                            $('#oiip_interest_alert').show();
+                            $('#small_subtitle').text("You have not indicated your interest for Overseas Internship yet.");
+                        } else {
+                            $('#oiip_interest_alert').hide();
+                            if (response.result == "1") {
+                                $('#small_subtitle').text("You have expressed interest for Overseas Internship.");
+                            } else if (response.result == "0") {
+                                $('#small_subtitle').text("You are not interested in Overseas Internship.");
+                            }
+                        }
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
+            }
+        </script>
     </head>
     <body>
         <br/>
         <!--About OIIP-->
         <div class="container">
-            <div class="alert alert-info" role="alert">
+            <div id="oiip_interest_alert" class="alert alert-info" role="alert">
                 <p>OIIP Interest</p>        
-
-                <div>Are you interested for Overseas Internship?</div>
-                <small>Please choose carefully. No change is allowed</small>
-                <!--Interest for OIIP-->
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                        Yes
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                    <label class="form-check-label" for="exampleRadios2">
-                        No
-                    </label>
-                </div>
-
+                <form id="oiip_interest" method="" action="">
+                    <div>Are you interested for Overseas Internship?</div>
+                    <small>Please choose carefully. No change is allowed</small>
+                    <!--Interest for OIIP-->
+                    <div class="form-check">
+                        <input class="form-check-input" required type="radio" name="exampleRadios" id="exampleRadios1" value="1">
+                        <label class="form-check-label" for="exampleRadios1">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="0">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+                    </div>
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Submit decision</button>
+                </form>
             </div>
 
             <div class="alert alert-warning" role="alert">
                 <p>OIIP assignment:</p>
+                <small id="small_subtitle"></small>
                 <div class="list-group">
-                    <ul class="list-group">
-                        <li data-toggle='modal' data-target='#courses_modal' class='list-group-item list-group-item-action flex-column align-items-start'>
-                            <div class='d-flex w-100 justify-content-between'>
-                                <h5 class='mb-1'>Translation of Braille to English Text</h5>
-                                <small>Tokushima, Nagano, Japan</small>
-                            </div>
-                            <p class='mb-1'></p>
-                            <span class='badge badge-warning'>Funding Status: Applied</span>&nbsp;<span class='badge badge-warning'>Job Status: Accepted</span>&nbsp;<span class='badge badge-warning'>Funding source: YTP</span>
-                            <br/><br/>
-
-                            <button type='button' data-toggle='modal' data-target='#uploadfiles' class='btn btn-primary btn-sm'>Upload Files</button>
-<!--                            <a href=""><span class="badge badge-info">Request OIIP approval from IMDA</span></a>
-                            <a href=""><span class="badge badge-info">Submit OIIP approval email</span></a>-->
-                            <br/>
-                            <small>$1200/month</small>
-                        </li>
+                    <ul class="list-group" id="big_container">
                     </ul>
                 </div>
             </div>

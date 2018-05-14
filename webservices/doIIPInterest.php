@@ -7,10 +7,9 @@ if (isset($_POST)) {
     $student_id = $_POST['student_id'];
     $interest = $_POST['oiip_interest'];
     
-    $queryCheck = "UPDATE student SET oiip_interest='$interest' WHERE student_id = '$student_id'";
-    $checkfornew = mysqli_query($link, $queryCheck); 
+    $queryCheck = "UPDATE `student` SET `oiip_interest`='$interest' WHERE `student_id` = '$student_id'";
 
-    $result = mysqli_query($link, $query);
+    $result = mysqli_query($link, $queryCheck);
     
     if($result){
         $response["result"] = "Updated successfully";
