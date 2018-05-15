@@ -9,9 +9,6 @@
         ?>
         <script>
             $(document).ready(function () {
-                $("#genreDropdown a").on('click', function () {
-                    alert($(this).text());
-                })
                 show();
                 // When a modal is submitted
                 $('#course_status_form').submit(function () {
@@ -32,6 +29,80 @@
                         }
                     });
                 });
+
+                $('#search_name_studentid').keyup(function () {
+                    var query = $('#search_name_studentid').val();
+                    var company_id_array = ["x"];
+                    var list_of_courses = "";
+                    $("#big_container").empty();
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost/iprep/webservices/getStudentHasCourseByStudentIdOrStudentNameOrCourseName.php",
+                        data: {query: query},
+                        cache: false,
+                        dataType: "JSON",
+                        success: function (response) {
+                            for (var i = 0; i < response.length; i++) {
+                                var course_id = response[i].course_id;
+                                //Related to vacancies, put response[i] here
+
+                                var course_name = response[i].course_name;
+                                var course_cost = response[i].course_cost;
+                                var course_status = response[i].status;
+                                var course_genre = response[i].course_genre;
+                                var course_provider = response[i].course_provider;
+                                var student_id = response[i].student_id;
+                                var student_name = response[i].name;
+                                var student_diploma = response[i].diploma;
+                                var student_gpa = response[i].gpa;
+                                var tech_subj_score = response[i].tech_subj_score;
+                                var student_mobile = response[i].mobile;
+                                var student_personal_email = response[i].personal_email;
+                                var student_iprep_status = response[i].iprep_status;
+                                var student_oiip_interest = response[i].oiip_interest;
+                                var student_cohort = response[i].cohort;
+                                // check if the company_id is in the array. If not inside, add it in.
+                                for (var j = 0; j <= company_id_array.length; j++) {
+                                    var list_of_courses_with_students = "";
+                                    var list_of_courses = "";
+                                    if (course_id !== company_id_array[j]) {
+                                        // If the array has checked the last index
+                                        if (j === company_id_array.length - 1) {
+                                            company_id_array.push(course_id);
+                                            // Related to companies, put response[i] here
+
+                                            list_of_courses_with_students += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
+                                                    "<div class='d-flex w-100 justify-content-between'>" +
+                                                    "<h5 class='mb-1'>" + course_name + "</h5>" +
+                                                    "<small>" + course_genre + "</small>" +
+                                                    "</div>" +
+                                                    "<span class='badge badge-success'>$" + course_cost + "</span>" +
+                                                    "<br/>" +
+                                                    "<ul class='list-group' id='course_" + course_id + "'>" +
+                                                    "</ul>" +
+                                                    "<br/>" +
+                                                    "<small>" + course_provider + "</small>" +
+                                                    "</li>";
+                                            $("#big_container").append(list_of_courses_with_students);
+                                        }
+                                    } else {
+                                        break;
+                                    }
+                                }
+                                list_of_courses += "<li class='list-group-item justify-content-between align-items-center'>" +
+                                        "<div style='font-weight:bold'>" + student_name + ", " + student_id + "</div><span class='badge badge-info'>" + student_diploma + ", " + student_gpa + "</span>" +
+                                        "<br/><small>Tech Sub Score: " + tech_subj_score + " | Mobile: " + student_mobile + " | Personal Email: " + student_personal_email + "</small>" +
+                                        "<br/><small>iPrep status: " + student_iprep_status + " | Oiip interest: " + student_oiip_interest + " | Cohort: " + student_cohort + "</small>" +
+                                        "<br/><a href='#' onclick='getCourseStatusFromStudentId(" + student_id + ")' class='cell_class badge badge-warning' data-toggle='modal' data-target='#change_course_status'>" + course_status + "</a>" +
+                                        "</li>";
+                                $("#course_" + course_id).append(list_of_courses);
+                            }
+                        },
+                        error: function (obj, textStatus, errorThrown) {
+                            console.log("Error " + textStatus + ": " + errorThrown);
+                        }
+                    });
+                })
             }); // end of document.ready
 
             function show() {
@@ -132,34 +203,20 @@
             <br/>
             <p>List of students with courses:</p>
 
-            <!--            <nav class="navbar navbar-expand-sm navbar-light bg-light">
-                            <a class="navbar-brand" href="#">Filter:</a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-            
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Diploma
-                                        </a>
-                                        <div class="dropdown-menu" id="genreDropdown" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item"  href="#">DBA</a>
-                                            <a class="dropdown-item" href="#">DBIS</a>
-                                            <a class="dropdown-item" href="#">DIT</a>
-                                            <a class="dropdown-item" href="#">DIDM</a>
-                                            <a class="dropdown-item" href="#">DMSD</a>
-                                            <a class="dropdown-item" href="#">DISM</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <form class="form-inline my-2 my-lg-0">
-                                    <input class="form-control mr-sm-2" type="search" placeholder="Name or studentID" aria-label="Search">
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                                </form>
-                            </div>
-                        </nav>-->
+            <nav class="navbar navbar-expand-sm navbar-light bg-light">
+                <a class="navbar-brand" href="#" id="11">Filter:</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" id="search_name_studentid" type="search" placeholder="Name/Student ID or Course" aria-label="Search">
+                    </form>
+                </div>
+            </nav>
             <br/>
 
             <br/>
