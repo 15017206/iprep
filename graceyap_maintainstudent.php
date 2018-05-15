@@ -111,7 +111,7 @@ and open the template in the editor.
                             },
                             error: function (obj, textStatus, errorThrown) {
                                 console.log("Error " + textStatus + ": " + errorThrown);
-                                alert("fail");
+//                                alert("fail");
                             }
                         });
                     }
@@ -401,7 +401,7 @@ and open the template in the editor.
                             </div>
 
                             <!--oiip interest-->
-                            <div class="form-group">
+<!--                            <div class="form-group">
                                 <label for="oiip_interest">oiip interest:</label>
                                 <input type="text" name="oiip_interest" class="form-control" id="oiip_interest" placeholder="">
                             </div>
@@ -417,7 +417,7 @@ and open the template in the editor.
                                 <label class="form-check-label" for="exampleRadios2">
                                     <div>Interested for OIIP</div>
                                 </label>
-                            </div>
+                            </div>-->
 
                             <!--cohort-->
                             <div class="form-group">
