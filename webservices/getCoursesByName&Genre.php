@@ -14,7 +14,7 @@ if (isset($_GET)) {
     
     $courses=array();
    
-    $query = "SELECT * FROM course where genre LIKE '%$genre%' AND name LIKE '%$name%'";
+    $query = "SELECT * FROM course where course_genre LIKE '%$genre%' AND course_name LIKE '%$name%'";
     $result = mysqli_query($link, $query);
     while (($row = mysqli_fetch_assoc($result))!== NULL) {
         $courses[] = $row;
