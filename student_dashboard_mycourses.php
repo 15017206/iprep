@@ -21,7 +21,7 @@ and open the template in the editor.
                 var output = "";
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getStudentHasCourseByStudentId.php",
+                    url: "/webservices/getStudentHasCourseByStudentId.php",
                     data: {student_id: "<?php echo $student_id; ?>"},
                     cache: false,
                     dataType: "JSON",
@@ -71,7 +71,7 @@ and open the template in the editor.
                     var status = "Completed";
                     $.ajax({
                         type: "POST",
-                        url: "http://localhost/iprep/webservices/editCourseStatusByStudentId.php",
+                        url: "/webservices/editCourseStatusByStudentId.php",
                         data: {student_id: <?php echo $student_id; ?>, status: status, course_id: course_id},
                         cache: false,
                         dataType: "JSON",

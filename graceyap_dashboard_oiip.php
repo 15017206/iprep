@@ -27,7 +27,7 @@
 
                         $.ajax({
                             type: "POST",
-                            url: "http://localhost/iprep/webservices/doAssignOIIP.php",
+                            url: "/webservices/doAssignOIIP.php",
                             data: {student_id: student_id, vacancy_id: vacancy_id, funding_status: funding_status, job_status: job_status, funding_source: funding_source},
                             cache: false,
                             dataType: "JSON",
@@ -49,7 +49,7 @@
 
                         $.ajax({
                             type: "POST",
-                            url: "http://localhost/iprep/webservices/editOIIPAssignment.php",
+                            url: "/webservices/editOIIPAssignment.php",
                             data: {vacancy_id: vacancy_id, funding_status: funding_status, job_status: job_status, funding_source: funding_source},
                             cache: false,
                             dataType: "JSON",
@@ -69,7 +69,7 @@
             function getUnassignedVacancies() {
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getUnallocatedVacancies.php",
+                    url: "/webservices/getUnallocatedVacancies.php",
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
@@ -141,7 +141,7 @@
                 //var company_id_array = ["y"];
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getAllocatedVacanciesv2.php",
+                    url: "/webservices/getAllocatedVacanciesv2.php",
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
@@ -236,7 +236,7 @@
                 getAllStudentsWithAssignedVacancies();
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getOIIPAssignments.php",
+                    url: "/webservices/getOIIPAssignments.php",
                     data: {vacancy_id: vacancy_id, student_id: student_id},
                     cache: false,
                     dataType: "JSON",
@@ -269,7 +269,7 @@
                 $("#modal_vacancy_desc4").empty();
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getVacanciesAndCompaniesByVacancyId.php?vacancy_id=" + vacancy_id,
+                    url: "/webservices/getVacanciesAndCompaniesByVacancyId.php?vacancy_id=" + vacancy_id,
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
@@ -299,7 +299,7 @@
                 var list_of_students = "<option value=''></option>";
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getStudentsWithoutAllocation.php",
+                    url: "/webservices/getStudentsWithoutAllocation.php",
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
@@ -332,7 +332,7 @@
                 $("#modal_vacancy_desc4").empty();
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getVacanciesAndCompaniesByVacancyId.php?vacancy_id=" + vacancy_id,
+                    url: "/webservices/getVacanciesAndCompaniesByVacancyId.php?vacancy_id=" + vacancy_id,
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
@@ -362,7 +362,7 @@
                 var list_of_students = "<option value=''></option>";
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getStudentsWithAllocation.php",
+                    url: "/webservices/getStudentsWithAllocation.php",
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
@@ -387,7 +387,7 @@
                 if (confirm("Delete?")) {
                     $.ajax({
                         type: "GET",
-                        url: "http://localhost/iprep/webservices/deleteOIIPAssignment.php",
+                        url: "/webservices/deleteOIIPAssignment.php",
                         data: {vacancy_id: vacancy_id},
                         cache: false,
                         dataType: "JSON",

@@ -11,7 +11,7 @@ $(document).ready(function () {
     //reloads all data from db
     $.ajax({
         type: "GET",
-        url: "http://localhost/iprep/webservices/getCourses.php",
+        url: "/webservices/getCourses.php",
         cache: false,
         dataType: "JSON",
         success: function (response) {
@@ -51,7 +51,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "POST",
-                url: "http://localhost/iprep/webservices/doAddCourse.php",
+                url: "/webservices/doAddCourse.php",
                 data: $("#formAddNewCourse").serialize(),
                 cache: false,
                 dataType: "JSON",
@@ -83,7 +83,7 @@ $(document).ready(function () {
         
         $.ajax({
                 type: "GET",
-                url: "http://localhost/iprep/webservices/getCourseById.php",
+                url: "/webservices/getCourseById.php",
                 data: "id="+courseId,
                 cache: false,
                 dataType: "JSON",
@@ -122,7 +122,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "POST",
-                url: "http://localhost/iprep/webservices/editCourse.php",
+                url: "webservices/editCourse.php",
                 data: data,
                 cache: false,
                 dataType: "JSON",

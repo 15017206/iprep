@@ -17,7 +17,7 @@
                     var course_id = $('#course_id_input').val();
                     $.ajax({
                         type: "POST",
-                        url: "http://localhost/iprep/webservices/editCourseStatusByStudentId.php",
+                        url: "/webservices/editCourseStatusByStudentId.php",
                         data: {student_id: student_id, status: status, course_id: course_id},
                         cache: false,
                         dataType: "JSON",
@@ -37,7 +37,7 @@
                     $("#big_container").empty();
                     $.ajax({
                         type: "GET",
-                        url: "http://localhost/iprep/webservices/getStudentHasCourseByStudentIdOrStudentNameOrCourseName.php",
+                        url: "/webservices/getStudentHasCourseByStudentIdOrStudentNameOrCourseName.php",
                         data: {query: query},
                         cache: false,
                         dataType: "JSON",
@@ -93,7 +93,7 @@
                                         "<div style='font-weight:bold'>" + student_name + ", " + student_id + "</div><span class='badge badge-info'>" + student_diploma + ", " + student_gpa + "</span>" +
                                         "<br/><small>Tech Sub Score: " + tech_subj_score + " | Mobile: " + student_mobile + " | Personal Email: " + student_personal_email + "</small>" +
                                         "<br/><small>iPrep status: " + student_iprep_status + " | Oiip interest: " + student_oiip_interest + " | Cohort: " + student_cohort + "</small>" +
-                                        "<br/><a href='#' onclick='getCourseStatusFromStudentId(" + student_id + ")' class='cell_class badge badge-warning' data-toggle='modal' data-target='#change_course_status'>" + course_status + "</a>" +
+                                        "<br/><a href='#' onclick='getCourseStatusFromStudentIdAndCourseId(" + course_id + "+" + student_id + ")' class='cell_class badge badge-warning' data-toggle='modal' data-target='#change_course_status'>" + course_status + "</a>" +
                                         "</li>";
                                 $("#course_" + course_id).append(list_of_courses);
                             }
@@ -110,7 +110,7 @@
                 var list_of_courses = "";
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getStudentHasCourse.php",
+                    url: "/webservices/getStudentHasCourse.php",
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
@@ -165,7 +165,7 @@
                                     "<div style='font-weight:bold'>" + student_name + ", " + student_id + "</div><span class='badge badge-info'>" + student_diploma + ", " + student_gpa + "</span>" +
                                     "<br/><small>Tech Sub Score: " + tech_subj_score + " | Mobile: " + student_mobile + " | Personal Email: " + student_personal_email + "</small>" +
                                     "<br/><small>iPrep status: " + student_iprep_status + " | Oiip interest: " + student_oiip_interest + " | Cohort: " + student_cohort + "</small>" +
-                                    "<br/><a href='#' onclick='getCourseStatusFromStudentId(" + student_id + ")' class='cell_class badge badge-warning' data-toggle='modal' data-target='#change_course_status'>" + course_status + "</a>" +
+                                    "<br/><a href='#' onclick='getCourseStatusFromStudentIdAndCourseId(" + course_id + "\, " + student_id + ")' class='cell_class badge badge-warning' data-toggle='modal' data-target='#change_course_status'>" + course_status + "</a>" +
                                     "</li>";
                             $("#course_" + course_id).append(list_of_courses);
                         }
@@ -176,20 +176,20 @@
                 });
             }
 
-            function getCourseStatusFromStudentId(student_id) {
+            function getCourseStatusFromStudentIdAndCourseId(course_id, student_id) {
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getStudentHasCourseByStudentId.php",
-                    data: {student_id: student_id},
+                    url: "/webservices/getStudentHasCourseByStudentIdAndCourseId.php",
+                    data: {student_id: student_id, course_id: course_id},
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
-                        for (var i = 0; i < response.length; i++) {
-                            $("#change_course_status_title").text("Change course status for " + response[i].name);
-                            $('#course_status_dropdown').val(response[i].status);
-                            $('#student_id_input').val(response[i].student_id);
-                            $('#course_id_input').val(response[i].course_id);
-                        }
+
+                        $("#change_course_status_title").text("Change course status for " + response.name);
+                        $('#course_status_dropdown').val(response.status);
+                        $('#student_id_input').val(response.student_id);
+                        $('#course_id_input').val(response.course_id);
+
                     },
                     error: function (obj, textStatus, errorThrown) {
                         console.log("Error " + textStatus + ": " + errorThrown);
@@ -212,7 +212,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!--<form class="form-inline">-->
                     <br/>
-                        <input class="form-control" id="search_name_studentid" type="search" placeholder="Name/Student ID or Course name" aria-label="Search">
+                    <input class="form-control" id="search_name_studentid" type="search" placeholder="Name/Student ID or Course name" aria-label="Search">
                     <!--</form>-->
                 </div>
             </nav>

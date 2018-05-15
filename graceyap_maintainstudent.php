@@ -28,7 +28,7 @@ and open the template in the editor.
 
                     $.ajax({
                         type: "GET",
-                        url: "http://localhost/iprep/webservices/getStudentById.php",
+                        url: "webservices/getStudentById.php",
                         data: "student_id=" + studentId,
                         cache: false,
                         dataType: "JSON",
@@ -70,7 +70,7 @@ and open the template in the editor.
 
                         $.ajax({
                             type: "POST",
-                            url: "http://localhost/iprep/webservices/editStudent.php",
+                            url: "webservices/editStudent.php",
                             data: data,
                             cache: false,
                             dataType: "JSON",
@@ -97,7 +97,7 @@ and open the template in the editor.
                         e.preventDefault();
                         $.ajax({
                             type: "POST",
-                            url: "http://localhost/iprep/webservices/doAddStudent.php",
+                            url: "webservices/doAddStudent.php",
                             data: $("#add_student").serialize(),
                             cache: false,
                             dataType: "JSON",
@@ -132,7 +132,7 @@ and open the template in the editor.
                         e.preventDefault();
                         $.ajax({
                             type: "GET",
-                            url: "http://localhost/iprep/webservices/deleteStudent.php",
+                            url: "webservices/deleteStudent.php",
                             data: {student_id: studentId},
                             cache: false,
                             dataType: "JSON",
@@ -159,7 +159,7 @@ and open the template in the editor.
                     var output = "";
                     $.ajax({
                         type: "GET",
-                        url: "http://localhost/iprep/webservices/getStudentsByCohort.php",
+                        url: "webservices/getStudentsByCohort.php",
                         data: "cohort=" + cohort,
                         cache: false,
                         dataType: "JSON",
@@ -195,7 +195,7 @@ and open the template in the editor.
 
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getStudents.php",
+                    url: "/webservices/getStudents.php",
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {

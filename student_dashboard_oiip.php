@@ -21,7 +21,7 @@ and open the template in the editor.
                     var answer = $('input[name=exampleRadios]:checked').val();
                     $.ajax({
                         type: "POST",
-                        url: "http://localhost/iprep/webservices/doIIPInterest.php",
+                        url: "/webservices/doIIPInterest.php",
                         data: {student_id: "<?php echo $student_id; ?>", oiip_interest: answer},
                         cache: false,
                         dataType: "JSON",
@@ -39,7 +39,7 @@ and open the template in the editor.
                 var output = "";
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getOIIPAssignmentsByStudentId.php",
+                    url: "/webservices/getOIIPAssignmentsByStudentId.php",
                     data: {student_id: "<?php echo $student_id; ?>"},
 //                    data: {student_id: 15082233},
                     cache: false,
@@ -72,7 +72,7 @@ and open the template in the editor.
             function checkIfOIIPInterestIsSet(student_id) {
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/checkOIIPInterestSet.php",
+                    url: "/webservices/checkOIIPInterestSet.php",
                     data: {student_id: student_id},
                     cache: false,
                     dataType: "JSON",

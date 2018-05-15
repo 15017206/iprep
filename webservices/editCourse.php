@@ -9,7 +9,7 @@ if (isset($_POST)) {
     $cost = $_POST['course_cost'];
     $provider = $_POST['course_provider'];
     
-    $query = "UPDATE `course` SET `name`='$name',`genre`='$genre', `cost`='$cost',"
+    $query = "UPDATE `course` SET `course_name`='$name',`course_genre`='$genre', `course_cost`='$cost',"
             . "`course_provider`='$provider' WHERE `course_id`='$course_id'";
  
     $result = mysqli_query($link, $query);

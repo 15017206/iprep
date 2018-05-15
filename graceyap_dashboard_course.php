@@ -30,7 +30,7 @@ and open the template in the editor.
                         var printCourseDetails = "";
                         $.ajax({
                             type: "GET",
-                            url: "http://localhost/iprep/webservices/getCourseByGenre.php",
+                            url: "webservices/getCourseByGenre.php",
                             data: "genre=" + genre,
                             cache: false,
                             dataType: "JSON",
@@ -76,7 +76,7 @@ and open the template in the editor.
                     var printCourseDetails = "";
                     $.ajax({
                         type: "GET",
-                        url: "http://localhost/iprep/webservices/getCoursesByName&Genre.php",
+                        url: "webservices/getCoursesByName&Genre.php",
                         data: "name=" + course + "&genre=" + genre,
                         cache: false,
                         dataType: "JSON",
@@ -120,8 +120,9 @@ and open the template in the editor.
 
                         $.ajax({
                             type: "POST",
-                            url: "http://localhost/iprep/webservices/doAddCourse.php",
-                            data: $("#formAddNewCourse").serialize(),
+                            url: "webservices/doAddCourse.php",
+                            data: {name: $('#name').val(),genre: $('#exampleFormControlSelect1').val(), cost:$('#cost').val(), provider: $('#course_provider').val() },
+//                            data: $("#formAddNewCourse").serialize(),
                             cache: false,
                             dataType: "JSON",
                             success: function (data, textStatus)
@@ -155,7 +156,7 @@ and open the template in the editor.
 
                     $.ajax({
                         type: "GET",
-                        url: "http://localhost/iprep/webservices/getCourseByCourseId.php",
+                        url: "webservices/getCourseByCourseId.php",
                         data: "id=" + courseId,
                         cache: false,
                         dataType: "JSON",
@@ -194,7 +195,7 @@ and open the template in the editor.
 
                         $.ajax({
                             type: "POST",
-                            url: "http://localhost/iprep/webservices/editCourse.php",
+                            url: "/webservices/editCourse.php",
                             data: data,
                             cache: false,
                             dataType: "JSON",
@@ -225,7 +226,7 @@ and open the template in the editor.
                     var printCourseDetails = "";
                     $.ajax({
                         type: "GET",
-                        url: "http://localhost/iprep/webservices/getCourses.php",
+                        url: "/webservices/getCourses.php",
                         cache: false,
                         dataType: "JSON",
                         success: function (response) {
@@ -331,7 +332,7 @@ and open the template in the editor.
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Name of new course:</label>
-                                    <input type="text" class="form-control" placeholder="eg. Introduction to IoT" name="name">
+                                    <input type="text" id="name" class="form-control" placeholder="eg. Introduction to IoT" name="name">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Course Genre:</label>
@@ -352,12 +353,12 @@ and open the template in the editor.
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">S$</span>
                                         </div>
-                                        <input type="number" class="form-control" placeholder="Please put in SGD, eg. SGD$0.06" name="cost" step="0.01" min="0">
+                                        <input type="number" id="cost" class="form-control" placeholder="Please put in SGD, eg. SGD$0.06" name="cost" step="0.01" min="0">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Course Provider:</label>
-                                    <input type="text" class="form-control" placeholder="eg. Coursera, Codeacademy" name="provider">
+                                    <input type="text" class="form-control" id="course_provider" placeholder="eg. Coursera, Codeacademy" name="provider">
                                 </div>
                             </div>
 

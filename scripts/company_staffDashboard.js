@@ -11,7 +11,7 @@ $(document).ready(function (e) {
             e.preventDefault();
             $.ajax({
                 type: "POST",
-                url: "http://localhost/iprep/webservices/doAddCompany.php",
+                url: "/webservices/doAddCompany.php",
                 data: $("#form_add_company").serialize(),
                 cache: false,
                 dataType: "JSON",
@@ -40,7 +40,7 @@ $(document).ready(function (e) {
             for (var i = 0; i < no_of_vacancies; i++) {
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost/iprep/webservices/doAddVacancy.php",
+                    url: "/webservices/doAddVacancy.php",
                     data: $("#form_modal_add_modify_vacancy").serialize(),
                     cache: false,
                     dataType: "JSON",
@@ -118,7 +118,7 @@ function addNewVacancy(company_id) {
     $("#small_notification_another").text("Company id: " + company_id);
     $.ajax({
         type: "GET",
-        url: "http://localhost/iprep/webservices/getCompanyById.php",
+        url: "/webservices/getCompanyById.php",
         data: "company_id=" + company_id,
         cache: false,
         dataType: "JSON",
@@ -141,7 +141,7 @@ function modifyVacancy(vacancy_id) {
     $("#company_id2").val(vacancy_id);
     $.ajax({
         type: "GET",
-        url: "http://localhost/iprep/webservices/getVacanciesById.php",
+        url: "/webservices/getVacanciesById.php",
         data: "vacancy_id=" + vacancy_id,
         cache: false,
         dataType: "JSON",
@@ -181,7 +181,7 @@ function deleteVacancy(vacancy_id) {
     if (confirmation) {
         $.ajax({
             type: "POST",
-            url: "http://localhost/iprep/webservices/deleteVacancy.php",
+            url: "/webservices/deleteVacancy.php",
             data: {vacancy_id: vacancy_id},
             cache: false,
             dataType: "JSON",
@@ -203,7 +203,7 @@ function refreshCompanies() {
     var list_of_company_no_vacancies = "";
     $.ajax({
         type: "GET",
-        url: "http://localhost/iprep/webservices/getCompanies.php",
+        url: "/webservices/getCompanies.php",
         cache: false,
         dataType: "JSON",
         success: function (response) {
@@ -235,7 +235,7 @@ function refreshVacancies() {
     var company_id_array = ["x"];
     $.ajax({
         type: "GET",
-        url: "http://localhost/iprep/webservices/getVacanciesv2.php",
+        url: "/webservices/getVacanciesv2.php",
         cache: false,
         dataType: "JSON",
         success: function (response) {
@@ -321,7 +321,7 @@ function filterVacancies() {
     var company_id_array = ["x"];
     $.ajax({
         type: "GET",
-        url: "http://localhost/iprep/webservices/getVacanciesV2ByCoyNameOrCountryOrJobRole.php",
+        url: "/webservices/getVacanciesV2ByCoyNameOrCountryOrJobRole.php",
         data: {query: query},
         cache: false,
         dataType: "JSON",

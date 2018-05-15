@@ -21,7 +21,7 @@ and open the template in the editor.
                 var output = "";
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost/iprep/webservices/getCourses.php",
+                    url: "/webservices/getCourses.php",
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
@@ -49,7 +49,7 @@ and open the template in the editor.
                 if (confirm("Enroll?")) {
                     $.ajax({
                         type: "POST",
-                        url: "http://localhost/iprep/webservices/doApplyCourse.php",
+                        url: "/webservices/doApplyCourse.php",
                         data: {student_id: student_id, course_id: course_id},
                         cache: false,
                         dataType: "JSON",

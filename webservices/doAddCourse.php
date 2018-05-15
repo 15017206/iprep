@@ -8,7 +8,7 @@ if (isset($_POST)) {
     $genre = $_POST['genre'];
     $cost = $_POST['cost'];
     $course_provider = $_POST['provider'];
-    $query = "INSERT INTO `course`(`name`, `genre`, `cost`, `course_provider`) VALUES ('$coursename','$genre', $cost, '$course_provider')";
+    $query = "INSERT INTO `course`(`course_name`, `course_genre`, `course_cost`, `course_provider`) VALUES ('$coursename','$genre', $cost, '$course_provider')";
     $result = mysqli_query($link, $query);
     
     if($result){
