@@ -22,24 +22,41 @@ and open the template in the editor.
                 $.ajax({
                     type: "GET",
                     url: "http://localhost/iprep/webservices/getStudentHasCourseByStudentId.php",
-                    data: {student_id: "<?php  echo $student_id; ?>"},
+                    data: {student_id: "<?php echo $student_id; ?>"},
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
                         for (var i = 0; i < response.length; i++) {
-                            output += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
-                                    "<div class='d-flex w-100 justify-content-between'>" +
-                                    "<h5 class='mb-1'>"+ response[i].course_name +"</h5>" +
-                                    "<small>"+ response[i].course_genre +"</small>" +
-                                    "</div>" +
-                                    "<p class='mb-1'></p>" +
-                                    "<span class='badge badge-warning'>$"+response[i].course_cost+"</span>&nbsp;<span class='badge badge-success'>"+response[i].status+"</span>" +
-                                    "<br/>" +
+
+                            if (response[i].status == "Approved") {
+                                output += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
+                                        "<div class='d-flex w-100 justify-content-between'>" +
+                                        "<h5 class='mb-1'>" + response[i].course_name + "</h5>" +
+                                        "<small>" + response[i].course_genre + "</small>" +
+                                        "</div>" +
+                                        "<p class='mb-1'></p>" +
+                                        "<span class='badge badge-warning'>$" + response[i].course_cost + "</span>&nbsp;<span class='badge badge-success'>" + response[i].status + "</span>" +
+                                        "<div id='" + response[i].course_id + "'" +
+                                        "<br/><small>Actions:</small><br/>" +
 //                                    "<a href=''><span class='badge badge-info'>Make claim</span></a>&nbsp;" +
 //                                    "<a href=''><span class='badge badge-info'>Submit IMDA approval email</span></a>" +
-                                    "<br/>" +
-                                    "<small>"+response[i].course_provider+"</small>" +
-                                    "</li>";
+                                        "<a href='' onclick='submitCompletedCourse(" + response[i].course_id + ")'><span class='badge badge-info'>I have completed</span></a>" +
+                                        "</div>" +
+                                        "<br/>" +
+                                        "<small>" + response[i].course_provider + "</small>" +
+                                        "</li>";
+                            } else {
+                                output += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
+                                        "<div class='d-flex w-100 justify-content-between'>" +
+                                        "<h5 class='mb-1'>" + response[i].course_name + "</h5>" +
+                                        "<small>" + response[i].course_genre + "</small>" +
+                                        "</div>" +
+                                        "<p class='mb-1'></p>" +
+                                        "<span class='badge badge-warning'>$" + response[i].course_cost + "</span>&nbsp;<span class='badge badge-success'>" + response[i].status + "</span>" +
+                                        "<br/>" +
+                                        "<small>" + response[i].course_provider + "</small>" +
+                                        "</li>";
+                            }
                         }
                         $("#big_container").html(output);
                     },
@@ -47,6 +64,25 @@ and open the template in the editor.
                         console.log("Error " + textStatus + ": " + errorThrown);
                     }
                 });
+            }
+
+            function submitCompletedCourse(course_id) {
+                if (confirm("Sure to submit completion of course?")) {
+                    var status = "Completed";
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost/iprep/webservices/editCourseStatusByStudentId.php",
+                        data: {student_id: <?php echo $student_id; ?>, status: status, course_id: course_id},
+                        cache: false,
+                        dataType: "JSON",
+                        success: function (response) {
+                            alert(response.result);
+                        },
+                        error: function (obj, textStatus, errorThrown) {
+                            console.log("Error " + textStatus + ": " + errorThrown);
+                        }
+                    });
+                }
             }
         </script>
     </head>
@@ -63,19 +99,19 @@ and open the template in the editor.
                 <div class="list-group">
                     <ul class="list-group" id="big_container">
 
-<!--                        <li class='list-group-item list-group-item-action flex-column align-items-start'>
-                            <div class='d-flex w-100 justify-content-between'>
-                                <h5 class='mb-1'>How to hack LEO 2.0 - Hackathon</h5>
-                                <small>IT Security</small>
-                            </div>
-                            <p class='mb-1'></p>
-                            <span class='badge badge-warning'>$60.00</span>&nbsp;<span class='badge badge-success'>Approved</span>
-                            <br/>
-                            <a href=''><span class='badge badge-info'>Make claim</span></a>
-                            <a href=''><span class='badge badge-info'>Submit IMDA approval email</span></a>
-                            <br/>
-                            <small>Coursera</small>
-                        </li>-->
+                        <!--                        <li class='list-group-item list-group-item-action flex-column align-items-start'>
+                                                    <div class='d-flex w-100 justify-content-between'>
+                                                        <h5 class='mb-1'>How to hack LEO 2.0 - Hackathon</h5>
+                                                        <small>IT Security</small>
+                                                    </div>
+                                                    <p class='mb-1'></p>
+                                                    <span class='badge badge-warning'>$60.00</span>&nbsp;<span class='badge badge-success'>Approved</span>
+                                                    <br/>
+                                                    <a href=''><span class='badge badge-info'>Make claim</span></a>
+                                                    <a href=''><span class='badge badge-info'>Submit IMDA approval email</span></a>
+                                                    <br/>
+                                                    <small>Coursera</small>
+                                                </li>-->
 
                     </ul>
                 </div>

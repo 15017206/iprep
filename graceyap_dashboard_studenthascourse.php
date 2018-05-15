@@ -17,10 +17,11 @@
                 $('#course_status_form').submit(function () {
                     var student_id = $('#student_id_input').val();
                     var status = $('#course_status_dropdown').val();
+                    var course_id = $('#course_id_input').val();
                     $.ajax({
                         type: "POST",
                         url: "http://localhost/iprep/webservices/editCourseStatusByStudentId.php",
-                        data: {student_id: student_id, status: status},
+                        data: {student_id: student_id, status: status, course_id: course_id},
                         cache: false,
                         dataType: "JSON",
                         success: function (response) {
@@ -113,12 +114,11 @@
                     dataType: "JSON",
                     success: function (response) {
                         for (var i = 0; i < response.length; i++) {
-                            $("#change_course_status_title").text("Change course for " + response[i].name);
+                            $("#change_course_status_title").text("Change course status for " + response[i].name);
                             $('#course_status_dropdown').val(response[i].status);
                             $('#student_id_input').val(response[i].student_id);
+                            $('#course_id_input').val(response[i].course_id);
                         }
-
-
                     },
                     error: function (obj, textStatus, errorThrown) {
                         console.log("Error " + textStatus + ": " + errorThrown);
@@ -132,41 +132,41 @@
             <br/>
             <p>List of students with courses:</p>
 
-<!--            <nav class="navbar navbar-expand-sm navbar-light bg-light">
-                <a class="navbar-brand" href="#">Filter:</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Diploma
-                            </a>
-                            <div class="dropdown-menu" id="genreDropdown" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item"  href="#">DBA</a>
-                                <a class="dropdown-item" href="#">DBIS</a>
-                                <a class="dropdown-item" href="#">DIT</a>
-                                <a class="dropdown-item" href="#">DIDM</a>
-                                <a class="dropdown-item" href="#">DMSD</a>
-                                <a class="dropdown-item" href="#">DISM</a>
+            <!--            <nav class="navbar navbar-expand-sm navbar-light bg-light">
+                            <a class="navbar-brand" href="#">Filter:</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+            
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Diploma
+                                        </a>
+                                        <div class="dropdown-menu" id="genreDropdown" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item"  href="#">DBA</a>
+                                            <a class="dropdown-item" href="#">DBIS</a>
+                                            <a class="dropdown-item" href="#">DIT</a>
+                                            <a class="dropdown-item" href="#">DIDM</a>
+                                            <a class="dropdown-item" href="#">DMSD</a>
+                                            <a class="dropdown-item" href="#">DISM</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Name or studentID" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
                             </div>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Name or studentID" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </div>
-            </nav>-->
+                        </nav>-->
             <br/>
 
             <br/>
-<!--            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">Show only Unassigned Vacancies</label>
-            </div>-->
+            <!--            <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">Show only Unassigned Vacancies</label>
+                        </div>-->
             <br/>
 
             <!--Add some students here-->
@@ -332,6 +332,10 @@
                                 <label for="student_id_input">Student ID:</label>
                                 <input class="form-control" id="student_id_input" type="text" placeholder="" readonly>
                                 <br/>
+                                <label for="course_id_input">Course ID:</label>
+                                <input class="form-control" id="course_id_input" type="text" placeholder="" readonly>
+                                <br/>
+                                <label for="course_status_dropdown">Course Status:</label>
                                 <select class="form-control" id="course_status_dropdown">
                                     <option value="New">New</option>
                                     <option value="Approved">Approved</option>

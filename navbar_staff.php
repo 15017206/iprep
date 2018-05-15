@@ -6,7 +6,6 @@ and open the template in the editor.
 -->
 <?php
 session_start();
-//$_SESSION[''];
 if (!isset($_SESSION['user_type'])) {
     header("Location: login.php");
     die();
