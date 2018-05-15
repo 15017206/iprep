@@ -2,7 +2,7 @@
 
 var vacancy_type = "";
 $(document).ready(function (e) {
-    refreshCompanies();
+    refreshCompanies(); // For the bottom green companies only
     refreshVacancies();
 
     // When submitted to add a company
@@ -103,6 +103,10 @@ $(document).ready(function (e) {
         }
     });
     // To show all companies with vacancies
+    
+    $('#search_company_various').keyup(function (){
+        filterVacancies();
+    });
 
 }); // end of document.ready
 
@@ -122,7 +126,7 @@ function addNewVacancy(company_id) {
             for (var i = 0; i < response.length; i++) {
                 $("#exampleModalLongTitle2").html("Add Vacancy to " + response[i].company_name);
             }
-            
+
         },
         error: function (obj, textStatus, errorThrown) {
             console.log("Error " + textStatus + ": " + errorThrown);
@@ -172,7 +176,7 @@ function modifyVacancy(vacancy_id) {
 }
 
 function deleteVacancy(vacancy_id) {
-    
+
     var confirmation = confirm("Sure to delete?");
     if (confirmation) {
         $.ajax({
@@ -295,7 +299,94 @@ function refreshVacancies() {
                     }
                 }
                 list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
-                        "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency +" " +company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
+                        "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + " " + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
+                        "<br/><a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='modifyVacancy(" + vacancy_id + ")' class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
+                        "<a href=''><span onclick='deleteVacancy(" + vacancy_id + ")' class='badge badge-danger'>Remove vacancy</span></a>" +
+                        "</li>";
+                $("#list_of_companies_with_vacancies_small_placeholder" + company_id).append(list_of_vacancies);
+            }
+        },
+        error: function (obj, textStatus, errorThrown) {
+            console.log("Error " + textStatus + ": " + errorThrown);
+        }
+    });
+}
+
+function filterVacancies() {
+    var query = $('#search_company_various').val();
+    $("#list_of_companies_with_vacancies_big_placeholder").empty();
+    $("#list_of_companies_with_vacancies_small_placeholder").empty();
+    // To show all companies with vacancies
+    // To eliminate repeating companies with 2 or more vacancies
+    var company_id_array = ["x"];
+    $.ajax({
+        type: "GET",
+        url: "http://localhost/iprep/webservices/getVacanciesV2ByCoyNameOrCountryOrJobRole.php",
+        data: {query: query},
+        cache: false,
+        dataType: "JSON",
+        success: function (response) {
+
+            for (var i = 0; i < response.length; i++) {
+                var company_id = response[i].company_id;
+
+                //Related to vacancies, put response[i] here
+                var vacancy_id = response[i].vacancy_id;
+                var job_role = response[i].job_role;
+                var internship_start_date = response[i].internship_start_date;
+                var internship_end_date = response[i].internship_end_date;
+                var allowance_currency = response[i].allowance_currency;
+                var company_mthly_allowance = response[i].company_mthly_allowance;
+                var accomodation_provided = response[i].accomdation_provided;
+                var air_ticket_provided = response[i].air_ticket_provided;
+
+                if (accomodation_provided == 1) {
+                    accomodation_provided = "Have accomodation";
+                } else {
+                    accomodation_provided = "Dont have accomodation";
+                }
+                if (air_ticket_provided == 1) {
+                    air_ticket_provided = "have air ticket";
+                } else {
+                    air_ticket_provided = "dont have air ticket";
+                }
+
+                // check if the company_id is in the array. If not inside, add it in.
+                for (var j = 0; j <= company_id_array.length; j++) {
+                    var list_of_company_with_vacancies = "";
+                    var list_of_vacancies = "";
+
+                    if (company_id !== company_id_array[j]) {
+
+                        // If the array has checked the last index
+                        if (j === company_id_array.length - 1) {
+                            company_id_array.push(company_id);
+
+                            // Related to companies, put response[i] here
+                            var company_name = response[i].company_name
+                            var country = response[i].country;
+
+                            list_of_company_with_vacancies += "<li class='list-group-item list-group-item-action flex-column align-items-start'>" +
+                                    "<div class='d-flex w-100 justify-content-between'>" +
+                                    "<h5 class='mb-1'>" + company_name + "</h5>" +
+                                    "<small>company ID: " + company_id + "</small>" +
+                                    "</div>" +
+                                    "<a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='addNewVacancy(" + company_id + ")' class='badge badge-success'>Add vacancy</span></a>" +
+                                    "<br/><br/>" +
+                                    "<ul id='list_of_companies_with_vacancies_small_placeholder" + company_id + "' class='list-group'>" +
+                                    // Need another for loop to loop various vacancies here
+                                    "</ul>" +
+                                    "<small>" + country + "</small>" +
+                                    "</li>";
+
+                            $("#list_of_companies_with_vacancies_big_placeholder").append(list_of_company_with_vacancies);
+                        }
+                    } else {
+                        break;
+                    }
+                }
+                list_of_vacancies += "<li class='list-group-item justify-content-between align-items-center'>" +
+                        "<small>" + job_role + ", " + internship_start_date + " to " + internship_end_date + ", " + allowance_currency + " " + company_mthly_allowance + "<br/> " + accomodation_provided + ", " + air_ticket_provided + "</small>" +
                         "<br/><a href='' data-toggle='modal' data-target='#modal_add_new_vacancy'><span onclick='modifyVacancy(" + vacancy_id + ")' class='badge badge-warning'>Modify vacancy</span></a>" + "&nbsp;" +
                         "<a href=''><span onclick='deleteVacancy(" + vacancy_id + ")' class='badge badge-danger'>Remove vacancy</span></a>" +
                         "</li>";

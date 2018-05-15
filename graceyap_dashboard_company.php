@@ -31,6 +31,24 @@ and open the template in the editor.
         <div class="container">
             <div class="alert alert-warning" role="alert">
                 <p>Companies with Vacancies</p>
+
+                <!--filterbar-->
+                <nav class="navbar navbar-expand-sm navbar-light bg-light">
+                    <div class="navbar-brand" href="#" id="11">Filter:</div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!--<form class="form-inline">-->
+                        <br/>
+                        <input class="form-control" id="search_company_various" type="search" placeholder="Company name/Job name/Country" aria-label="Search">
+                        <!--</form>-->
+                    </div>
+                </nav>
+                <!--filterbar end-->
+                <br/>
+                <div id="debug_msg"></div>
                 <ul class='list-group' id='list_of_companies_with_vacancies_big_placeholder'>
 
                 </ul>

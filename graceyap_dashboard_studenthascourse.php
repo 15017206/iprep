@@ -204,17 +204,16 @@
             <p>List of students with courses:</p>
 
             <nav class="navbar navbar-expand-sm navbar-light bg-light">
-                <a class="navbar-brand" href="#" id="11">Filter:</a>
+                <div class="navbar-brand" href="#" id="11">Filter:</div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" id="search_name_studentid" type="search" placeholder="Name/Student ID or Course" aria-label="Search">
-                    </form>
+                    <!--<form class="form-inline">-->
+                    <br/>
+                        <input class="form-control" id="search_name_studentid" type="search" placeholder="Name/Student ID or Course name" aria-label="Search">
+                    <!--</form>-->
                 </div>
             </nav>
             <br/>
